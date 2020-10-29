@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.degloba</groupId>
+        <artifactId>degloba-persistence</artifactId>
+        <version>4.4.3-SNAPSHOT</version>
+    </parent>
+    <artifactId>degloba-persistence-mongo</artifactId>
+    <packaging>jar</packaging>
+    <name>API de persistencia MongoDB implementada amb Spring-data</name>
+    <description>
+        
+    </description>
+
+    <dependencies>
+    	
+    	<!-- ****************** -->
+    	<!-- Llibreries degloba -->
+    	<!-- ****************** -->
+        <dependency>
+            <groupId>com.degloba</groupId>
+            <artifactId>degloba-domain</artifactId>
+            <exclusions>
+            	<exclusion>
+            		<groupId>org.springframework.data</groupId>
+            		<artifactId>spring-data-jpa</artifactId>
+            	</exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>degloba-ioc-spring</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+		</dependency>
+		<dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>degloba-persistence-test</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+	      
+	   
+ 		<!-- ********************************** -->
+            <!-- The Simple Logging Facade for Java -->
+            <!-- ********************************** -->       
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+        
+         <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>          	 
+            <scope>test</scope>
+        </dependency> 
+         
+        
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+<!--         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <scope>test</scope>
+        </dependency> -->
+
+        <!-- Hibernate OGM部分，为NoSQL持久化提供支持-->
+        <!-- <dependency>
+            <groupId>org.hibernate.ogm</groupId>
+            <artifactId>hibernate-ogm-core</artifactId>
+            <version>4.1.0.Beta1</version>
+            <optional>true</optional>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.hibernate.ogm</groupId>
+            <artifactId>hibernate-ogm-mongodb</artifactId>
+            <version>4.1.0.Beta1</version>
+            <optional>true</optional>
+        </dependency> -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.transaction</groupId>
+            <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+            <version>1.0.0.Final</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JBoss Transactions dependency -->
+        <dependency>
+            <groupId>org.jboss.jbossts</groupId>
+            <artifactId>jbossjta</artifactId>
+            <version>4.16.6.Final</version>
+            <scope>test</scope>
+        </dependency>
+    		
+    		
+        
+        <!-- ************************************** -->
+        <!-- Google App Engine (Testejar appengine) -->
+        <!-- ************************************** -->
+        <dependency>
+         	<groupId>com.google.appengine</groupId>
+            <artifactId>appengine-api-labs</artifactId>          
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+         	<groupId>com.google.appengine</groupId>
+            <artifactId>appengine-api-stubs</artifactId>
+            <scope>test</scope>
+        </dependency>   
+		<dependency>
+         	<groupId>com.google.appengine</groupId>
+            <artifactId>appengine-tools-sdk</artifactId>        
+            <scope>test</scope>
+        </dependency>  
+		<dependency>
+         	<groupId>com.google.appengine</groupId>
+            <artifactId>appengine-testing</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongodb-driver-sync</artifactId>
+		</dependency>
+    </dependencies>
+    
+    
+    <build>
+    
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+        
+        <plugins>
+        	<!--  The Surefire Plugin is used during the test phase of the build lifecycle to execute the unit tests of an application  -->
+         	<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+          			<skipTests>true</skipTests>
+       		 	</configuration> 
+            </plugin> 
+            
+            <!-- <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Export-Package>
+                            com.degloba.persistence.mongo
+                        </Export-Package>
+                    </instructions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-manifest</id>
+                        <goals>
+                            <goal>manifest</goal>
+                            <goal>bundle</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin> -->
+            
+	        <plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-compiler-plugin</artifactId>
+	        </plugin>
+            
+        </plugins>
+    </build>
+
+    <dependencyManagement>
+    	<dependencies>
+    		<dependency>
+    			<groupId>com.degloba</groupId>
+    			<artifactId>degloba-persistence-test</artifactId>
+    			<version>${project.version}</version>
+    		</dependency>
+    	</dependencies>
+    </dependencyManagement>
+    <url>www.degloba.com</url>
+</project>

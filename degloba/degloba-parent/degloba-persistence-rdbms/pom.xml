@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.degloba</groupId>
+		<artifactId>degloba-persistence</artifactId>
+		<version>4.4.3-SNAPSHOT</version>
+		<relativePath>../degloba-persistence/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>degloba-persistence-rdbms</artifactId>
+	<packaging>jar</packaging>
+	<name>(degloba-persistence-rdbms) - persistencia amb RDBMS persistence</name>
+	<description>
+        Interfície de magatzem RDBMS
+    </description>
+	<url>www.degloba.com</url>
+
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.degloba</groupId>
+			<artifactId>degloba-event-api</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-simple</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.degloba</groupId>
+			<artifactId>degloba-ioc-spring</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-simple</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- necessari per les entitats abstractes -->
+		<dependency>
+			<groupId>javax.jdo</groupId>
+			<artifactId>jdo-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>javax.persistence-api</artifactId>
+		</dependency>
+
+
+
+		<!-- DataNucleus v2 -->
+		<!-- <dependency> <groupId>org.datanucleus</groupId> <artifactId>datanucleus-core</artifactId> 
+			</dependency> <dependency> <groupId>com.google.appengine.orm</groupId> <artifactId>datanucleus-appengine</artifactId> 
+			<exclusions> <exclusion> <groupId>com.google.appengine</groupId> <artifactId>appengine-api-1.0-sdk</artifactId> 
+			</exclusion> <exclusion> <groupId>org.datanucleus</groupId> <artifactId>datanucleus-enhancer</artifactId> 
+			</exclusion> </exclusions> </dependency> -->
+		<!-- <dependency> <groupId>org.datanucleus</groupId> <artifactId>datanucleus-api-jpa</artifactId> 
+			</dependency> -->
+		<!-- <dependency> <groupId>org.datanucleus</groupId> <artifactId>datanucleus-json</artifactId> 
+			</dependency> -->
+
+
+
+		<dependency>
+			<groupId>com.degloba</groupId>
+			<artifactId>degloba-utilitats</artifactId>
+			<version>4.4.3-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.poi</groupId>
+					<artifactId>poi-ooxml</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.paypal.sdk</groupId>
+					<artifactId>paypal-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.paypal.sdk</groupId>
+					<artifactId>rest-api-sdk</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>rss4j</groupId>
+					<artifactId>rss4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.twitter4j</groupId>
+					<artifactId>twitter4j-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-simple</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.datanucleus</groupId>
+			<artifactId>datanucleus-api-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.degloba</groupId>
+			<artifactId>degloba-domain</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-simple</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		
+		
+		<!-- Querydsl -->
+
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-apt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <exclusions>
+            	<exclusion>
+            		<groupId>ch.qos.logback</groupId>
+            		<artifactId>logback-classic</artifactId>
+            	</exclusion>
+            </exclusions>
+        </dependency> 
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+        	<groupId>org.springframework.boot</groupId>
+        	<artifactId>spring-boot-starter-test</artifactId>
+        	<exclusions>
+        		<exclusion>
+        			<groupId>org.junit.vintage</groupId>
+        			<artifactId>junit-vintage-engine</artifactId>
+        		</exclusion>
+        		<exclusion>
+        			<groupId>junit</groupId>
+        			<artifactId>junit</artifactId>
+        		</exclusion>
+        		<exclusion>
+        			<groupId>ch.qos.logback</groupId>
+        			<artifactId>logback-classic</artifactId>
+        		</exclusion>
+        	</exclusions>
+        </dependency>
+	</dependencies>
+
+
+	<build>
+
+<!-- 		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources> -->
+
+		<plugins>
+		
+			<!-- The Surefire Plugin is used during the test phase of the build lifecycle 
+				to execute the unit tests of an application -->
+			<!-- <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin> -->
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				 <executions>
+					<execution>
+						<id>default-testCompile</id>
+						<phase>test-compile</phase>
+						<configuration>
+							<testExcludes>
+								<exclude>**/*.java</exclude>
+							</testExcludes>
+						</configuration>
+						<goals>
+							<goal>testCompile</goal>
+						</goals>
+					</execution> 
+				</executions>  
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+			</plugin>
+			
+			<!-- comentar si no te classe SpringBoot -->
+			<!-- <plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<configuration>
+					<mainClass>com.degloba.ecommerce.cqrs.CqrsSpringBootApplication</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+				</plugin> -->
+			 
+	
+            
+		</plugins>
+	</build>
+
+
+
+</project>
