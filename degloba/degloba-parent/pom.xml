@@ -1,0 +1,902 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>degloba-parent</artifactId>
+	<packaging>pom</packaging>
+	<groupId>com.degloba</groupId>
+	<version>4.4.3-SNAPSHOT</version>
+	<organization>
+		<name>degloba</name>
+		<url>www.degloba.com</url>
+	</organization>
+
+	<properties>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<jdk.version>[11,)</jdk.version>
+
+		<requireMavenVersion>3.5.4</requireMavenVersion>
+
+		<servlet.version>4.0.0</servlet.version>
+
+		<!-- Spring -->
+		<spring.version>5.2.8.RELEASE</spring.version>
+		<springframework.security.version>5.1.0.RELEASE</springframework.security.version>
+		<springframework.ws.version>3.0.4.RELEASE</springframework.ws.version>
+		<springframework.webflow.version>2.5.1.RELEASE</springframework.webflow.version>
+		<spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+		<spring.boot.version>2.3.0.M4</spring.boot.version>
+		<spring.boot.dependencies.version>2.3.3.RELEASE</spring.boot.dependencies.version>
+		<spring.integration.mongodb.version>5.3.0.M4</spring.integration.mongodb.version>
+
+		<springfox.swagger2.version>2.9.2</springfox.swagger2.version>
+		<doxia.module.markdown.version>1.9.1</doxia.module.markdown.version>
+
+		<wagon.git.version>2.0.4</wagon.git.version>
+
+		<slf4j.version>2.0.0-alpha1</slf4j.version>
+
+		<degloba-persistence-rdbms.version>4.4.3-SNAPSHOT</degloba-persistence-rdbms.version>
+		<degloba-domain.version>4.4.3-SNAPSHOT</degloba-domain.version>
+		<degloba-event-api.version>4.4.3-SNAPSHOT</degloba-event-api.version>
+		<degloba-ioc-spring.version>4.4.3-SNAPSHOT</degloba-ioc-spring.version>
+		<degloba-persistence-nosql.version>0.0.1-SNAPSHOT</degloba-persistence-nosql.version>
+		<degloba-infrastructure.version>4.4.3-SNAPSHOT</degloba-infrastructure.version>
+
+		<datanucleus.jpa.version>3.1.3</datanucleus.jpa.version>
+
+		<!-- JSF MOJARRA NO ACABA DE FUNCIONAR AMB LA VERSIO 2.2.x SOBRE GAE. SUBSTITUIT 
+			PER MYFACES ex : 2.2.12 -->
+		<mojarra.version>2.1.13</mojarra.version>
+
+		<!-- JSF MYFACES -->
+		<myfaces.version>2.3.6</myfaces.version>
+
+		<uel.version>2.2</uel.version>
+		<poi.version>4.1.2</poi.version>
+
+		<!-- Google Appengine https://cloud.google.com/appengine/docs/standard/java/release-notes#june_28_2017 -->
+		<google.appengine.version>1.9.82</google.appengine.version>
+
+		<google-cloud-pubsub.version>1.89.0</google-cloud-pubsub.version>
+
+
+		<!-- Setting this property using archetype-metadata.xml requiredPorperty 
+			so that generated project uses correct version of richfaces. -->
+		<org.richfaces.bom.version>4.3.7.Final</org.richfaces.bom.version>
+
+		<!-- Test Dependencies -->
+		<mockito.version>3.3.3</mockito.version>
+		<junit.jupiter.version>5.6.1</junit.jupiter.version>
+		<lombok.version>1.18.12</lombok.version>
+		<junit.version>4.13</junit.version>
+
+		<problem-spring-web.version>0.25.0</problem-spring-web.version>
+
+		<hibernate.version>6.0.0.Alpha4</hibernate.version>
+		<dbunit.version>2.7.0</dbunit.version>
+
+		<!-- https://github.com/objectify/objectify -->
+		<googleCloud.objectify.version>6.0.6</googleCloud.objectify.version>
+		<googleCloud.version>1.65.0</googleCloud.version>
+		<libraries.bom.version>9.1.0</libraries.bom.version>
+
+
+		<commons.version>3.10</commons.version>
+		<datanucleus.core.version>5.2.2</datanucleus.core.version>
+		<datanucleus.api.jpa.version>5.2.1</datanucleus.api.jpa.version>
+		<jsf.version>2.2.20</jsf.version>
+		<javassist.version>3.12.1.GA</javassist.version>
+
+		<modelmapper.version>2.3.7</modelmapper.version>
+
+		<wagon.webdav.jackrabbit.version>3.4.0</wagon.webdav.jackrabbit.version>
+
+		<objectify.version>6.0.6</objectify.version>
+
+
+
+
+		<!-- PLUGINS -->
+
+		<maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+		<maven.jar.plugin.version>3.2.0</maven.jar.plugin.version>
+		<maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
+		<maven.surefire.report.plugin.version>3.0.0-M5</maven.surefire.report.plugin.version>
+
+		<appengine.maven.plugin.version>2.3.0</appengine.maven.plugin.version>
+		<maven.resources.plugin.version>3.2.0</maven.resources.plugin.version>
+		<maven.install.plugin.version>3.0.0-M1</maven.install.plugin.version>
+		<maven.assembly.plugin.version>3.3.0</maven.assembly.plugin.version>
+		<maven.bundle.plugin.version>4.2.1</maven.bundle.plugin.version>
+		<maven.javadoc.plugin.version>3.2.0</maven.javadoc.plugin.version>
+		<maven.source.plugin.version>3.2.1</maven.source.plugin.version>
+		<maven.release.plugin.version>3.0.0-M1</maven.release.plugin.version>
+		<maven.site.plugin.version>3.9.1</maven.site.plugin.version>
+		<maven.bundle.plugin.version>4.2.1</maven.bundle.plugin.version>
+		<maven.deploy.plugin.version>3.0.0-M1</maven.deploy.plugin.version>
+
+		<versions.maven.plugin.version>2.8.1</versions.maven.plugin.version>
+		<maven.enforcer.plugin.version>3.0.0-M3</maven.enforcer.plugin.version>
+		<maven.failsafe.plugin.version>3.0.0-M5</maven.failsafe.plugin.version>
+
+		<maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
+		<maven.war.plugin.version>3.3.1</maven.war.plugin.version>
+		<exec.maven.plugin.version>3.0.0</exec.maven.plugin.version>
+
+	</properties>
+
+	<repositories>
+
+		<repository>
+			<id>org.springframework.maven.milestone</id>
+			<url>https://maven.springframework.org/milestone</url>
+		</repository>
+
+		<repository>
+			<id>spring-milestone</id>
+			<name>Spring Milestone Repository</name>
+			<url>https://repo.spring.io/milestone</url>
+		</repository>
+
+	</repositories>
+
+	<pluginRepositories>
+
+	</pluginRepositories>
+
+	<modules>
+
+ 		<module>./degloba-domain</module>
+		<module>./degloba-ioc-spring</module>
+		<module>./degloba-persistence</module>
+		<module>./degloba-integration</module>
+		<module>./degloba-utilitats</module>
+		<module>./degloba-cqrs</module>
+		<module>./degloba-infrastructure</module>
+		
+		<module>./degloba-ioc-test</module>
+		<module>./degloba-event-api</module>
+
+		<module>./degloba-facade</module>
+		<module>./degloba-webapp</module>
+		<module>./degloba-security</module>
+	</modules>
+
+	<dependencyManagement>
+
+		<dependencies>
+
+			<!-- https://cloud.google.com/storage/docs/reference/libraries https://github.com/GoogleCloudPlatform/cloud-opensource-java/wiki/The-Google-Cloud-Platform-Libraries-BOM -->
+			<dependency>
+				<groupId>com.google.cloud</groupId>
+				<artifactId>libraries-bom</artifactId>
+				<version>${libraries.bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>${spring.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.inject</groupId>
+				<artifactId>javax.inject</artifactId>
+				<version>1</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons.version}</version>
+			</dependency>
+
+			<!-- Database Connection Pools (https://cloud.google.com/sql/faq#connections) -->
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>1.4</version>
+			</dependency>
+
+
+			<!-- DataNucleus v2 -->
+			<dependency>
+				<groupId>org.datanucleus</groupId>
+				<artifactId>datanucleus-core</artifactId>
+				<version>${datanucleus.core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.appengine.orm</groupId>
+				<artifactId>datanucleus-appengine</artifactId>
+				<version>2.1.2</version>
+				<exclusions>
+					<exclusion>
+						<groupId>com.google.appengine</groupId>
+						<artifactId>appengine-api-1.0-sdk</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.datanucleus</groupId>
+						<artifactId>datanucleus-enhancer</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.datanucleus</groupId>
+				<artifactId>datanucleus-api-jpa</artifactId>
+				<version>${datanucleus.api.jpa.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-jpa_2.0_spec</artifactId>
+				<version>1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.jdo</groupId>
+				<artifactId>jdo-api</artifactId>
+				<version>3.1</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>${javassist.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.dbunit</groupId>
+				<artifactId>dbunit</artifactId>
+				<version>${dbunit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- ******************** -->
+			<!-- JSF MOJARRA -->
+			<!-- ******************** -->
+			<dependency>
+				<groupId>com.sun.faces</groupId>
+				<artifactId>jsf-api</artifactId>
+				<version>${jsf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.faces</groupId>
+				<artifactId>jsf-impl</artifactId>
+				<version>${jsf.version}</version>
+			</dependency>
+
+
+			<!-- ******************** -->
+			<!-- JSF MYFACES -->
+			<!-- ******************** -->
+			<dependency>
+				<groupId>org.apache.myfaces.core</groupId>
+				<artifactId>myfaces-api</artifactId>
+				<version>${myfaces.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.myfaces.core</groupId>
+				<artifactId>myfaces-impl</artifactId>
+				<version>${myfaces.version}</version>
+			</dependency>
+
+
+			<!-- Unified Expression Language (JSF 2.2) <dependency> <groupId>org.jboss.spec.javax.el</groupId> 
+				<artifactId>jboss-el-api_2.2_spec</artifactId> <version>1.0.2.Final</version> 
+				</dependency> <dependency> <groupId>org.jboss.el</groupId> <artifactId>jboss-el</artifactId> 
+				<version>1.0_02.CR6</version> </dependency> -->
+			<!-- <dependency> <groupId>javax.el</groupId> <artifactId>el-api</artifactId> 
+				<version>${uel.version}</version> </dependency> -->
+
+
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+
+
+			<!-- Java API for Microsoft Documents -->
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>${poi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-ooxml</artifactId>
+				<version>${poi.version}</version>
+			</dependency>
+
+
+
+			<dependency>
+				<groupId>org.springframework.webflow</groupId>
+				<artifactId>spring-binding</artifactId>
+				<version>${springframework.webflow.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.webflow</groupId>
+				<artifactId>spring-webflow</artifactId>
+				<version>${springframework.webflow.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.webflow</groupId>
+				<artifactId>spring-js</artifactId>
+				<version>${springframework.webflow.version}</version>
+			</dependency>
+
+
+
+			<dependency>
+				<groupId>com.google.appengine</groupId>
+				<artifactId>appengine-api-labs</artifactId>
+				<version>${google.appengine.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.appengine</groupId>
+				<artifactId>appengine-api-stubs</artifactId>
+				<version>${google.appengine.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.appengine</groupId>
+				<artifactId>appengine-tools-sdk</artifactId>
+				<version>${google.appengine.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.appengine</groupId>
+				<artifactId>appengine-testing</artifactId>
+				<version>${google.appengine.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.appengine</groupId>
+				<artifactId>appengine-api-1.0-sdk</artifactId>
+				<version>${google.appengine.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.degloba</groupId>
+				<artifactId>degloba-persistence-rdbms</artifactId>
+				<version>${degloba-persistence-rdbms.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.degloba</groupId>
+				<artifactId>degloba-persistence-nosql</artifactId>
+				<version>${degloba-persistence-nosql.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.degloba</groupId>
+				<artifactId>degloba-domain</artifactId>
+				<version>${degloba-domain.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.degloba</groupId>
+				<artifactId>degloba-event-api</artifactId>
+				<version>${degloba-event-api.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.degloba</groupId>
+				<artifactId>degloba-ioc-spring</artifactId>
+				<version>${degloba-ioc-spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.cloud</groupId>
+				<artifactId>google-cloud-pubsub</artifactId>
+				<version>1.103.1</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring.boot.dependencies.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- per poder convertir entity-DTO -->
+			<dependency>
+				<groupId>org.modelmapper</groupId>
+				<artifactId>modelmapper</artifactId>
+				<version>${modelmapper.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.googlecode.objectify</groupId>
+				<artifactId>objectify</artifactId>
+				<version>${objectify.version}</version>
+			</dependency>
+
+		</dependencies>
+
+	</dependencyManagement>
+
+
+	<!-- **************************************************** -->
+	<!-- Dependències comunes a tots els projectes "degloba" -->
+	<!-- **************************************************** -->
+
+	<dependencies>
+
+		<!-- The Simple Logging Facade for Java (SLF4J) serves as a simple facade 
+			or abstraction for various logging frameworks (e.g. java.util.logging, logback, 
+			log4j) allowing the end user to plug in the desired logging framework at 
+			deployment time. -->
+<!-- 		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency> -->
+		
+
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
+
+		<!-- By default spring-boot-starter-test comes with JUnit 4 as the testing 
+			framework. We can exclude JUnit4 and add JUnit 5 dependencies as follows: -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- Unit Testing -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-params</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-to-slf4j</artifactId>
+		</dependency>
+	</dependencies>
+
+
+
+	<build>
+
+		<!-- Sobreescriu els plugins que Eclipse utilitza S'apliquen a tots els 
+			projectes que hereden d'aquest -->
+		<plugins>
+
+			<!-- proporciona objectius per controlar algunes restriccions de l'entorn 
+				com la versió Maven, la versió JDK i la família del sistema operatiu, juntament 
+				amb moltes altres regles integrades i regles creades per l'usuari. -->
+			<!-- <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>${maven.enforcer.plugin.version}</version>
+				<executions>
+					<execution>
+						<id>enforce-versions</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>${requireMavenVersion}</version>
+								</requireMavenVersion>
+								<requireJavaVersion>
+									<version>${jdk.version}</version>
+								</requireJavaVersion>
+								<requireOS> <family>unix</family> </requireOS> <requireReleaseVersion> 
+									<message>No se permite una versión Snapshot</message> </requireReleaseVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin> -->
+
+		</plugins>
+
+		<!-- Plugins que poden o no ser utilitzats pels projectes que hereden d'aquest 
+			S'han de definir TAMBÉ en el projecte fill -->
+		<pluginManagement>
+
+			<plugins>
+
+				<!-- https://www.mojohaus.org/versions-maven-plugin/usage.html -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>versions-maven-plugin</artifactId>
+					<version>${versions.maven.plugin.version}</version>
+					<executions>
+						<execution>
+							<phase>compile</phase>
+							<goals>
+								<!-- <goal>display-dependency-updates</goal> -->
+								<goal>display-plugin-updates</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<generateBackupPoms>false</generateBackupPoms>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>${maven.install.plugin.version}</version>
+				</plugin>
+
+				<!-- This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven.compiler.plugin.version}</version>
+					<configuration>
+					<release>11</release>
+<!-- 					els seguents parametres son substituits pel parametre release en Java11	
+						<source>${jdk.version}</source>   
+						<target>${jdk.version}</target> 
+						<compilerVersion>${jdk.version}</compilerVersion>
+						<fork>true</fork>
+						<meminitial>128m</meminitial>
+						<maxmem>768m</maxmem>
+						<useIncrementalCompilation>false</useIncrementalCompilation> -->
+						<!-- <sourceDirectory>${project.build.directory}/generated-sources/java8</sourceDirectory> -->
+						<outputDirectory>${basedir}/target/classes</outputDirectory>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${maven.deploy.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${maven.resources.plugin.version}</version>
+					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven.surefire.plugin.version}</version>
+					<configuration>
+						<argLine>--illegal-access=permit</argLine>
+						<includes>
+							<include>**/*Test.java</include>
+						</includes>
+						<excludes>
+							<exclude>**/Abstract*.java</exclude>
+						</excludes>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${maven.jar.plugin.version}</version>
+					<configuration>
+						<archive>
+							<!-- <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile> -->
+							<!-- <addMavenDescriptor>false</addMavenDescriptor> -->
+							<!-- <index>true</index> <manifest> <addClasspath>true</addClasspath> 
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries> </manifest> -->
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>${maven.clean.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${maven.war.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${maven.assembly.plugin.version}</version>
+					<configuration>
+						<descriptorRefs>
+							<descriptorRef>jar-with-dependencies</descriptorRef>
+							<descriptorRef>bin</descriptorRef>
+							<descriptorRef>src</descriptorRef>
+							<descriptorRef>project</descriptorRef>
+						</descriptorRefs>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>maven-bundle-plugin</artifactId>
+					<version>${maven.bundle.plugin.version}</version>
+					<extensions>true</extensions>
+					<executions>
+						<execution>
+							<id>generate-manifest</id>
+							<goals>
+								<goal>manifest</goal>
+								<goal>bundle</goal>
+							</goals>
+							<phase>package</phase>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>${maven.site.plugin.version}</version>
+					<configuration>
+						<locales>zh_CN</locales>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>commons-logging</groupId>
+							<artifactId>commons-logging</artifactId>
+							<version>1.2</version>
+						</dependency>
+						<dependency>
+							<groupId>net.trajano.wagon</groupId>
+							<artifactId>wagon-git</artifactId>
+							<version>${wagon.git.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.apache.maven.doxia</groupId>
+							<artifactId>doxia-module-markdown</artifactId>
+							<version>${doxia.module.markdown.version}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${maven.release.plugin.version}</version>
+					<configuration>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven.source.plugin.version}</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven.javadoc.plugin.version}</version>
+					<configuration>
+						<minmemory>128m</minmemory>
+						<maxmemory>1024m</maxmemory>
+						<locale>en_US</locale>
+						<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+						<docletArtifact>
+							<groupId>org.umlgraph</groupId>
+							<artifactId>umlgraph</artifactId>
+							<version>5.7.2</version>
+						</docletArtifact>
+						<additionalparam>-enumerations</additionalparam>
+						<additionalparam>-enumconstants</additionalparam>
+						<additionalparam>-views</additionalparam>
+						<additionalparam>-inferrel</additionalparam>
+						<additionalparam>-inferdep</additionalparam>
+						<additionalparam>-collapsible</additionalparam>
+						<additionalparam>-hide java.*</additionalparam>
+						<additionalparam>-collpackages</additionalparam>
+						<additionalparam>-qualify</additionalparam>
+						<additionalparam>-postfixpackage</additionalparam>
+						<additionalparam>-types</additionalparam>
+						<additionalparam>-visibility</additionalparam>
+						<additionalparam>-outputencoding UTF-8</additionalparam>
+						<additionalparam>-nodefontsize 9</additionalparam>
+						<additionalparam>-nodefontpackagesize 7</additionalparam>
+						<additionalparam>-link
+							http://docs.oracle.com/javase/7/docs/jdk/api/javadoc/doclet/
+						</additionalparam>
+						<additionalparam>-link
+							http://download.oracle.com/javase/7/docs/api/</additionalparam>
+						<useStandardDocletOptions>true</useStandardDocletOptions>
+						<additionalparam>-Xdoclint:none</additionalparam>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-report-plugin</artifactId>
+					<version>${maven.surefire.report.plugin.version}</version>
+				</plugin>
+				<!-- for hot reload of the web application -->
+				<plugin>
+					<groupId>com.google.cloud.tools</groupId>
+					<artifactId>appengine-maven-plugin</artifactId>
+					<version>${appengine.maven.plugin.version}</version>
+					<configuration>
+
+						<deploy.promote>true</deploy.promote>
+						<deploy.stopPreviousVersion>true</deploy.stopPreviousVersion>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>com.google.appengine</groupId>
+					<artifactId>appengine-maven-plugin</artifactId>
+					<version>${google.appengine.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${spring.boot.dependencies.version}</version>
+					<!-- <executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
+					</executions> -->
+				</plugin>
+
+				<!-- The Failsafe Plugin is designed to run integration tests while the 
+					Surefire Plugin is designed to run unit tests -->
+				<plugin>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>${maven.failsafe.plugin.version}</version>
+					<configuration>
+						<argLine>--illegal-access=permit</argLine>
+					</configuration>
+				</plugin>
+
+
+			</plugins>
+
+		</pluginManagement>
+
+	</build>
+
+
+
+	<profiles>
+		<!-- https://www.baeldung.com/maven-profiles -->
+		<profile>
+			<id>no-tests</id>
+			<properties>
+				<maven.test.skip>true</maven.test.skip>
+			</properties>
+
+		</profile>
+
+		<profile>
+			<id>java11</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>dev</value>
+				</property>
+			</activation>
+
+			<properties>
+				<jdk.version>11</jdk.version>
+			</properties>
+
+			<build>
+				<plugins>
+
+					<!-- This plugin's configuration is used to store Eclipse m2e settings 
+						only. It has no influence on the Maven build itself. -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>${maven.compiler.plugin.version}</version>
+						<configuration>
+							<source>${jdk.version}</source>
+							<target>${jdk.version}</target>
+							<compilerVersion>${jdk.version}</compilerVersion>
+							<fork>true</fork>
+							<meminitial>128m</meminitial>
+							<maxmem>768m</maxmem>
+							<useIncrementalCompilation>false</useIncrementalCompilation>
+							<!-- <sourceDirectory>${project.build.directory}/generated-sources/java8</sourceDirectory> -->
+							<outputDirectory>${basedir}/target/classes</outputDirectory>
+						</configuration>
+					</plugin>
+
+					<!-- <plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-enforcer-plugin</artifactId>
+						<version>${maven.enforcer.plugin.version}</version>
+						<executions>
+							<execution>
+								<id>enforce-versions</id>
+								<goals>
+									<goal>enforce</goal>
+								</goals>
+								<configuration>
+									<rules>
+										<requireMavenVersion>
+											<version>${requireMavenVersion}</version>
+										</requireMavenVersion>
+										<requireJavaVersion>
+											<version>${jdk.version}</version>
+										</requireJavaVersion>
+										<requireOS> <family>unix</family> </requireOS> <requireReleaseVersion> 
+											<message>No se permite una versión Snapshot</message> </requireReleaseVersion>
+									</rules>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin> -->
+				</plugins>
+
+			</build>
+		</profile>
+
+	</profiles>
+
+
+
+
+	<name>(degloba-parent)</name>
+</project>
