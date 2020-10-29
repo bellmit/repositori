@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.degloba</groupId>
+		<artifactId>ecommerce-boundedContext</artifactId>
+		<version>4.4.3-SNAPSHOT</version>
+		<relativePath>../ecommerce-boundedContext/pom.xml</relativePath>
+	</parent>
+	<artifactId>ecommerce-cqrs</artifactId>
+	<name>Ecommerce - Cqrs</name>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.degloba</groupId>
+			<artifactId>degloba-cqrs</artifactId>
+			<version>4.4.3-SNAPSHOT</version>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.degloba</groupId>
+			<artifactId>ecommerce-facade</artifactId>
+			<version>4.4.3-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.axonframework</groupId>
+			<artifactId>axon-modelling</artifactId>
+			<version>4.3.1</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.axonframework</groupId>
+			<artifactId>axon-spring-boot-autoconfigure</artifactId>
+			<version>4.3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.axonframework.extensions.amqp</groupId>
+			<artifactId>axon-amqp-spring-boot-starter</artifactId>
+			<version>4.3</version>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.degloba.ecommerce.cqrs.CqrsSpringBootApplication</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- The Surefire Plugin is used during the test phase of the build lifecycle 
+				to execute the unit tests of an application -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<description>CQRS stands for Command Query Responsibility Segregation</description>
+</project>
