@@ -1,0 +1,25 @@
+version: '3'
+services:
+  webapp:
+    container_name: ecommerce-webapp
+    restart: always
+    image: app-tag
+    ports:
+      - 8888:8080
+    network_mode: host
+    healthcheck:
+      test: "exit 0"
+
+  webapp-reactive:
+    container_name: ecommerce-web-reactive
+    build: ..\ecommerce-web-reactive\
+    image: app-tag2
+    depends_on:
+      - webapp
+    network_mode: "host"
+    hostname: localhost
+    restart: always
+    ports:
+      - 8887:8083
+    healthcheck:
+      test: "exit 0"

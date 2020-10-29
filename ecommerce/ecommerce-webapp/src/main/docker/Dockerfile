@@ -19,6 +19,7 @@
 #EXPOSE 8888
 
 
+
 # https://springframework.guru/manage-docker-containers-with-docker-compose/
 FROM openjdk:11
 ADD ./target/ecommerce-webapp-4.4.3-SNAPSHOT.jar /usr/src/ecommerce-webapp-4.4.3-SNAPSHOT.jar
