@@ -149,7 +149,7 @@
 
 	</pluginRepositories>
 
-	<modules>
+<!-- 	<modules>
 
  		<module>./degloba-domain</module>
 		<module>./degloba-ioc-spring</module>
@@ -165,7 +165,7 @@
 		<module>./degloba-facade</module>
 		<module>./degloba-webapp</module>
 		<module>./degloba-security</module>
-	</modules>
+	</modules> -->
 
 	<dependencyManagement>
 
