@@ -5,13 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 
-
 	<parent>
 		<groupId>com.degloba</groupId>
 		<artifactId>degloba-parent</artifactId>
 		<version>4.4.3-SNAPSHOT</version>
-		 <relativePath>../ecommerce/pom.xml</relativePath>
-		<!--  <relativePath /> --> <!-- lookup parent from repository -->
+		<relativePath>../ecommerce/pom.xml</relativePath>
+		<!--    <relativePath /> --> <!-- lookup parent from repository -->
 	</parent>
 
 
@@ -434,18 +433,26 @@
 			</properties>
 		</profile>
 	</profiles>
+	
+	
+<!-- 	<repositories>
+	<repository>
+		<id>degloba</id>
+		<url>file://G:\.m2\repository222</url>
+	</repository>
+	</repositories> -->
 
 	<modules>
-		<module>../ecommerce-eventsourcing</module>
-		<module>../ecommerce-infrastructure</module>
-		<module>../ecommerce-cqrs</module>
-		<module>../ecommerce-domain</module>
+		<module>./ecommerce-cqrs</module>
+		<module>./ecommerce-eventsourcing</module>
+		<module>./ecommerce-infrastructure</module>
+		<module>./ecommerce-domain</module>
 		<!-- <module>../boundedContext1-integration</module> -->
-		<module>../ecommerce-application</module>
-		<module>../ecommerce-facade</module>
-		<module>../ecommerce-facade-impl</module>
-		<module>../ecommerce-webapp</module>
-		<module>../ecommerce-web-reactive</module>
+		<module>./ecommerce-application</module>
+		<module>./ecommerce-facade</module>
+		<module>./ecommerce-facade-impl</module>
+		<module>./ecommerce-webapp</module>
+		<module>./ecommerce-web-reactive</module>
 	</modules>
 	<url>www.degloba.com</url>
 </project>

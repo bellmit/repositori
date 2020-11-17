@@ -21,7 +21,6 @@ import com.degloba.ecommerce.trader.webapp.reactive.utils.MongoUtils;
 import com.degloba.ecommerce.trader.webapp.reactive.utils.WebUtils;
 import com.degloba.trader.enviaments.webapp.data.PrepareData;
 
-
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

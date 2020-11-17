@@ -1,9 +1,37 @@
 version: '3'
 services:
+        
+# MongoDB - Reactive Persistence
+  mongo:
+    build:
+      context: .\ecommerce-webapp\docker\mongo
+      dockerfile: Dockerfile
+    image: "mongodb"
+    hostname: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodata:/data/db
+    env_file:
+      - .\ecommerce-webapp\docker\mongo\.env
+
+  # The mongo-seed container is just for waiting until the main mongo container is done setting its replicaset up
+  # and then initializing data.
+  mongo-seed:
+    build:
+      context: .\ecommerce-webapp\docker\mongo_seed
+      dockerfile: Dockerfile
+    # ping the main mongo instance relentlessly until the connection is ready, then wait, then run an initialize data script to populate data.
+    command: bash -c "until mongo mongo:27017/fantasy_db; do echo 'Waiting for Mongo to be ready...'; sleep 1; done; sleep 3; mongo mongo:27017/fantasy_db init.js; "
+    links:
+      - mongo
+
+    
   webapp:
     container_name: ecommerce-webapp
+    build: .\ecommerce-webapp
     restart: always
-    image: app-tag
+    image: webapp-tag
     ports:
       - 8888:8080
     network_mode: host
@@ -12,8 +40,8 @@ services:
 
   webapp-reactive:
     container_name: ecommerce-web-reactive
-    build: ..\ecommerce-web-reactive\
-    image: app-tag2
+    build: .\ecommerce-web-reactive
+    image: webreactive-tag
     depends_on:
       - webapp
     network_mode: "host"
@@ -23,3 +51,14 @@ services:
       - 8887:8083
     healthcheck:
       test: "exit 0"
+         
+  webapp-angular:
+      build:
+         context: .\ecommerce-webapp-angular
+      ports:
+        - 4201:4201
+      container_name: ecommerce-webapp-angular
+      
+               
+volumes:
+  mongodata:      

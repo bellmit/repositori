@@ -6,30 +6,26 @@
 	<packaging>jar</packaging>
 	<artifactId>ecommerce-webapp</artifactId>
 	<name>Ecommerce - Webapp</name>
-	
-		
 	<parent>
 		<artifactId>ecommerce-boundedContext</artifactId>
 		<groupId>com.degloba</groupId>
 		<version>4.4.3-SNAPSHOT</version>
-		 <relativePath>../ecommerce-boundedContext/pom.xml</relativePath>
-		 <!-- <relativePath />  --> <!-- lookup parent from repository -->
-		 <!-- <relativePath>./src/main/java/pom.xml</relativePath> -->
+		<relativePath>../ecommerce-boundedContext/pom.xml</relativePath> <!-- WRONG LOCAL POM -->
+		<!-- <relativePath /> --> <!-- lookup parent from repository NO LOCAL POM -->
+		<!-- <relativePath>./src/main/java/pom.xml</relativePath> -->
 	</parent>
-	
-	
 
 	<dependencies>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
-		</dependency>			
-		
+		</dependency>
+
 		<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-jetty</artifactId>
-			</dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jetty</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectreactor</groupId>
@@ -83,10 +79,8 @@
 		</dependency>
 
 
-<!-- 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.springframework.security</groupId> <artifactId>spring-security-config</artifactId> 
+			</dependency> -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -262,7 +256,7 @@
 			<groupId>com.google.cloud</groupId>
 			<artifactId>google-cloud-datastore</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.google.auth</groupId>
 			<artifactId>
@@ -277,7 +271,7 @@
 			<groupId>javax.json.bind</groupId>
 			<artifactId>javax.json.bind-api</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -320,6 +314,22 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 
+				<plugin>
+				<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<configuration>
+					<mainClass>com.degloba.trader.TraderApplication</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+				</plugin>
+
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-install-plugin</artifactId>
@@ -353,10 +363,8 @@
 			</plugin>
 
 
-<!-- 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin> -->
+			<!-- <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> 
+				</plugin> -->
 
 			<!-- <plugin> <groupId>org.eclipse.jetty</groupId> <artifactId>jetty-maven-plugin</artifactId> 
 				</plugin> -->
