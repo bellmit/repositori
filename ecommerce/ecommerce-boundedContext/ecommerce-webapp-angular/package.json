@@ -8,7 +8,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o --port 4200",
+    "start": "npm run shell",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
