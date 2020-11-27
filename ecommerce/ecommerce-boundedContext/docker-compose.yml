@@ -21,6 +21,8 @@ services:
     build:
       context: .\ecommerce-webapp\docker\mongo_seed
       dockerfile: Dockerfile
+    image: "mongodb_seed"
+    hostname: mongo_seed
     # ping the main mongo instance relentlessly until the connection is ready, then wait, then run an initialize data script to populate data.
     command: bash -c "until mongo mongo:27017/fantasy_db; do echo 'Waiting for Mongo to be ready...'; sleep 1; done; sleep 3; mongo mongo:27017/fantasy_db init.js; "
     links:
@@ -29,12 +31,17 @@ services:
     
   webapp:
     container_name: ecommerce-webapp
-    build: .\ecommerce-webapp
+    build:
+       context: .\ecommerce-webapp
+       dockerfile: Dockerfile
     restart: always
-    image: webapp-tag
+    image: web-tag
+    hostname: webHost
+    depends_on:
+      - mongo
     ports:
       - 8888:8080
-    network_mode: host
+    network_mode: bridge
     healthcheck:
       test: "exit 0"
 
@@ -42,23 +49,31 @@ services:
     container_name: ecommerce-web-reactive
     build: .\ecommerce-web-reactive
     image: webreactive-tag
+    hostname: webReactiveHost
     depends_on:
       - webapp
-    network_mode: "host"
-    hostname: localhost
+    network_mode: bridge
     restart: always
     ports:
       - 8887:8083
     healthcheck:
       test: "exit 0"
+    environment:
+      - MONGODB_HOST=mongo
          
   webapp-angular:
-      build:
+    container_name: ecommerce-web-angular
+    network_mode: bridge
+    build:
          context: .\ecommerce-webapp-angular
-      ports:
-        - 4201:4201
-      container_name: ecommerce-webapp-angular
-      
+         dockerfile: Dockerfile
+    image: webangular-tag
+    hostname: webAngularHost
+    depends_on:
+      - webapp-reactive
+    ports:
+        - 4200:4200
+     
                
 volumes:
   mongodata:      
