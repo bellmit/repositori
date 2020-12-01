@@ -1,8 +1,3 @@
-####################
-### Java Builder ###
-####################
-
-
 # https://springframework.guru/manage-docker-containers-with-docker-compose/
 FROM openjdk:11
 ARG JAR_FILE=target/*.jar
