@@ -17,50 +17,51 @@ services:
   webapp:
     container_name: ecommerce-webapp
     build:
-       context: ..\ecommerce-webapp
+       context: ../ecommerce-webapp
        dockerfile: Dockerfile
-    restart: always
     image: web-tag
-#    depends_on:
-#      - mongo
     links:
       - mongo
+    environment:
+      # Overrides the host in the Spring Boot application to use the Docker's hostname
+      - SPRING_DATA_MONGODB_HOST=mongo      
     ports:
       - 8888:8080
-    network_mode: mired
-    healthcheck:
-      test: "exit 0"
-#    environment:
-#      - MONGODB_HOST=mongo
+    networks: 
+      - mired
+
 
   webapp-reactive:
     container_name: ecommerce-web-reactive
-    build: ..\ecommerce-web-reactive
+    build: ../ecommerce-web-reactive
     image: webreactive-tag
     hostname: webReactiveHost
     depends_on:
       - webapp      
-    network_mode: mired
-    restart: always
+    networks: 
+      - mired
+    environment:
+      # Overrides the host in the Spring Boot application to use the Docker's hostname
+      - SPRING_DATA_MONGODB_HOST=mongo    
     ports:
       - 8887:8083
-    healthcheck:
-      test: "exit 0"
-#    environment:
-#      - MONGODB_HOST=mongo
+    networks: 
+      - mired
+
          
-#  webapp-angular:
-#    container_name: ecommerce-web-angular
-#   network_mode: mired
-#    build:
-#         context: ..\ecommerce-webapp-angular
-#         dockerfile: Dockerfile
-#    image: webangular-tag
-#    hostname: webAngularHost
-#    depends_on:
-#      - webapp-reactive
-#    ports:
-#        - 4200:4200
+  webapp-angular:
+    container_name: ecommerce-web-angular
+    build:
+         context: ../ecommerce-webapp-angular
+         dockerfile: Dockerfile
+    image: webangular-tag
+    hostname: webAngularHost
+    depends_on:
+      - webapp-reactive
+    ports:
+        - 4200:4200
+    networks: 
+        - mired
      
                
 
@@ -77,6 +78,8 @@ services:
       - mongodata:/data/db
     env_file:
       - mongo/.env
+    networks: 
+      - mired      
 
   # The mongo-seed container is just for waiting until the main mongo container is done setting its replicaset up
   # and then initializing data.
@@ -88,6 +91,11 @@ services:
     command: bash -c "until mongo mongo:27017/fantasy_db; do echo 'Waiting for Mongo to be ready...'; sleep 1; done; sleep 3; mongo mongo:27017/fantasy_db init.js; "
     links:
       - mongo
+    networks: 
+      - mired
 
 volumes:
   mongodata:
+  
+networks:
+  mired:

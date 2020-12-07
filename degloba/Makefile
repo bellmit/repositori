@@ -4,6 +4,7 @@
 DOCKER_COMPOSE_FILE="./docker/docker-compose.yml"
 DOCKER_COMPOSE=docker-compose -f $(DOCKER_COMPOSE_FILE)
 
+
 # ----------------------------------------------------------
 # Main Commands
 # ----------------------------------------------------------
