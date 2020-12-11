@@ -17,8 +17,9 @@ export class MockServer {
 				'https://raw.githubusercontent.com/ag-grid/ag-grid/master/grid-packages/ag-grid-docs/src/stocks.json'); 
 				*/
 			
-			alert("kkkkk");
-			httpRequest.open('GET',	'http://localhost:8083/enviaments/');     // 8083 = reactive
+			let urlConnexio = 'http://localhost:8083/enviaments/';
+			alert(urlConnexio);
+			httpRequest.open('GET',	urlConnexio);     // 8083 = reactive
 			httpRequest.send();
 
 			httpRequest.onreadystatechange = () => {
@@ -40,7 +41,7 @@ export class MockServer {
 		return fromPromise(promesa)
 	}
 	
-	/* Observable de la carrega només de les files modificades */
+	/* Observable de la carrega nomï¿½s de les files modificades */
 	   byRowUpdates(): Observable<any> {
 							
 		return Observable.create(function(observer) {

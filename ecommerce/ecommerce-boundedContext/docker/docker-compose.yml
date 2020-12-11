@@ -59,9 +59,11 @@ services:
     depends_on:
       - webapp-reactive
     ports:
-        - 4200:4200
+        - 4200:80
     networks: 
         - mired
+#    volumes:
+#        - dist:/usr/share/nginx/html
      
                
 
@@ -96,6 +98,7 @@ services:
 
 volumes:
   mongodata:
+#  dist:
   
 networks:
   mired:

@@ -1,9 +1,24 @@
-FROM node:12-slim
+FROM node:8.11.2-alpine as node
+
+COPY package.json package-lock.json ./
+
+RUN npm i && mkdir /app && cp -R ./node_modules ./app
+
 WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install -g @angular/cli
+
+COPY . .
+
 RUN npm install
-COPY . ./
-RUN npm run build
-EXPOSE 4200
-CMD [ "npm", "start" ]
+
+#RUN npm run build -- --outputPath=./dist/
+
+
+FROM nginx:1.13.3-alpine
+
+RUN rm -rf /usr/share/nginx/html/*
+
+COPY ./nginx.conf  /etc/nginx/conf.d/default.conf
+
+COPY --from=node /usr/src/app/dist /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]

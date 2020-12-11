@@ -69,6 +69,7 @@ export class DashboardComponent implements OnInit {
 
 
 	goEnviaments() {
+		alert("goEnviaments");
 		this.router.navigate(['/enviament']);
 	}
 
