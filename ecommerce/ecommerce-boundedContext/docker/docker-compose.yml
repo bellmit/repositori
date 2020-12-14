@@ -113,10 +113,47 @@ services:
       - 5672:5672
       - 15672:15672
       
+      
+  axonserver:
+    image: axoniq/axonserver
+    hostname: axonserver
+    volumes:
+      - axonserver-data:/data
+      - axonserver-events:/eventdata
+      - axonserver-config:/config:ro
+    ports:
+      - '8024:8024'
+      - '8124:8124'
+      - '8224:8224'
+    networks:
+      - mired
+
+volumes:
+  axonserver-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/data
+      o: bind
+  axonserver-events:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/events
+      o: bind
+  axonserver-config:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/config
+      o: bind
+
 
 volumes:
   mongodata:
-#  dist:
+  axonserver-data:
+  axonserver-events:
+  axonserver-config:
   
 networks:
   mired:
