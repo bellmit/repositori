@@ -1,4 +1,4 @@
-version: "3.0"
+version: "3.8"
 services:
   # Core Spring Boot Application
 #  app:
@@ -95,6 +95,24 @@ services:
       - mongo
     networks: 
       - mired
+      
+      
+      
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    volumes:
+      - ./rabbitmq/etc/:/etc/rabbitmq/
+      - ./rabbitmq/data/:/var/lib/rabbitmq/
+      - ./rabbitmq/logs/:/var/log/rabbitmq/
+    environment:
+#      RABBITMQ_ERLANG_COOKIE: ${RABBITMQ_ERLANG_COOKIE}
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - 5672:5672
+      - 15672:15672
+      
 
 volumes:
   mongodata:

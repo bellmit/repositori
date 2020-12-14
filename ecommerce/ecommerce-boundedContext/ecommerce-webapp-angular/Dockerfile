@@ -2,7 +2,8 @@ FROM node:8.11.2-alpine as node
 
 COPY package.json package-lock.json ./
 
-RUN npm i && mkdir /app && cp -R ./node_modules ./app
+# RUN npm i npm@latest -g && mkdir /app && cp -R ./node_modules ./app
+RUN npm i npm@latest -g
 
 WORKDIR /usr/src/app
 
