@@ -1,18 +1,5 @@
 version: "3.8"
 services:
-  # Core Spring Boot Application
-#  app:
-#    build:
-#      context: ..
-#      dockerfile: ./Dockerfile
-#    image: "rx_mongo_example"
-#    env_file:
-#      - .env
-#    links:
-#      - mongo
-#    ports:
-#      - 8080:8080
-
 
   webapp:
     container_name: ecommerce-webapp
@@ -32,7 +19,7 @@ services:
 
 
   webapp-reactive:
-    container_name: ecommerce-web-reactive
+    container_name: webapp-reactive
     build: ../ecommerce-web-reactive
     image: webreactive-tag
     hostname: webReactiveHost
@@ -50,12 +37,14 @@ services:
 
          
   webapp-angular:
-    container_name: ecommerce-web-angular
+    container_name: webapp-angular
     build:
          context: ../ecommerce-webapp-angular
          dockerfile: Dockerfile
     image: webangular-tag
     hostname: webAngularHost
+    environment:
+      - "BACKEND_API_URL=http://webapp-reactive:8887"
     depends_on:
       - webapp-reactive
     ports:
@@ -96,7 +85,30 @@ services:
     networks: 
       - mired
       
+  # Eureka    
+  eureka:
+    image: springcloud/eureka
+    container_name: eureka
+    ports:
+      - 8761:8761
+    networks:
+      - mired
+    environment:
+      - EUREKA_INSTANCE_PREFERIPADDRESS=true
       
+  # Spring Config    
+  config:
+    image: springcloud/configserver
+    container_name: config
+    depends_on:
+      - eureka
+    ports:
+      - 8889:8889
+    networks:
+      - mired
+    environment:
+      - EUREKA_SERVICE_URL=http://eureka:8761
+      - EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
       
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -113,6 +125,8 @@ services:
       - 5672:5672
       - 15672:15672
       
+      
+# https://axoniq.io/blog-overview/running-axon-server-in-docker#0
       
   axonserver:
     image: axoniq/axonserver
