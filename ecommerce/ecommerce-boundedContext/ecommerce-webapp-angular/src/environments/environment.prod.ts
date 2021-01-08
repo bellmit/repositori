@@ -3,7 +3,8 @@ export const environment = {
   
   // URL of development API
   // apiUrl: 'http://localhost:3000',
-  apiUrl: 'https://wwwdegloba-1350.appspot.com/_ah/api/echo/v1/todocollection',
+  //apiUrl: 'https://wwwdegloba-1350.appspot.com/_ah/api/echo/v1/todocollection',
+	apiUrl: '/webapp-reactive',
 
 // https://wwwdegloba-1350.appspot.com/_ah/api/echo/v1/echo
   

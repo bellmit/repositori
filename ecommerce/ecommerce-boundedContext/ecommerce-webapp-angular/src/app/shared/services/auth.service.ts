@@ -49,6 +49,7 @@ export class AuthService {
      *  una sessió i posa null quan es desconnecta</div> 
      */
     this.afAuth.authState.subscribe(user => {
+	alert("hola");
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
