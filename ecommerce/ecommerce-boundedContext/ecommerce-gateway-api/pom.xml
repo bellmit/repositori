@@ -11,8 +11,7 @@
 	
 	<artifactId>ecommerce-gateway-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ecommerce-gateway-api</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Ecommerce - GatewayApi</name>
 
 
 	<dependencies>
@@ -65,4 +64,5 @@
         </plugins>
     </build>
 
+    <description>Spring Cloud Gateway Api</description>
 </project>

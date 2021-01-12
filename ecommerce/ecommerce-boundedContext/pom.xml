@@ -443,10 +443,13 @@
 	</repositories> -->
 
 	<modules>
+			<module>ecommerce-gateway-api</module>
+		<module>ecommerce-config</module>
+		<module>ecommerce-eureka</module>
+		<module>./ecommerce-domain</module>
 		<module>./ecommerce-cqrs</module>
 		<module>./ecommerce-eventsourcing</module>
 		<module>./ecommerce-infrastructure</module>
-		<module>./ecommerce-domain</module>
 		<!-- <module>../boundedContext1-integration</module> -->
 		<module>./ecommerce-application</module>
 		<module>./ecommerce-facade</module>
