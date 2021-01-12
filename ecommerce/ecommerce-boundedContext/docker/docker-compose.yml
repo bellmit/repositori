@@ -1,6 +1,35 @@
 version: "3.8"
 services:
 
+# Eureka    
+  eureka:
+    #image: springcloud/eureka
+    image: eureka
+    container_name: eureka
+    build: ../ecommerce-eureka
+    ports:
+      - 8761:8761
+    networks:
+      - mired
+    environment:
+      - EUREKA_INSTANCE_PREFERIPADDRESS=true
+      
+  # Spring Config    
+  config:
+    #image: springcloud/configserver
+    image: config
+    container_name: springconfig
+    build: ../ecommerce-config
+    depends_on:
+      - eureka
+    ports:
+      - 8889:8889
+    networks:
+      - mired
+    environment:
+      - EUREKA_SERVICE_URL=http://eureka:8761
+      - EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
+      
   webapp:
     container_name: ecommerce-webapp
     build:
@@ -85,30 +114,7 @@ services:
     networks: 
       - mired
       
-  # Eureka    
-  eureka:
-    image: springcloud/eureka
-    container_name: eureka
-    ports:
-      - 8761:8761
-    networks:
-      - mired
-    environment:
-      - EUREKA_INSTANCE_PREFERIPADDRESS=true
-      
-  # Spring Config    
-  config:
-    image: springcloud/configserver
-    container_name: config
-    depends_on:
-      - eureka
-    ports:
-      - 8889:8889
-    networks:
-      - mired
-    environment:
-      - EUREKA_SERVICE_URL=http://eureka:8761
-      - EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
+  
       
   rabbitmq:
     image: rabbitmq:3-management-alpine
