@@ -35,7 +35,7 @@ services:
     build:
        context: ../ecommerce-webapp
        dockerfile: Dockerfile
-    image: web-tag
+    image: ecommerce-web-tag
     links:
       - mongo
     environment:
@@ -50,7 +50,7 @@ services:
   webapp-reactive:
     container_name: webapp-reactive
     build: ../ecommerce-web-reactive
-    image: webreactive-tag
+    image: ecommerce-webreactive-tag
     hostname: webReactiveHost
     depends_on:
       - webapp      
@@ -70,7 +70,7 @@ services:
     build:
          context: ../ecommerce-webapp-angular
          dockerfile: Dockerfile
-    image: webangular-tag
+    image: ecommerce-webangular-tag
     hostname: webAngularHost
     environment:
       - "BACKEND_API_URL=http://webapp-reactive:8887"
