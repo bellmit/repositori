@@ -447,11 +447,12 @@
 		<module>ecommerce-config</module>
 		<module>ecommerce-eureka</module>
 		<module>./ecommerce-domain</module>
+				<module>./ecommerce-application</module>
 		<module>./ecommerce-cqrs</module>
 		<module>./ecommerce-eventsourcing</module>
 		<module>./ecommerce-infrastructure</module>
 		<!-- <module>../boundedContext1-integration</module> -->
-		<module>./ecommerce-application</module>
+
 		<module>./ecommerce-facade</module>
 		<module>./ecommerce-facade-impl</module>
 		<module>./ecommerce-webapp</module>

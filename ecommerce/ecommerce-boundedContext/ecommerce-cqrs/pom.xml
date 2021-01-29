@@ -68,6 +68,22 @@
 			<artifactId>axon-amqp-spring-boot-starter</artifactId>
 			<version>4.3</version>
 		</dependency>
+		
+		
+		<!-- Dependency to use a spring cloud config server-->
+    <dependency>
+         <groupId>org.springframework.cloud</groupId>
+         <artifactId>spring-cloud-starter-config</artifactId>
+     </dependency>
+     
+     
+     <!-- Dependency to register the service within Eureka-->
+     <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-client
+        </artifactId>
+     </dependency>
+     
 	</dependencies>
 
 

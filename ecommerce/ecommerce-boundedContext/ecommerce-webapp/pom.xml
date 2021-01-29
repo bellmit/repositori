@@ -298,6 +298,21 @@
 			<artifactId>ecommerce-domain</artifactId>
 			<version>4.4.3-SNAPSHOT</version>
 		</dependency>
+		
+		<!-- Dependency to use a spring cloud config server-->
+    <dependency>
+         <groupId>org.springframework.cloud</groupId>
+         <artifactId>spring-cloud-starter-config</artifactId>
+     </dependency>
+     
+     <!-- Dependency to register the service within Eureka-->
+     <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-client
+        </artifactId>
+     </dependency>
+     
+     
 	</dependencies>
 
 
@@ -368,6 +383,22 @@
 
 			<!-- <plugin> <groupId>org.eclipse.jetty</groupId> <artifactId>jetty-maven-plugin</artifactId> 
 				</plugin> -->
+				
+							<plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>2.5.0</version>
+                <configuration>
+                    <to>
+                        <image>registry.hub.docker.com/degloba/ecommerce-web-tag</image>
+                        <credHelper>wincred</credHelper>
+                    </to>
+                    <container>
+                    	<mainClass>com.degloba.ecommerce.enviaments.webapp.reactive.EnviamentReactiveSpringApplication</mainClass>
+                    </container>
+                </configuration>
+                
+            </plugin>
 
 		</plugins>
 
