@@ -1,0 +1,23 @@
+apiVersion: skaffold/v2beta10
+kind: Config
+metadata:
+  name: ecommerce-web-reactive
+build:
+  tagPolicy:
+    gitCommit: {}
+  artifacts:
+  - image: ecommerce-web-reactive
+    jib:
+      type: maven
+deploy:
+  kubectl:
+    manifests:
+    - k8s-pod.yaml
+portForward:
+  - resourceType: deployment
+    resourceName: ecommerce-web-reactive
+    port: 8082
+    localPort: 8082   
+    
+    
+

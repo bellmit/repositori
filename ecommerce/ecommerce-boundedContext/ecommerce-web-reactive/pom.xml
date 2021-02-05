@@ -128,6 +128,20 @@
 					<artifactId>ecommerce-webapp</artifactId>
 					<version>4.4.3-SNAPSHOT</version>
 				</dependency>
+				
+				<!-- Dependency to use a spring cloud config server-->
+    <dependency>
+         <groupId>org.springframework.cloud</groupId>
+         <artifactId>spring-cloud-starter-config</artifactId>
+     </dependency>
+     
+     <!-- Dependency to register the service within Eureka-->
+     <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-client
+        </artifactId>
+     </dependency>
+     
 	</dependencies>
 
 		<profiles>
@@ -173,20 +187,6 @@
 				<artifactId>maven-install-plugin</artifactId>
 			</plugin>
 
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-			      <execution>
-			        <goals>
-			          <goal>repackage</goal>
-			        </goals>
-			        <configuration>
-			          <mainClass>com.degloba.ecommerce.trader.webapp.reactive.TraderApplication</mainClass>
-			        </configuration>
-			      </execution>
-			    </executions>
-			</plugin>
 
 			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
@@ -197,6 +197,26 @@
 					<!-- deploy configuration -->
 				</configuration>
 			</plugin>
+			
+			
+			
+			<plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>2.5.0</version>
+                <configuration>
+                    <to>
+                        <image>registry.hub.docker.com/degloba/ecommerce-web-reactive</image>
+                        <credHelper>wincred</credHelper>
+                    </to>
+                    <container>
+                    	<mainClass>com.degloba.ecommerce.enviaments.webapp.reactive.EnviamentReactiveSpringApplication</mainClass>
+                    </container>
+                </configuration>
+                
+            </plugin>
+            
+            
 		</plugins>
 	</build>
 	<name>Ecommerce - Webapp Reactive</name>
