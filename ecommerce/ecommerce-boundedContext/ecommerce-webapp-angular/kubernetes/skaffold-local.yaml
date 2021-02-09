@@ -1,0 +1,23 @@
+apiVersion: skaffold/v2beta10
+kind: Config
+metadata:
+  name: ecommerce-webapp-angular
+build:
+  local:
+    push: false
+  artifacts:
+    - image: registry.hub.docker.com/degloba/ecommerce-webapp-angular
+      context: ../ecommerce-webapp-angular
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.*'
+            dest: .
+deploy:
+  kubeContext: docker-desktop
+  kubectl:
+    flags:
+      global: [--namespace=skaffold-nestjs-angular-namespace]
+    manifests:
+      - ./deployment.yaml
