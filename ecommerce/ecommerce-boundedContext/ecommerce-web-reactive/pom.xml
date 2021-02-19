@@ -142,6 +142,19 @@
         </artifactId>
      </dependency>
      
+    <dependency>
+      <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-cloud-starter-kubernetes-ribbon</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+      <dependency>
+      <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+    
 	</dependencies>
 
 		<profiles>
@@ -203,10 +216,11 @@
 			<plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
-                <version>2.5.0</version>
+                <version>2.7.1</version>
                 <configuration>
                     <to>
-                        <image>registry.hub.docker.com/degloba/ecommerce-web-reactive</image>
+                       <!--  <image>registry.hub.docker.com/degloba/repository/ecommerce-web-reactive</image> -->
+                        <image>docker.io/degloba/repository/ecommerce-web-reactive</image>
                         <credHelper>wincred</credHelper>
                     </to>
                     <container>

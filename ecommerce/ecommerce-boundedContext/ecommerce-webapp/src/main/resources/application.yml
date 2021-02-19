@@ -11,11 +11,17 @@ spring:
                              # Template location for this application only
 
 # Discovery Server Access
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:1111/eureka/
+#eureka:
+#   client:
+#    serviceUrl:
+#      defaultZone: http://localhost:1111/eureka/
 
 # HTTP Server
-server:
-  port: 8080   # HTTP (Tomcat) port
+#server:
+#  port: 8080   # HTTP (Tomcat) port
+  
+
+  cloud:
+    config:
+      uri: http://localhost:8889  #where the config-service is running
+      fail-fast: true
