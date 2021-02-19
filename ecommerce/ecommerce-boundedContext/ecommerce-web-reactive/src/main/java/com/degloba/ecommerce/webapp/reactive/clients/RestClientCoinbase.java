@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.trader.webapp.reactive.clients;
+package com.degloba.ecommerce.webapp.reactive.clients;
 
 import java.io.BufferedReader;
 import java.io.IOException;

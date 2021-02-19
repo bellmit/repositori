@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.trader.webapp.reactive.reports;
+package com.degloba.ecommerce.webapp.reactive.reports;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Date;

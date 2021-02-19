@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.trader.webapp.reactive.jwt;
+package com.degloba.ecommerce.webapp.reactive.jwt;
 
 import java.util.Date;
 import java.util.List;
@@ -20,7 +20,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import com.degloba.ecommerce.trader.facade.dtos.MyUser;
-import com.degloba.ecommerce.trader.webapp.reactive.exceptions.JwtTokenValidationException;
+import com.degloba.ecommerce.webapp.reactive.exceptions.JwtTokenValidationException;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

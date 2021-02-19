@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.trader.webapp.reactive.exceptions;
+package com.degloba.ecommerce.webapp.reactive.exceptions;
 
 import org.springframework.boot.web.reactive.error.DefaultErrorAttributes;
 import org.springframework.stereotype.Component;

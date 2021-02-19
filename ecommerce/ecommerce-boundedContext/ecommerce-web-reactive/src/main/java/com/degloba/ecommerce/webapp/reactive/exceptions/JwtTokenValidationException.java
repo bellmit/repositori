@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.trader.webapp.reactive.exceptions;
+package com.degloba.ecommerce.webapp.reactive.exceptions;
 
 public class JwtTokenValidationException extends RuntimeException {
 

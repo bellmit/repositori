@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.trader.webapp.reactive.utils;
+package com.degloba.ecommerce.webapp.reactive.utils;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;

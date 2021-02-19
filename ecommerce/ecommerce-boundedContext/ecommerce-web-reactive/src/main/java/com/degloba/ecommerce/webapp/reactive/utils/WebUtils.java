@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.trader.webapp.reactive.utils;
+package com.degloba.ecommerce.webapp.reactive.utils;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.degloba.ecommerce.trader.webapp.reactive.jwt.JwtTokenProvider;
+import com.degloba.ecommerce.webapp.reactive.jwt.JwtTokenProvider;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

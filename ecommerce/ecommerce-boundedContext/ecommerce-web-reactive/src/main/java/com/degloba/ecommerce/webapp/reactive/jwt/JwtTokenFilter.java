@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.trader.webapp.reactive.jwt;
+package com.degloba.ecommerce.webapp.reactive.jwt;
 
 import java.io.IOException;
 

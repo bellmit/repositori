@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.trader.webapp.reactive.config;
+package com.degloba.ecommerce.webapp.reactive.config;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;

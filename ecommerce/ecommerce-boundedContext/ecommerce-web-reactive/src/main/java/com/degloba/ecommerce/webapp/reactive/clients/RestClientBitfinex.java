@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.trader.webapp.reactive.clients;
+package com.degloba.ecommerce.webapp.reactive.clients;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;

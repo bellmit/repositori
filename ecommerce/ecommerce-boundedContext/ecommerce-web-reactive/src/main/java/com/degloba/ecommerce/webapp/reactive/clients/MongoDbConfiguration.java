@@ -13,9 +13,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-package com.degloba.ecommerce.trader.webapp.reactive.clients;
+package com.degloba.ecommerce.webapp.reactive.clients;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.config.AbstractReactiveMongoConfiguration;
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 
 import com.mongodb.reactivestreams.client.MongoClient;
@@ -25,14 +27,19 @@ import com.mongodb.reactivestreams.client.MongoClients;
 @EnableReactiveMongoRepositories
 public class MongoDbConfiguration extends AbstractReactiveMongoConfiguration {
 
-	@Override
-	protected String getDatabaseName() {
-		return "trader-test";
-	}
+    @Bean
+    public MongoClient reactiveMongoClient() {
+        return MongoClients.create();
+    }
 
-	@Override
-	public MongoClient reactiveMongoClient() {
-		return MongoClients.create("mongodb://localhost/"+getDatabaseName());
-	}
+    @Bean
+    public String getDatabaseName() {
+        return "fantasy_db";
+    }
+
+    @Bean
+    public ReactiveMongoTemplate reactiveMongoTemplate() {
+        return new ReactiveMongoTemplate(reactiveMongoClient(), getDatabaseName());
+    }
 
 }
