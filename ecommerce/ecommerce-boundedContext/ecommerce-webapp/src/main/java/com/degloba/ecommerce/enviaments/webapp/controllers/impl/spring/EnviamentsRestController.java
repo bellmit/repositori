@@ -28,8 +28,8 @@ import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8083")    // port intern (No Docker)
-//@CrossOrigin(origins = "http://localhost:8887")    // port extern (Docker)
+//@CrossOrigin(origins = "http://localhost:8083")    // port intern (No Docker)
+@CrossOrigin(origins = "http://webAngularHost:8887")    // port extern (Docker)
 public class EnviamentsRestController {
 	
 	 @Autowired

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 
 import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.EnviamentTemplateOperations;
-import com.degloba.ecommerce.enviaments.webapp.controllers.impl.spring.EnviamentRepository2;
+import com.degloba.ecommerce.enviaments.webapp.controllers.impl.spring.EnviamentRepository;
 
 /**
  * 
@@ -21,10 +21,10 @@ import com.degloba.ecommerce.enviaments.webapp.controllers.impl.spring.Enviament
 public class EnviamentConfig {
 
   
-    @Bean
-    EnviamentRepository2 enviamentRepository() {
-        return new EnviamentRepository2();
-    }
+	/*
+	 * @Bean EnviamentRepository enviamentRepository() { return new
+	 * EnviamentRepository(); }
+	 */
     
     @Bean
     EnviamentTemplateOperations enviamentTemplateOperations() {

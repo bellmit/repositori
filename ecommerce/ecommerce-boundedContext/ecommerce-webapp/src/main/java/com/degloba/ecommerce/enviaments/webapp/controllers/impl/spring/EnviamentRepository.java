@@ -22,7 +22,7 @@ import reactor.core.publisher.Mono;
 
 
 @Repository
-public class EnviamentRepository2 implements IEnviamentReactiveRepository {
+public class EnviamentRepository implements IEnviamentReactiveRepository {
     static Map<Long,Enviament> enviamentData;
 
     static

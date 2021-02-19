@@ -25,7 +25,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.Enviament;
 import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
-import com.degloba.ecommerce.enviaments.webapp.controllers.impl.spring.EnviamentRepository2;
+import com.degloba.ecommerce.enviaments.webapp.controllers.impl.spring.EnviamentRepository;
 import com.degloba.ecommerce.enviaments.webapp.controllers.impl.spring.EnviamentWebFluxHandler;
 
 
@@ -64,8 +64,8 @@ public class EnviamentFunctionalConfig {
 	  }
 	  
     @Bean
-    EnviamentRepository2 enviamentRepository() {
-        return new EnviamentRepository2();
+    EnviamentRepository enviamentRepository() {
+        return new EnviamentRepository();
     }
 
     @Bean

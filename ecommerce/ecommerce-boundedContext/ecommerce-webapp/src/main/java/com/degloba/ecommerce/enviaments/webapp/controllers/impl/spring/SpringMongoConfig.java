@@ -19,7 +19,7 @@ import com.mongodb.reactivestreams.client.MongoClients;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Configuration
+//////@Configuration
 public class SpringMongoConfig  {
 	//private static final Logger log = LoggerFactory.getLogger(SpringMongoConfig.class);
 	
