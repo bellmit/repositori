@@ -67,3 +67,40 @@ mongo-logs:
 #	pushd src/main/ng/fxui &&\
 #	ng serve &&\
 #	popd
+
+
+# -----------------------------------------------------------
+# Makefile Minikube 
+# Obtingut de : https://octoperf.com/blog/2019/09/05/kraken-kubernetes-ingress-nginx-frontend/#tl-dr
+# -----------------------------------------------------------
+
+#clean:
+#	minikube delete
+
+stop:
+	minikube stop
+
+start:
+	minikube start --vm-driver=hyperv -v 9999 --extra-config=apiserver.service-node-port-range=1-30000
+	
+mount:
+	minikube mount ${PWD}/grafana/config:/grafana
+
+ingress:
+	kubectl apply -f k8s/ingress
+
+frontend:
+	kubectl apply -f ecommerce-webapp-angular/kubernetes
+
+all:
+	kubectl apply -R -f .
+
+list:
+	minikube service list
+
+watch:
+	kubectl get pods -A --watch
+	
+dashboard:
+	minikube dashboard
+
