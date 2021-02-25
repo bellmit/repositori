@@ -10,7 +10,7 @@ spec:
 #    - port: 50051
 #      name: ecommerce-cqrs
   selector:
-    app: ecommerce-cars
+    app: ecommerce-cqrs
 ---
 apiVersion: apps/v1
 kind: Deployment
