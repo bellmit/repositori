@@ -1,23 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecommerce-webapp-angular-deployment
+  name: ecommerce-webapp-angular
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: ecommerce-webapp-angular
+#      tier: ecommerce-web-reactive
+      track: stable
+  replicas: 3
   template:
     metadata:
       labels:
         app: ecommerce-webapp-angular
+#        tier: ecommerce-web-reactive
+        track: stable
     spec:
-      imagePullSecrets:
-        - name: myregistrykey
       containers:
         - name: ecommerce-webapp-angular
-          image: registry.hub.docker.com/degloba/ecommerce-web-angular          
+          image: degloba/ecommerce-web-angular
           ports:
-            - containerPort: 4200
-    
-
+            - name: http
+              containerPort: 80
