@@ -21,4 +21,4 @@ spec:
           image: degloba/ecommerce-web-angular
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 4200
