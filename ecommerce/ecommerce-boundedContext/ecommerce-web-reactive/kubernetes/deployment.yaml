@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ecommerce-web-reactive
+  name: ecommerce-web-reactive-service
   labels:
     app: ecommerce-web-reactive
 spec:
@@ -15,7 +15,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecommerce-web-reactive
+  name: ecommerce-web-reactive-deployment
   labels:
     app: ecommerce-web-reactive
 spec:
