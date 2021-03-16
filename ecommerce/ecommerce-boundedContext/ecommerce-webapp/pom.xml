@@ -304,38 +304,35 @@
 			<artifactId>ecommerce-domain</artifactId>
 			<version>4.4.3-SNAPSHOT</version>
 		</dependency>
-		
-		<!-- Dependency to use a spring cloud config server-->
-    <dependency>
-         <groupId>org.springframework.cloud</groupId>
-         <artifactId>spring-cloud-starter-config</artifactId>
-     </dependency>
-     
-     <!-- Dependency to register the service within Eureka-->
-<!--      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-netflix-eureka-client
-        </artifactId>
-     </dependency> -->
-     
-     <dependency>
-      <artifactId>spring-cloud-starter-kubernetes</artifactId>
-      <groupId>org.springframework.cloud</groupId>
-    </dependency>
-    <dependency>
-      <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-      <groupId>org.springframework.cloud</groupId>
-    </dependency>
-    <dependency>
-      <artifactId>spring-cloud-starter-kubernetes-ribbon</artifactId>
-      <groupId>org.springframework.cloud</groupId>
-    </dependency>
-    
-      <dependency>
-      <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-      <groupId>org.springframework.cloud</groupId>
-    </dependency>
-    
+
+		<!-- Dependency to use a spring cloud config server -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+
+		<!-- Dependency to register the service within Eureka -->
+		<!-- <dependency> <groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-netflix-eureka-client 
+			</artifactId> </dependency> -->
+
+		<dependency>
+			<artifactId>spring-cloud-starter-kubernetes</artifactId>
+			<groupId>org.springframework.cloud</groupId>
+		</dependency>
+		<dependency>
+			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+			<groupId>org.springframework.cloud</groupId>
+		</dependency>
+		<dependency>
+			<artifactId>spring-cloud-starter-kubernetes-ribbon</artifactId>
+			<groupId>org.springframework.cloud</groupId>
+		</dependency>
+
+		<dependency>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+			<groupId>org.springframework.cloud</groupId>
+		</dependency>
+
 	</dependencies>
 
 
@@ -352,10 +349,10 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 
-				<plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-maven-plugin</artifactId>
-					<configuration>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
 					<mainClass>com.degloba.trader.TraderApplication</mainClass>
 				</configuration>
 				<executions>
@@ -365,7 +362,7 @@
 						</goals>
 					</execution>
 				</executions>
-				</plugin>
+			</plugin>
 
 
 			<plugin>
@@ -406,23 +403,30 @@
 
 			<!-- <plugin> <groupId>org.eclipse.jetty</groupId> <artifactId>jetty-maven-plugin</artifactId> 
 				</plugin> -->
-				
-							<plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>jib-maven-plugin</artifactId>
-                <version>2.7.1</version>
-                <configuration>
-                    <to>
-                        <!-- <image>registry.hub.docker.com/degloba/repository/ecommerce-webapp</image> -->
-                        <image>docker.io/degloba/repository/ecommerce-webapp</image>
-                        <credHelper>wincred</credHelper>
-                    </to>
-                    <container>
-                    	<mainClass>com.degloba.ecommerce.enviaments.webapp.controllers.impl.spring.EnviamentsSpringBootApplication</mainClass>
-                    </container>
-                </configuration>
-                
-            </plugin>
+
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>2.8.0</version>
+				<configuration>
+					<to>
+						<image>registry.hub.docker.com/degloba/ecommerce-webapp</image>
+						<!-- <image>docker.io/degloba/ecommerce-webapp</image> -->
+						<credHelper>wincred</credHelper>
+					</to>
+					<container>
+						<mainClass>com.degloba.ecommerce.enviaments.webapp.controllers.impl.spring.EnviamentsSpringBootApplication</mainClass>
+					</container>
+				</configuration>
+                <executions>
+				    <execution>
+				      <phase>package</phase>
+				      <goals>
+				        <goal>build</goal>
+				      </goals>
+				    </execution>
+				  </executions>
+			</plugin>
 
 		</plugins>
 

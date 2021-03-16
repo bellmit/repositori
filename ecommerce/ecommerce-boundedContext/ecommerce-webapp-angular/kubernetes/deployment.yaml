@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: ecommerce-webapp-angular
-          image: degloba/ecommerce-web-angular
+          image: degloba/ecommerce-webapp-angular
           ports:
             - name: http
-              containerPort: 4200
+              containerPort: 80    # port del nginx. !!!NO SE PERQUE : poso un valor qualsevol i segueix funcionant  

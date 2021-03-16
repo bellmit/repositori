@@ -1,0 +1,40 @@
+apiVersion: skaffold/v2beta10
+kind: Config
+build:
+  tagPolicy:
+    gitCommit: {}
+  artifacts:
+  - image: ecommerce-webapp-angular
+    context: ecommerce-webapp-angular
+  - image: ecommerce-cqrs
+    context: ecommerce-cqrs
+    jib:
+      type: maven
+  - image: ecommerce-webapp
+    context: ecommerce-webapp
+    jib:
+      type: maven
+  - image: ecommerce-web-reactive
+    context: ecommerce-web-reactive
+    jib:
+      type: maven
+deploy:
+  kubectl:
+    manifests:
+      - k8s/*
+      - ecommerce-webapp-angular/kubernetes/*
+      - ecommerce-cqrs/kubernetes/*
+      - ecommerce-webapp/kubernetes/*
+      - ecommerce-web-reactive/kubernetes/*
+portForward:
+  - resourceType: deployment
+    resourceName: ecommerce-webapp
+    port: 8080
+    localPort: 9000
+  - resourceType: deployment
+    resourceName: ecommerce-web-reactive
+    port: http
+    localPort: 9001
+    
+    
+
