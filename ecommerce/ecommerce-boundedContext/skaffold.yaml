@@ -1,4 +1,4 @@
-apiVersion: skaffold/v2beta10
+apiVersion: skaffold/v2beta11
 kind: Config
 build:
   tagPolicy:
@@ -6,10 +6,10 @@ build:
   artifacts:
   - image: ecommerce-webapp-angular
     context: ecommerce-webapp-angular
-  - image: ecommerce-cqrs
-    context: ecommerce-cqrs
-    jib:
-      type: maven
+#  - image: ecommerce-cqrs
+#    context: ecommerce-cqrs
+#    jib:
+#      type: maven
   - image: ecommerce-webapp
     context: ecommerce-webapp
     jib:
@@ -23,7 +23,7 @@ deploy:
     manifests:
       - k8s/*
       - ecommerce-webapp-angular/kubernetes/*
-      - ecommerce-cqrs/kubernetes/*
+#      - ecommerce-cqrs/kubernetes/*
       - ecommerce-webapp/kubernetes/*
       - ecommerce-web-reactive/kubernetes/*
 portForward:

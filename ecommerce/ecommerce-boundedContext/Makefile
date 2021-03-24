@@ -81,7 +81,7 @@ stop:
 	minikube stop
 
 start:    
-	minikube start --vm-driver=hyperv -v 9999 --extra-config=apiserver.service-node-port-range=1-30000
+	minikube start --vm-driver=hyperv -v 9999 --extra-config=apiserver.service-node-port-range=1-40000
 	
 mount:
 	minikube mount ${PWD}/grafana/config:/grafana
