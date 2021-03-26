@@ -5,8 +5,11 @@ metadata:
 build:
   artifacts:
   - image: ecommerce-webapp
-    docker:
-      dockerfile: Dockerfile
+#    docker:
+#      dockerfile: Dockerfile
+#  local:
+#    push: true
+#    useDockerCLI: true
 deploy:
   kubectl:
     manifests:

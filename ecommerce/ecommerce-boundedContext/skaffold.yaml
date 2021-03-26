@@ -18,6 +18,10 @@ build:
     context: ecommerce-web-reactive
     jib:
       type: maven
+  local:     # https://skaffold.dev/docs/pipeline-stages/builders/
+     push: true
+     useDockerCLI: true
+#  cluster:
 deploy:
   kubectl:
     manifests:
@@ -26,6 +30,19 @@ deploy:
 #      - ecommerce-cqrs/kubernetes/*
       - ecommerce-webapp/kubernetes/*
       - ecommerce-web-reactive/kubernetes/*
+profiles:
+- name: prod
+  activation:
+    - env: MAGIC_VAR=42
+- name: dev   
+  activation:
+    - env: MAGIC_VAR=1337
+    - kubeContext: minikube
+      command: dev   
+- name: gcb
+  build:
+    googleCloudBuild:
+      projectId: k8s-skaffold      
 portForward:
   - resourceType: deployment
     resourceName: ecommerce-webapp

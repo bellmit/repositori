@@ -3,11 +3,15 @@ kind: Config
 metadata:
   name: ecommerce-webapp-angular
 build:
+  tagPolicy: 
+        gitCommit: {}
   artifacts:
-  - image: degloba/ecommerce-webapp-angular
+  - image: ecommerce-webapp-angular
     context : .
     docker:
       dockerfile: Dockerfile
+  local:
+    push: true
 deploy:
   kubectl:
     manifests:
