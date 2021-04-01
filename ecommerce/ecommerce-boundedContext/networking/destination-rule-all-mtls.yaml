@@ -1,0 +1,57 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: ecommerce-webapp-angular
+spec:
+  host: ecommerce-webapp-angular
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: ecommerce-web-reactive
+spec:
+  host: ecommerce-web-reactive
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+  - name: v3
+    labels:
+      version: v3
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: ecommerce-webapp
+spec:
+  host: ecommerce-webapp
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+#  - name: v2-mysql
+#    labels:
+#      version: v2-mysql
+#  - name: v2-mysql-vm
+#    labels:
+#      version: v2-mysql-vm
+---
