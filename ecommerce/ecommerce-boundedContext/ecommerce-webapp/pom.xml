@@ -102,11 +102,6 @@
 		<!-- Compile/runtime dependencies -->
 		<!-- [START api_management] -->
 		<!-- [END api_management] -->
-		<dependency>
-			<groupId>com.google.endpoints</groupId>
-			<artifactId>endpoints-management-control-appengine-all</artifactId>
-			<version>1.0.12</version>
-		</dependency>
 		<!-- [END api_management] -->
 
 		<dependency>

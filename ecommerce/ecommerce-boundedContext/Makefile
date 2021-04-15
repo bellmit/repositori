@@ -74,7 +74,7 @@ mongo-logs:
 # Obtingut de : https://octoperf.com/blog/2019/09/05/kraken-kubernetes-ingress-nginx-frontend/#tl-dr
 # -----------------------------------------------------------
 
-cleanMinikube:
+delete:
 	minikube delete
 
 stop:
@@ -89,18 +89,26 @@ mount:
 ingress:
 	kubectl apply -f k8s/ingress
 
-frontend:
-	kubectl apply -f ecommerce-webapp-angular/kubernetes
+# frontend:
+#	kubectl apply -f ecommerce-webapp-angular/kubernetes
 
-allMinikube:
+arrancaArquitectura:
 	kubectl apply -R -f ./k8s
 
+	
+arrancaEcommerceIstio:
+	kubectl apply -f ./istio/ecommerce.yaml
+	
+arrancaEcommerceNetwork:
+	kubectl apply -f ./networking/ecommerce-gateway.yaml	
+	
+	
+dashboard:
+	minikube dashboard
+	
+	
 list:
 	minikube service list
 
 watch:
 	kubectl get pods -A --watch
-	
-dashboard:
-	minikube dashboard
-

@@ -1,7 +1,14 @@
-kind: Service
 apiVersion: v1
+kind: Namespace
 metadata:
-  namespace: test-rabbitmq
+  name: rabbitmq
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: rabbitmq
   name: rabbitmq
   labels:
     app: rabbitmq
