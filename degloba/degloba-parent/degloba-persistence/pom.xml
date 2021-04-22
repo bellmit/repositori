@@ -22,7 +22,7 @@
 		<datanucleus.core.version>3.1.3</datanucleus.core.version>
 		<datanucleus.jpa.version>3.1.3</datanucleus.jpa.version>
 		<datanucleus.maven.plugin>3.1.1</datanucleus.maven.plugin>
-				
+
 		<javax.persistence.api.version>2.2</javax.persistence.api.version>
 
 	</properties>
@@ -32,7 +32,7 @@
 
 		<module>../degloba-persistence-rdbms</module>
 		<module>../degloba-persistence-nosql</module>
-		<!-- <module>../degloba-persistence-test</module>     -->
+		<!-- <module>../degloba-persistence-test</module> -->
 
 	</modules>
 
