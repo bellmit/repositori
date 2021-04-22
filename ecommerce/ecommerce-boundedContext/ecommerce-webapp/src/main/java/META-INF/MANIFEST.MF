@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: 
+Main-Class: com.degloba.ecommerce.enviaments.webapp.controllers.impl.spring.EnviamentsSpringBootApplication
+
