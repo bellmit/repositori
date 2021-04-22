@@ -9,6 +9,7 @@
 		<version>4.4.3-SNAPSHOT</version>
 		<relativePath>../ecommerce-boundedContext/pom.xml</relativePath>
 	</parent>
+	
 	<artifactId>ecommerce-domain</artifactId>
 	<packaging>jar</packaging>
 	<name>Ecommerce - Domain</name>
