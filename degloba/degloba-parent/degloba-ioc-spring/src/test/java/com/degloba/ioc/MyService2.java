@@ -1,4 +1,4 @@
-
+package com.degloba.ioc;
 
 import javax.inject.Named;
 

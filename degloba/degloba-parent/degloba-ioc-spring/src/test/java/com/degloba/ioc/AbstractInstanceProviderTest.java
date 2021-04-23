@@ -1,7 +1,8 @@
-
+package com.degloba.ioc;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 
 import com.degloba.ioc.spring.providers.IInstanceProvider;
 

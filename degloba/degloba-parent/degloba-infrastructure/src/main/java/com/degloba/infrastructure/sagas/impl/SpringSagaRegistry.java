@@ -1,6 +1,5 @@
 package com.degloba.infrastructure.sagas.impl;
 
-// Reflection
 import java.lang.reflect.Method;
 
 import java.util.Collection;
@@ -8,23 +7,21 @@ import java.util.HashSet;
 
 import javax.inject.Inject;
 
-// Spring
+
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-// Sagas
 import com.degloba.infrastructure.sagas.ISagaManager;
-import com.degloba.infrastructure.sagas.LoadSaga;
-import com.degloba.infrastructure.sagas.SagaAction;
+import com.degloba.infrastructure.sagas.SagaInstance;
+import com.degloba.infrastructure.sagas.annotation.LoadSaga;
+import com.degloba.infrastructure.sagas.annotation.SagaAction;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
-/**
- * @author Rafał Jamróz
- */
+
 @SuppressWarnings({ "unchecked", "rawtypes" })
 @Component
 public class SpringSagaRegistry implements ISagaRegistry, ApplicationListener<ContextRefreshedEvent> {
