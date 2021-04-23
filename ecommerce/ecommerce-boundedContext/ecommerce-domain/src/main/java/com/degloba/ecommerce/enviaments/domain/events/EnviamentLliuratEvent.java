@@ -4,6 +4,9 @@ import com.degloba.domain.events.DomainEvent;
 import com.degloba.events.annotations.EventAnnotation;
 import com.degloba.persistence.rdbms.api.jpa.AggregateId;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 /**
  * @category s'ha produit una entrega d'un enviament
  * 
@@ -12,13 +15,11 @@ import com.degloba.persistence.rdbms.api.jpa.AggregateId;
  */
 @SuppressWarnings("serial")
 @EventAnnotation
+@Data
+@AllArgsConstructor
 public class EnviamentLliuratEvent extends DomainEvent {
 
     private final AggregateId enviamentId;
-
-    public EnviamentLliuratEvent(AggregateId enviamentId) {
-        this.enviamentId = enviamentId;
-    }
 
     public AggregateId getEnviamentId() {
         return enviamentId;

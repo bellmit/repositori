@@ -6,7 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.degloba.ioc.InstanceFactory;
+import com.degloba.ioc.spring.factories.InstanceFactory;
 import com.degloba.persistence.rdbms.api.jpa.EntityManagerProvider;
 
 import static org.junit.jupiter.api.Assertions.*;

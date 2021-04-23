@@ -54,7 +54,7 @@ public class DomainEventBusTest<T extends IEvent> {
     @Test
     public void unregisterSubscriber() {
         Object subscriber = new String("abc");
-        instance.unregisterSubscriber(subscriber);
+        instance.unRegisterSubscriber(subscriber);
         verify(eventBus).unregister(subscriber);
     }
 }

@@ -1,4 +1,4 @@
-package com.degloba.domain;
+package com.degloba.persistence.domain;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.degloba.domain.entity.MyEntity;
-import com.degloba.ioc.InstanceFactory;
+import com.degloba.ioc.spring.factories.InstanceFactory;
 import com.degloba.persistence.rdbms.api.jpa.BaseAggregateRoot;
 import com.degloba.persistence.rdbms.api.jpa.BaseEntity;
 import com.degloba.persistence.rdbms.api.jpa.CriteriaQuery;

@@ -1,4 +1,4 @@
-package com.degloba.domain.datatype;
+package com.degloba.persistence.domain.datatype;
 
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.jupiter.api.AfterEach;

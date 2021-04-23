@@ -1,4 +1,4 @@
-package com.degloba.domain;
+package com.degloba.persistence.domain;
 
 import com.degloba.domain.entity.Company;
 import com.degloba.domain.entity.Dept;

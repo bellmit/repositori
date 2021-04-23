@@ -1,4 +1,4 @@
-package com.degloba.domain.datatype;
+package com.degloba.persistence.domain.datatype;
 
 
 import java.math.BigDecimal;
@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.degloba.domain.DataType;
-import com.degloba.ioc.InstanceFactory;
-import com.degloba.ioc.sharedkernel.exceptions.IocInstanceNotFoundException;
+
 import com.degloba.persistence.rdbms.api.jpa.Value;
 import com.degloba.utils.DateUtils;
 
