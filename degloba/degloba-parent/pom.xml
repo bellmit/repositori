@@ -24,15 +24,13 @@
 		<servlet.version>4.0.0</servlet.version>
 
 		<!-- Spring -->
-		<spring.version>5.2.8.RELEASE</spring.version>
-		<springframework.security.version>5.1.0.RELEASE</springframework.security.version>
-		<springframework.ws.version>3.0.4.RELEASE</springframework.ws.version>
+		<spring.version>5.3.6</spring.version>
 		<springframework.webflow.version>2.5.1.RELEASE</springframework.webflow.version>
 		<spring-cloud.version>Hoxton.SR8</spring-cloud.version>
 		<spring.boot.dependencies.version>2.4.5</spring.boot.dependencies.version>
-		<spring.integration.mongodb.version>5.3.0.M4</spring.integration.mongodb.version>
-
-		<springfox.swagger2.version>2.9.2</springfox.swagger2.version>
+		<spring.integration.mongodb.version>5.4.6</spring.integration.mongodb.version>
+		<spring-security-oauth2.version>2.5.1.RELEASE</spring-security-oauth2.version>
+		
 		<doxia.module.markdown.version>1.9.1</doxia.module.markdown.version>
 
 		<wagon.git.version>2.0.4</wagon.git.version>
@@ -68,13 +66,12 @@
 			so that generated project uses correct version of richfaces. -->
 		<org.richfaces.bom.version>4.3.7.Final</org.richfaces.bom.version>
 
-		<!-- Test Dependencies -->
+			<!-- Test Dependencies -->
 		<mockito.version>3.3.3</mockito.version>
 		<junit.jupiter.version>5.6.1</junit.jupiter.version>
 		<lombok.version>1.18.12</lombok.version>
 		<junit.version>4.13</junit.version>
-
-		<problem-spring-web.version>0.25.0</problem-spring-web.version>
+		
 
 		<hibernate.version>6.0.0.Alpha4</hibernate.version>
 		<dbunit.version>2.7.0</dbunit.version>
@@ -82,7 +79,7 @@
 		<!-- https://github.com/objectify/objectify -->
 		<googleCloud.objectify.version>6.0.6</googleCloud.objectify.version>
 		<googleCloud.version>1.65.0</googleCloud.version>
-		<libraries.bom.version>9.1.0</libraries.bom.version>
+		<googleCloud.libraries.bom.version>20.1.0</googleCloud.libraries.bom.version>
 
 
 		<commons.version>3.10</commons.version>
@@ -98,16 +95,11 @@
 		<objectify.version>6.0.6</objectify.version>
 
 
-
-
 		<!-- PLUGINS -->
 
+		<maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
 		<maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
 		<maven.jar.plugin.version>3.2.0</maven.jar.plugin.version>
-		<maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
-		<maven.surefire.report.plugin.version>3.0.0-M5</maven.surefire.report.plugin.version>
-
-		<appengine.maven.plugin.version>2.3.0</appengine.maven.plugin.version>
 		<maven.resources.plugin.version>3.2.0</maven.resources.plugin.version>
 		<maven.install.plugin.version>3.0.0-M1</maven.install.plugin.version>
 		<maven.assembly.plugin.version>3.3.0</maven.assembly.plugin.version>
@@ -118,23 +110,22 @@
 		<maven.site.plugin.version>3.9.1</maven.site.plugin.version>
 		<maven.bundle.plugin.version>4.2.1</maven.bundle.plugin.version>
 		<maven.deploy.plugin.version>3.0.0-M1</maven.deploy.plugin.version>
-
-		<versions.maven.plugin.version>2.8.1</versions.maven.plugin.version>
+		<maven.war.plugin.version>3.3.1</maven.war.plugin.version>		
 		<maven.enforcer.plugin.version>3.0.0-M3</maven.enforcer.plugin.version>
 		<maven.failsafe.plugin.version>3.0.0-M5</maven.failsafe.plugin.version>
+		
+		<maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
+		<maven.surefire.report.plugin.version>3.0.0-M5</maven.surefire.report.plugin.version>
 
-		<maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
-		<maven.war.plugin.version>3.3.1</maven.war.plugin.version>
+		<appengine.maven.plugin.version>2.3.0</appengine.maven.plugin.version>
+
+		<versions.maven.plugin.version>2.8.1</versions.maven.plugin.version>
+
 		<exec.maven.plugin.version>3.0.0</exec.maven.plugin.version>
 
 	</properties>
 
 	<repositories>
-
-		<repository>
-			<id>org.springframework.maven.milestone</id>
-			<url>https://maven.springframework.org/milestone</url>
-		</repository>
 
 		<repository>
 			<id>spring-milestone</id>
@@ -149,7 +140,6 @@
 	</pluginRepositories>
 
 	<modules>
-
  		<module>./degloba-domain</module>
 		<module>./degloba-ioc-spring</module>
 		<module>./degloba-persistence</module>
@@ -157,10 +147,7 @@
 		<module>./degloba-utilitats</module>
 		<module>./degloba-cqrs</module>
 		<module>./degloba-infrastructure</module>
-		
-		<module>./degloba-ioc-test</module>
 		<module>./degloba-event-api</module>
-
 		<module>./degloba-facade</module>
 		<module>./degloba-webapp</module>
 		<module>./degloba-security</module>
@@ -174,7 +161,7 @@
 			<dependency>
 				<groupId>com.google.cloud</groupId>
 				<artifactId>libraries-bom</artifactId>
-				<version>${libraries.bom.version}</version>
+				<version>${googleCloud.libraries.bom.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -192,6 +179,14 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-framework-bom</artifactId>
 				<version>${spring.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring.boot.dependencies.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -409,16 +404,10 @@
 			<dependency>
 				<groupId>com.google.cloud</groupId>
 				<artifactId>google-cloud-pubsub</artifactId>
-				<version>1.103.1</version>
+				<version>1.112.3</version>
 			</dependency>
 
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>${spring.boot.dependencies.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+
 
 			<!-- per poder convertir entity-DTO -->
 			<dependency>
@@ -543,6 +532,12 @@
 					</execution>
 				</executions>
 			</plugin> -->
+			
+			
+			<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>versions-maven-plugin</artifactId>
+			</plugin>
 
 		</plugins>
 
@@ -551,6 +546,7 @@
 		<pluginManagement>
 
 			<plugins>
+			
 
 				<!-- https://www.mojohaus.org/versions-maven-plugin/usage.html -->
 				<plugin>
@@ -561,7 +557,7 @@
 						<execution>
 							<phase>compile</phase>
 							<goals>
-								<!-- <goal>display-dependency-updates</goal> -->
+								<goal>display-dependency-updates</goal>
 								<goal>display-plugin-updates</goal>
 							</goals>
 						</execution>
@@ -835,11 +831,11 @@
 					<value>dev</value>
 				</property>
 			</activation>
-
+			
 			<properties>
 				<jdk.version>11</jdk.version>
 			</properties>
-
+			
 			<build>
 				<plugins>
 
@@ -862,31 +858,6 @@
 						</configuration>
 					</plugin>
 
-					<!-- <plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-enforcer-plugin</artifactId>
-						<version>${maven.enforcer.plugin.version}</version>
-						<executions>
-							<execution>
-								<id>enforce-versions</id>
-								<goals>
-									<goal>enforce</goal>
-								</goals>
-								<configuration>
-									<rules>
-										<requireMavenVersion>
-											<version>${requireMavenVersion}</version>
-										</requireMavenVersion>
-										<requireJavaVersion>
-											<version>${jdk.version}</version>
-										</requireJavaVersion>
-										<requireOS> <family>unix</family> </requireOS> <requireReleaseVersion> 
-											<message>No se permite una versión Snapshot</message> </requireReleaseVersion>
-									</rules>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin> -->
 				</plugins>
 
 			</build>

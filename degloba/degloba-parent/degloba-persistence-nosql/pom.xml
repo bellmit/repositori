@@ -113,27 +113,7 @@
 				<artifactId>maven-install-plugin</artifactId>
 			</plugin>
 
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>${exec.maven.plugin.version}</version>
-				<configuration>
-					<mainClass>org.jruby.Main</mainClass>
-					<cleanupDaemonThreads>false</cleanupDaemonThreads>
-					<arguments>
-						<argument>-d</argument>
-						<argument>-X+O</argument>
-						<argument>thirdparty/hirb.rb</argument>
-					</arguments>
-					<systemProperties>
-						<systemProperty>
-							<key>hbase.ruby.sources</key>
-							<value>thirdparty/ruby</value>
-						</systemProperty>
-					</systemProperties>
-				</configuration>
-			</plugin>
-
+			
 			<!-- The Surefire Plugin is used during the test phase of the build lifecycle 
 				to execute the unit tests of an application -->
 			<plugin>
