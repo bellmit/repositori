@@ -19,9 +19,9 @@ public class UserSearchQueryCriteriaConsumer implements Consumer<SearchCriteria>
 
     private Predicate predicate;
     private CriteriaBuilder builder;
-    private Root r;
+    private Root<?> r;
     
-    public UserSearchQueryCriteriaConsumer(Predicate predicate, CriteriaBuilder builder, Root r) {
+    public UserSearchQueryCriteriaConsumer(Predicate predicate, CriteriaBuilder builder, Root<?> r) {
         super();
         this.predicate = predicate;
         this.builder = builder;
