@@ -9,7 +9,7 @@
 		<groupId>com.degloba</groupId>
 		<artifactId>ecommerce-boundedContext</artifactId>
 		<version>4.4.3-SNAPSHOT</version>
-		<relativePath>../ecommerce-boundedContext/pom.xml</relativePath>
+	<!-- 	<relativePath>../ecommerce-boundedContext/pom.xml</relativePath> -->
 	</parent>
 		    
     <artifactId>ecommerce-config</artifactId>
@@ -29,6 +29,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+				</exclusion>
+			</exclusions>
         </dependency>
         
         

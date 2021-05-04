@@ -7,7 +7,7 @@
 		<groupId>com.degloba</groupId>
 		<artifactId>ecommerce-boundedContext</artifactId>
 		<version>4.4.3-SNAPSHOT</version>
-		<relativePath>../ecommerce-boundedContext/pom.xml</relativePath>
+	<!-- 	<relativePath>../ecommerce-boundedContext/pom.xml</relativePath> -->
 	</parent>
 	<artifactId>ecommerce-cqrs</artifactId>
 	<name>Ecommerce - Cqrs</name>
@@ -49,14 +49,14 @@
 		<dependency>
 			<groupId>org.axonframework</groupId>
 			<artifactId>axon-modelling</artifactId>
-			<version>4.3.1</version>
+			<version>${axon.version}</version>
 		</dependency>
 
 
 		<dependency>
 			<groupId>org.axonframework</groupId>
 			<artifactId>axon-spring-boot-autoconfigure</artifactId>
-			<version>4.3.1</version>
+			<version>${axon.version}</version>
 		</dependency>
 
 		<dependency>
@@ -71,10 +71,10 @@
 		
 		
 		<!-- Dependency to use a spring cloud config server-->
-    <dependency>
+<!--     <dependency>
          <groupId>org.springframework.cloud</groupId>
          <artifactId>spring-cloud-starter-config</artifactId>
-     </dependency>
+     </dependency> -->
      
      
      <!-- Dependency to register the service within Eureka-->
@@ -117,7 +117,7 @@
 				<artifactId>maven-resources-plugin</artifactId>
 			</plugin>
 
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
@@ -130,7 +130,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 
 			<!-- The Surefire Plugin is used during the test phase of the build lifecycle 
 				to execute the unit tests of an application -->
@@ -147,15 +147,15 @@
 				<artifactId>maven-jar-plugin</artifactId>
 			</plugin>
 			
-			<plugin>
+			<!-- <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>2.8.0</version>
                 <configuration>
                     <to>
-                       <!-- <image>gcr.io/wwwdegloba/ecommerce-cqrs</image>     Configure the plugin by setting the image to push to Google Container Registry (GCR)  -->
+                       <image>gcr.io/wwwdegloba/ecommerce-cqrs</image>     Configure the plugin by setting the image to push to Google Container Registry (GCR) 
                        <image>registry.hub.docker.com/degloba/ecommerce-cqrs</image>
-                      <!--    <image>docker.io/degloba/ecommerce-cqrs</image> -->
+                         <image>docker.io/degloba/ecommerce-cqrs</image>
                         <credHelper>wincred</credHelper>
                     </to>
                     <container>
@@ -171,7 +171,7 @@
 				    </execution>
 				  </executions>
                 
-            </plugin>
+            </plugin> -->
 
 		</plugins>
 	</build>

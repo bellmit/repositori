@@ -8,7 +8,7 @@
 		<groupId>com.degloba</groupId>
 		<artifactId>ecommerce-boundedContext</artifactId>
 		<version>4.4.3-SNAPSHOT</version>
-		<relativePath>../ecommerce-boundedContext/pom.xml</relativePath>
+	<!-- 	<relativePath>../ecommerce-boundedContext/pom.xml</relativePath> -->
 	</parent>
 
 	<artifactId>ecommerce-application</artifactId>
@@ -29,7 +29,7 @@
 		<dependency>
 			<groupId>org.axonframework</groupId>
 			<artifactId>axon-test</artifactId>
-			<version>4.3.1</version>
+			<version>${axon.version}</version>
 		</dependency>
 
 
