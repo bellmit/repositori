@@ -6,8 +6,8 @@
 	<parent>
 		<groupId>com.degloba</groupId>
 		<artifactId>ecommerce-boundedContext</artifactId>
-		<version>4.4.3-SNAPSHOT</version>
-		<relativePath>../ecommerce-boundedContext/pom.xml</relativePath>
+		<version>4.4.3-SNAPSHOT</version>		
+	<!-- 	<relativePath>../ecommerce-boundedContext/pom.xml</relativePath> -->
 	</parent>
 	
 	<artifactId>ecommerce-domain</artifactId>
@@ -15,7 +15,7 @@
 	<name>Ecommerce - Domain</name>
 
 	<dependencies>
-
+	
         <!-- Querydsl -->
 
         <dependency>
@@ -90,7 +90,7 @@
     	<groupId>org.springframework.data</groupId>
     	<artifactId>spring-data-jpa</artifactId>
     </dependency>
-	</dependencies>
+	</dependencies> 
 
 
 	<build>

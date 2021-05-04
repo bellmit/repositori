@@ -8,7 +8,7 @@
 		<groupId>com.degloba</groupId>
 		<artifactId>degloba-parent</artifactId>
 		<version>4.4.3-SNAPSHOT</version>
-		<relativePath>../degloba-parent/pom.xml</relativePath>
+		<!-- <relativePath>../degloba-parent/pom.xml</relativePath> -->
 	</parent>
 
 	<artifactId>degloba-event-api</artifactId>
@@ -87,20 +87,10 @@
 			</plugin>
 
 			<!-- comentar si no té una classe SpringBoot -->
-					<!-- <plugin>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-maven-plugin</artifactId>
-					<configuration>
-					<mainClass>com.degloba.ecommerce.cqrs.CqrsSpringBootApplication</mainClass>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
-				</plugin> -->
+			<!-- <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> 
+				<configuration> <mainClass>com.degloba.ecommerce.cqrs.CqrsSpringBootApplication</mainClass> 
+				</configuration> <executions> <execution> <goals> <goal>repackage</goal> 
+				</goals> </execution> </executions> </plugin> -->
 
 		</plugins>
 

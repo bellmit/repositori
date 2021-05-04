@@ -57,7 +57,7 @@
 		<poi.version>4.1.2</poi.version>
 
 		<!-- Google Appengine https://cloud.google.com/appengine/docs/standard/java/release-notes#june_28_2017 -->
-		<google.appengine.version>1.9.82</google.appengine.version>
+		<google.appengine.version>1.9.86</google.appengine.version>
 
 		<google-cloud-pubsub.version>1.89.0</google-cloud-pubsub.version>
 
@@ -564,6 +564,8 @@
 					</executions>
 					<configuration>
 						<generateBackupPoms>false</generateBackupPoms>
+						<rulesUri>file:///${session.executionRootDirectory}/rules.xml</rulesUri> <!-- https://www.mojohaus.org/versions-maven-plugin/version-rules.html -->
+						
 					</configuration>
 				</plugin>
 

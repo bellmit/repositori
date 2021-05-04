@@ -7,7 +7,7 @@
 		<groupId>com.degloba</groupId>
 		<artifactId>degloba-parent</artifactId>
 		<version>4.4.3-SNAPSHOT</version>
-		<relativePath>../degloba-parent/pom.xml</relativePath>
+		<!-- <relativePath>../degloba-parent/pom.xml</relativePath> -->
 	</parent>
 	<artifactId>degloba-cqrs</artifactId>
 	<packaging>jar</packaging>
@@ -34,11 +34,16 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
+			
+			<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>versions-maven-plugin</artifactId>
+				</plugin>
 
 
 			<!-- The Surefire Plugin is used during the test phase of the build lifecycle 
 				to execute the unit tests of an application -->
-			<plugin>
+<!-- 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 			</plugin>
@@ -46,7 +51,15 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
-			</plugin>
+			</plugin>  -->
+			
+							<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					
+				</plugin>
+			
+
 		</plugins>
 
 	</build>

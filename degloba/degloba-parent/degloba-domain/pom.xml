@@ -10,8 +10,8 @@
 		<groupId>com.degloba</groupId>
 		<artifactId>degloba-parent</artifactId>
 		<version>4.4.3-SNAPSHOT</version>
-		 <relativePath>../degloba-parent/pom.xml</relativePath>
-		 <!-- <relativePath/>  -->
+		<!-- <relativePath>../degloba-parent/pom.xml</relativePath> -->
+		<!-- <relativePath /> -->
 	</parent>
 
 	<artifactId>degloba-domain</artifactId>
@@ -22,11 +22,11 @@
     </description>
 
 	<dependencies>
-	
-	<dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-        </dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -86,31 +86,32 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-			</plugin>
+			</plugin>			
+			
+			<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>versions-maven-plugin</artifactId>
+					<!-- <version>${versions.maven.plugin.version}</version>
+					<executions>
+						<execution>
+							<phase>compile</phase>
+							<goals>
+								<goal>display-dependency-updates</goal>
+								<goal>display-plugin-updates</goal>
+							</goals>
+						</execution>
+					</executions> -->
+			<!-- 		<configuration>
+						<generateBackupPoms>false</generateBackupPoms>
+					</configuration> -->
+				</plugin>
 
-			<!-- <plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<extensions>true</extensions>
-				<configuration>
-					<instructions>
-						<Export-Package>
-							com.degloba.domain,
-							com.degloba.domain.specification
-						</Export-Package>
-					</instructions>
-				</configuration>
-				<executions>
-					<execution>
-						<id>generate-manifest</id>
-						<goals>
-							<goal>manifest</goal>
-							<goal>bundle</goal>
-						</goals>
-						<phase>package</phase>
-					</execution>
-				</executions>
-			</plugin> -->
+			<!-- <plugin> <groupId>org.apache.felix</groupId> <artifactId>maven-bundle-plugin</artifactId> 
+				<extensions>true</extensions> <configuration> <instructions> <Export-Package> 
+				com.degloba.domain, com.degloba.domain.specification </Export-Package> </instructions> 
+				</configuration> <executions> <execution> <id>generate-manifest</id> <goals> 
+				<goal>manifest</goal> <goal>bundle</goal> </goals> <phase>package</phase> 
+				</execution> </executions> </plugin> -->
 
 			<!-- DataNucleus Enhancer (versions 3.1.x) -->
 			<!-- <plugin> <groupId>org.datanucleus</groupId> <artifactId>maven-datanucleus-plugin</artifactId> 

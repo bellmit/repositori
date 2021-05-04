@@ -2,7 +2,8 @@ apiVersion: skaffold/v2beta11
 kind: Config
 build:
   tagPolicy:
-    gitCommit: {}
+     sha256: {}      # etiqueta amb : latest
+#    gitCommit: {}
   artifacts:
   - image: ecommerce-webapp-angular
     context: ecommerce-webapp-angular
@@ -18,40 +19,22 @@ build:
     context: ecommerce-web-reactive
     jib:
       type: maven
-  local:     # https://skaffold.dev/docs/pipeline-stages/builders/
-     push: true
-     useDockerCLI: true
-#  cluster:
+  local:      # https://skaffold.dev/docs/pipeline-stages/builders/
+#      tryImportMissing: true
+     push: false
+#      useDockerCLI: true
+#  cluster:      # GCR
 deploy:
   kubectl:
     manifests:
-      - k8s/*
-      - ecommerce-webapp-angular/kubernetes/*
-#      - ecommerce-cqrs/kubernetes/*
-      - ecommerce-webapp/kubernetes/*
-      - ecommerce-web-reactive/kubernetes/*
-profiles:
-- name: prod
-  activation:
-    - env: MAGIC_VAR=42
-- name: dev   
-  activation:
-    - env: MAGIC_VAR=1337
-    - kubeContext: minikube
-      command: dev   
-- name: gcb
-  build:
-    googleCloudBuild:
-      projectId: k8s-skaffold      
-portForward:
-  - resourceType: deployment
-    resourceName: ecommerce-webapp
-    port: 8080
-    localPort: 9000
-  - resourceType: deployment
-    resourceName: ecommerce-web-reactive
-    port: http
-    localPort: 9001
+      - k8s/*    # arquitectura
+      - istio/ecommerce.yaml
+      - networking/ecommerce-gateway.yaml      
+#      - ecommerce-webapp-angular/kubernetes/*
+##      - ecommerce-cqrs/kubernetes/*
+#      - ecommerce-webapp/kubernetes/*
+#      - ecommerce-web-reactive/kubernetes/*
+
     
     
 
