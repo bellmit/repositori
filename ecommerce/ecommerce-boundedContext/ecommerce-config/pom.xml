@@ -23,6 +23,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
+        
 
         <!-- 3b) Dependency for testing boot projects -->
         <dependency>
@@ -49,6 +50,18 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+         <dependency>
+         	<groupId>org.springframework.cloud</groupId>
+         	<artifactId>spring-cloud-starter-kubernetes</artifactId>
+         	<version>1.1.9.RELEASE</version>
+         </dependency>
+         <dependency>
+         	<groupId>org.springframework.boot</groupId>
+         	<artifactId>
+         		spring-boot-configuration-processor
+         	</artifactId>
+         	<optional>true</optional>
+         </dependency>
     </dependencies>
 
     <!-- 4) Dependency Management -->
@@ -73,6 +86,35 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            
+            
+            <plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<configuration>
+ 	<!-- 				 <to>
+						<image>registry.hub.docker.com/degloba/ecommerce-config</image>
+						<image>docker.io/degloba/ecommerce-config</image>
+						<credHelper>wincred</credHelper>
+					</to> -->
+					<to>
+					<image>docker.io/degloba/ecommerce-config</image>
+					</to>
+					<container>
+						<mainClass>com.degloba.ecommerce.microservices.config.Application</mainClass>
+					</container>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>dockerBuild</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+            
+            
         </plugins>
     </build>
 

@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/migueldoctor/SpringCloudConfig-GitRepository
+          uri: https://github.com/degloba/SpringCloudConfig
 
   # Spring properties
   profiles:
