@@ -118,4 +118,9 @@
         </plugins>
     </build>
 
+    <description>Projecte que centralitza TOTES les propietats de TOTS els frameworks, plataformes,... necessaries per l'aplicació.
+Substituieix la definició dels diferents application.properties (forma distribuida) per una centralitzada.
+Aquestes propietats es converteixen en ConfigMapS/Kubernetes i Secrets/Kubernetes
+Mirar : https://ard333.medium.com/centralized-configuration-spring-application-on-kubernetes-4fd9e1a31f35</description>
+    <name>Ecommerce - Config</name>
 </project>
