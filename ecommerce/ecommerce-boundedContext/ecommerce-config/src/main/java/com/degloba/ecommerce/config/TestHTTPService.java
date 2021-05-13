@@ -18,18 +18,18 @@ public class TestHTTPService {
 	private ClientConfig config;
 	
 	/*
-	 * @Value("${myconfig.database}") // mirar: ecommerce-config-configmap.yaml
+	 * @Value("${ecommerceConfig.database}") // mirar: ecommerce-config-configmap.yaml
 	 * private String properties1;
 	 */
 
 	@GetMapping("config-autoreload")
 	public String configAutoReload() {
 		
-		  return "myconfig.database: " + config.getDatabase() + "\n"+
-		  "myconfig.subconfigMongo.name: " + config.getSubconfigMongo().getName() + "\n"+
-		  "\n"+ "myconfig.subconfigMongo.url: " + config.getSubconfigMongo().getUrl() + "\n"+
-		  "myconfig.subconfigMongo.name: " + config.getSubconfigMongo().getHost() + "\n"+
-		  "\n"+ "myconfig.subconfigMongo.url: " + config.getSubconfigMongo().getPort() +		  
+		  return "ecommerceConfig.database: " + config.getDatabase() + "\n"+
+		  "ecommerceConfig.subconfigMongo.name: " + config.getSubconfigMongo().getName() + "\n"+
+		  "\n"+ "ecommerceConfig.subconfigMongo.url: " + config.getSubconfigMongo().getUrl() + "\n"+
+		  "ecommerceConfig.subconfigMongo.name: " + config.getSubconfigMongo().getHost() + "\n"+
+		  "\n"+ "ecommerceConfig.subconfigMongo.url: " + config.getSubconfigMongo().getPort() +		  
 		  "\n" ;
 	}
 

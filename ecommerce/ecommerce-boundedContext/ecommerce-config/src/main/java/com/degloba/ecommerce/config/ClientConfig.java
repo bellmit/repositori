@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import com.degloba.ecommerce.config.configs.SubConfigMongo;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -18,7 +20,7 @@ import lombok.Setter;
  *
  */
 @Configuration
-@ConfigurationProperties(prefix = "myconfig")   // mirar: ecommerce-config-configmap.yaml
+@ConfigurationProperties(prefix = "ecommerceconfig")   // mirar: ecommerce-config-configmap.yaml
 @Data @AllArgsConstructor @NoArgsConstructor
 public class ClientConfig implements Serializable { 
 
