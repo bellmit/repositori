@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ecommerce-config
+data:
+  application.properties: |-
+   ecommerceconfig.subconfigMongo.name=casino
+   ecommerceconfig.subconfigMongo.host=mongodb-service
+   ecommerceconfig.subconfigMongo.port=27017
+   ecommerceconfig.subconfigMongo.url=mongodb
+   
+   ecommerceconfig.subconfigRabbitMQ.name=
+   ecommerceconfig.subconfigRabbitMQ.host=rabbitmq-service
+   ecommerceconfig.subconfigRabbitMQ.port=
+   ecommerceconfig.subconfigRabbitMQ.url=
+   ecommerceconfig.subconfigRabbitMQ.username=SECRET
+   ecommerceconfig.subconfigRabbitMQ.password=SECRET
+   
+      
+   ecommerceconfig.subconfigAxon.name=
+   ecommerceconfig.subconfigAxon.host=xon-service
+   ecommerceconfig.subconfigAxon.port=
+   ecommerceconfig.subconfigAxon.url=
+      
+   ecommerceconfig.subconfigPostgresSQL.name=
+   ecommerceconfig.subconfigPostgresSQL.host=postgressql-service
+   ecommerceconfig.subconfigPostgresSQL.port=
+   ecommerceconfig.subconfigPostgresSQL.url=
+   ecommerceconfig.subconfigPostgresSQL.username=SECRET
+   ecommerceconfig.subconfigPostgresSQL.password=SECRET
+   ecommerceconfig.subconfigPostgresSQL.driver=
+   
+   
+   ecommerceconfig.subconfigRedis.name=
+   ecommerceconfig.subconfigRedis.host=redis-service
+   ecommerceconfig.subconfigRedis.port=
+   ecommerceconfig.subconfigRedis.url=
+   
+   ecommerceconfig.subconfigEureka.name=
+   ecommerceconfig.subconfigEureka.host=eureka-service
+   ecommerceconfig.subconfigEureka.port=
+   ecommerceconfig.subconfigEureka.url=
+   
+   ecommerceconfig.subconfigMemcache.name=
+   ecommerceconfig.subconfigMemcache.host=memcache-service
+   ecommerceconfig.subconfigMemcache.port=
+   ecommerceconfig.subconfigMemcache.url=
+   
+   ecommerceconfig.subconfigElasticSearch.name=
+   ecommerceconfig.subconfigElasticSearch.host=elasticsearch-service
+   ecommerceconfig.subconfigElasticSearch.port=
+   ecommerceconfig.subconfigElasticSearch.url=
+   
+   
+   ecommerceconfig.subConfigGoogle.id=SECRET
+   ecommerceconfig.subConfigGoogle.secret=SECRET
+   ecommerceconfig.subConfigGoogle.userAuthorizationUri=https://accounts.google.com/o/oauth2/auth
+   
+   ecommerceconfig.subConfigSecurityGoogle.code=
+   ecommerceconfig.subConfigSecurityGoogle.accessTokenUri=securityGoogle-service
+   ecommerceconfig.subConfigSecurityGoogle.userAuthorizationUri=SECRET
+   ecommerceconfig.subConfigSecurityGoogle.scope=SECRET  
+
+   ecommerceconfig.subConfigMail.host=casino
+   ecommerceconfig.subConfigMail.password=mail-service
+   ecommerceconfig.subConfigMail.userName=
+   ecommerceconfig.subConfigMail.port=
+   ecommerceconfig.subConfigMail.protocol=
+   ecommerceconfig.subConfigMail.brokerUrl=mail-service
+   ecommerceconfig.subConfigMail.brokerUserName=SECRET
+   ecommerceconfig.subConfigMail.brokerPassword=SECRET  
+   
+
+   
+   
+   
+   
