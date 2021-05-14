@@ -19,6 +19,10 @@ build:
     context: ecommerce-web-reactive
     jib:
       type: maven
+  - image: ecommerce-config
+    context: ecommerce-config
+    jib:
+      type: maven      
   local:      # https://skaffold.dev/docs/pipeline-stages/builders/
 #      tryImportMissing: true
      push: false

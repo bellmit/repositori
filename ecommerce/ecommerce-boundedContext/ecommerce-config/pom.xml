@@ -85,6 +85,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+					<mainClass>com.degloba.ecommerce.config.Application</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
             </plugin>
             
             
@@ -101,7 +111,7 @@
 					<image>docker.io/degloba/ecommerce-config</image>
 					</to>
 					<container>
-						<mainClass>com.degloba.ecommerce.microservices.config.Application</mainClass>
+						<mainClass>com.degloba.ecommerce.config.Application</mainClass>
 					</container>
 				</configuration>
 				<executions>
