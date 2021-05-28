@@ -3,13 +3,13 @@
 #
 # To apply all services, their corresponding service accounts, and deployments:
 #
-#   kubectl apply -f ecommerce-boundedContext/istio/ecommerce.yaml
+#   kubectl apply -f k8s/ecommerce.yaml
 #
 # Alternatively, you can deploy any resource separately:
 #
-#   kubectl apply -f ./ecommerce.yaml -l service=ecommerce-webapp # ecommerce-webapp Service
-#   kubectl apply -f ./ecommerce.yaml -l account=ecommerce-webapp # ecommerce-webapp ServiceAccount
-#   kubectl apply -f ./ecommerce.yaml -l app=ecommerce-webapp,version=v1 # ecommerce-webapp-v1 Deployment
+#   kubectl apply -f k8s/ecommerce.yaml -l service=ecommerce-webapp # ecommerce-webapp Service
+#   kubectl apply -f k8s/ecommerce.yaml -l account=ecommerce-webapp # ecommerce-webapp ServiceAccount
+#   kubectl apply -f k8s/ecommerce.yaml -l app=ecommerce-webapp,version=v1 # ecommerce-webapp-v1 Deployment
 ##################################################################################################
 
 ##################################################################################################
@@ -54,8 +54,13 @@ spec:
       labels:
         app: ecommerce-webapp
         version: v1
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "internal-app"      # ServiceAccount
+        vault.hashicorp.com/agent-inject-secret-database-config.txt: "internal/data/database/config"
     spec:
-      serviceAccountName: ecommerce-webapp
+      #serviceAccountName: ecommerce-webapp
+      serviceAccountName: internal-app   # https://learn.hashicorp.com/tutorials/vault/kubernetes-sidecar
       containers:
       - name: ecommerce-webapp
         image: docker.io/degloba/ecommerce-webapp:latest
@@ -124,12 +129,28 @@ spec:
       labels:
         app: ecommerce-web-reactive
         version: v1
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "internal-app"      # ServiceAccount
+        vault.hashicorp.com/agent-inject-secret-database-config.txt: "internal/data/database/config"
     spec:
-      serviceAccountName: ecommerce-web-reactive
+      #serviceAccountName: ecommerce-web-reactive
+      serviceAccountName: internal-app   # https://learn.hashicorp.com/tutorials/vault/kubernetes-sidecar
       containers:
       - name: ecommerce-web-reactive
-        image: docker.io/degloba/ecommerce-web-reactive:latest
+#        image: docker.io/degloba/ecommerce-web-reactive:latest
+        image: ecommerce-web-reactive
         imagePullPolicy: IfNotPresent
+        resources:
+           requests:
+              memory: "64Mi"
+              cpu: "1000m"
+           limits:
+              memory: "128Mi"
+              cpu: "2000m"
+        args:
+        - -cpus
+        - "2"              
 #        env:
 #        - name: LOG_DIR
 #          value: "/tmp/logs"
@@ -194,7 +215,8 @@ spec:
         app: ecommerce-webapp-angular
         version: v1
     spec:
-      serviceAccountName: ecommerce-webapp-angular
+      #serviceAccountName: ecommerce-webapp-angular
+      serviceAccountName: internal-app   # https://learn.hashicorp.com/tutorials/vault/kubernetes-sidecar
       containers:
       - name: ecommerce-webapp-angular
         image: docker.io/degloba/ecommerce-webapp-angular:latest

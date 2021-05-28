@@ -92,8 +92,9 @@ ingress:
 # frontend:
 #	kubectl apply -f ecommerce-webapp-angular/kubernetes
 
+# mongo, rabbit, axon,...
 arrancaArquitectura:
-	kubectl apply -R -f ./k8s
+	kubectl apply -R -f ./k8s/infrastructure
 
 	
 arrancaEcommerceIstio:
@@ -112,3 +113,8 @@ list:
 
 watch:
 	kubectl get pods -A --watch
+	
+	
+# Prometheus, Grafana, and Jaeger.	
+addons:	
+	kubectl apply -f k8s/addons
