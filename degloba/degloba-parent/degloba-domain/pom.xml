@@ -88,23 +88,6 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>			
 			
-			<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>versions-maven-plugin</artifactId>
-					<!-- <version>${versions.maven.plugin.version}</version>
-					<executions>
-						<execution>
-							<phase>compile</phase>
-							<goals>
-								<goal>display-dependency-updates</goal>
-								<goal>display-plugin-updates</goal>
-							</goals>
-						</execution>
-					</executions> -->
-			<!-- 		<configuration>
-						<generateBackupPoms>false</generateBackupPoms>
-					</configuration> -->
-				</plugin>
 
 			<!-- <plugin> <groupId>org.apache.felix</groupId> <artifactId>maven-bundle-plugin</artifactId> 
 				<extensions>true</extensions> <configuration> <instructions> <Export-Package> 
