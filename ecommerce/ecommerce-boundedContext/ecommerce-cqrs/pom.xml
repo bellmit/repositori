@@ -66,7 +66,7 @@
 		<dependency>
 			<groupId>org.axonframework.extensions.amqp</groupId>
 			<artifactId>axon-amqp-spring-boot-starter</artifactId>
-			<version>4.3</version>
+			<version>4.5</version>
 		</dependency>
 		
 		
@@ -84,22 +84,6 @@
         </artifactId>
      </dependency>
      
-          <dependency>
-      <artifactId>spring-cloud-starter-kubernetes</artifactId>
-      <groupId>org.springframework.cloud</groupId>
-    </dependency>
-    <dependency>
-      <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-      <groupId>org.springframework.cloud</groupId>
-    </dependency>
-    <dependency>
-      <artifactId>spring-cloud-starter-kubernetes-ribbon</artifactId>
-      <groupId>org.springframework.cloud</groupId>
-    </dependency>
-      <dependency>
-      <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-      <groupId>org.springframework.cloud</groupId>
-    </dependency>
      
 	</dependencies>
 
@@ -145,18 +129,25 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
+			</plugin> 			
+			
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
 			</plugin>
 			
 			<!-- <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
-                <version>2.8.0</version>
                 <configuration>
                     <to>
                        <image>gcr.io/wwwdegloba/ecommerce-cqrs</image>     Configure the plugin by setting the image to push to Google Container Registry (GCR) 
                        <image>registry.hub.docker.com/degloba/ecommerce-cqrs</image>
                          <image>docker.io/degloba/ecommerce-cqrs</image>
                         <credHelper>wincred</credHelper>
+                    </to>
+                    <to>
+                    <image>docker.io/degloba/ecommerce-cqrs</image>
                     </to>
                     <container>
                     	<mainClass>com.degloba.ecommerce.cqrs.CqrsSpringBootApplication</mainClass>

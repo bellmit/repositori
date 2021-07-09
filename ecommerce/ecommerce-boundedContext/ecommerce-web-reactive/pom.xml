@@ -56,11 +56,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
-			<groupId>io.projectreactor</groupId>
-			<artifactId>reactor-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+		
 		<dependency>
 			<groupId>com.degloba</groupId>
 			<artifactId>ecommerce-facade</artifactId>
@@ -114,14 +110,13 @@
 
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
-			<artifactId>jasperreports</artifactId>
-			<version>6.5.1</version>
+			<artifactId>jasperreports</artifactId>			
 		</dependency>
 
 		<dependency>
 			<groupId>org.tuckey</groupId>
 			<artifactId>urlrewritefilter</artifactId>
-			<version>4.0.3</version>
+			<version>4.0.4</version>
 		</dependency>
 		<dependency>
 			<groupId>com.degloba</groupId>
@@ -149,21 +144,18 @@
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
 
-		<!-- Dependency to register the service within Eureka -->
 
-		<dependency>
-			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-			<groupId>org.springframework.cloud</groupId>
-		</dependency>
-		<dependency>
-			<artifactId>spring-cloud-starter-kubernetes-ribbon</artifactId>
-			<groupId>org.springframework.cloud</groupId>
-		</dependency>
-		<dependency>
-			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-			<groupId>org.springframework.cloud</groupId>
-		</dependency>
-
+<dependency>
+        <groupId>io.projectreactor</groupId>
+        <artifactId>reactor-core</artifactId> 
+        
+    </dependency>
+    <dependency>
+        <groupId>io.projectreactor</groupId>
+        <artifactId>reactor-test</artifactId> 
+        <scope>test</scope>
+    </dependency>
+    
 	</dependencies>
 
 
@@ -211,7 +203,7 @@
 			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>jib-maven-plugin</artifactId>
-				<version>2.8.0</version>
+				<version>3.0.0</version>
 				<configuration>
  				<!-- 	 <to>
 						<image>registry.hub.docker.com/degloba/ecommerce-web-reactive</image>
@@ -219,7 +211,7 @@
 						<credHelper>wincred</credHelper>
 					</to> -->
 					<to>
-					<image>ecommerce-web-reactive</image>
+					<image>docker.io/degloba/ecommerce-web-reactive</image>
 					</to>
 					<container>
 						<mainClass>com.degloba.ecommerce.enviaments.webapp.reactive.EnviamentReactiveSpringApplication</mainClass>

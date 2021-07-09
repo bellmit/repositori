@@ -38,7 +38,7 @@
 		<dependency>
 			<groupId>org.axonframework</groupId>
 			<artifactId>axon-spring-boot-autoconfigure</artifactId>
-			<version>4.3.1</version>
+			<version>4.3.3</version>
 		</dependency>
 
 		<dependency>
@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>org.axonframework.extensions.amqp</groupId>
 			<artifactId>axon-amqp-spring-boot-autoconfigure</artifactId>
-			<version>4.3</version>
+			<version>4.5</version>
 		</dependency>
 		<dependency>
 			<groupId>com.degloba</groupId>
@@ -100,12 +100,6 @@
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>jcenter</id>
-			<url>https://jcenter.bintray.com</url>
-		</repository>
-	</repositories>
 	<description>MicroServei basat en events utilitzant Eventuate FrameWork</description>
 	<url>www.degloba.com</url>
 </project>

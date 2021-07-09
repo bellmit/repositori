@@ -50,7 +50,7 @@ spec:
     spec:
       containers:
       - name: ecommerce-webapp
-        image: docker.io/degloba/eecommerce-webapp:latest
+        image: docker.io/degloba/ecommerce-webapp:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
