@@ -10,18 +10,15 @@ FROM maven:3.6.3-jdk-11 as java-builder
 #    && mkdir /root/.m2/repository
 # Copy maven settings, containing repository configurations
 
-#RUN mkdir -p /usr/share/maven/ref/repository
-#COPY ./settings.xml /usr/share/maven/ref/repository/settings.xml
 
 RUN mkdir -p /build
 WORKDIR /build
 
-# Copy maven settings
 
-COPY ./pom.xml /build/pom.xml
+COPY settings.xml /usr/share/maven/ref/repository/
+COPY pom.xml /build/pom.xml
 
-#RUN mvn -B -f /build/pom.xml -s /usr/share/maven/ref/settings.xml dependency:resolve
-RUN mvn -B -f /build/pom.xml  dependency:resolve
+RUN mvn install
 
 
 # copy all but Angular source in
@@ -84,10 +81,26 @@ COPY ./degloba-security/src/main/java /build/degloba-security/src/main/java
 COPY ./degloba-security/src/test /build/degloba-security/src/test
 COPY ./degloba-security/pom.xml /build/degloba-security/
 
-
+WORKDIR /build/degloba-utilitats
 RUN mvn install
 
+WORKDIR /build/degloba-event-api
+RUN mvn install
+
+WORKDIR /build/degloba-domain
+RUN mvn install
+
+#RUN mvn -B -f /build/pom.xml -s /usr/share/maven/ref/repository/settings.xml dependency:resolve
+
+#RUN mvn -B -f /build/degloba-domain/pom.xml -s /usr/share/maven/ref/repository/settings.xml dependency:resolve
+
+#RUN mvn install
+
+
 #RUN mvn -B dependency:resolve dependency:resolve-plugins
+
+
+
 
 #COPY --from=node-builder build/dist /build/src/main/resources/static
 
