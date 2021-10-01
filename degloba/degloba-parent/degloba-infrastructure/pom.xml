@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.degloba</groupId>
+		<artifactId>degloba-parent</artifactId>
+		<version>4.4.3-SNAPSHOT</version>
+	<!-- 	<relativePath>../degloba-parent/pom.xml</relativePath> -->
+	</parent>
+
+	<artifactId>degloba-infrastructure</artifactId>
+	<packaging>jar</packaging>
+	<name>(degloba-infrastructure) - infrastructura (google-cloud-storage, google-cloud-pubsub,..)</name>
+	<description>Events + Spring data + Sagas</description>
+	<url>www.degloba.com</url>
+
+
+	<dependencies>
+
+		<!-- per proves (classe : ServicesConfiguration) -->
+		<!-- <dependency> <groupId>org.datanucleus</groupId> <artifactId>datanucleus-core</artifactId> 
+			</dependency> <dependency> <groupId>org.datanucleus</groupId> <artifactId>datanucleus-api-jpa</artifactId> 
+			</dependency> -->
+		<!-- <dependency> <groupId>com.google.appengine.orm</groupId> <artifactId>datanucleus-appengine</artifactId> 
+			</dependency> -->
+		<!-- <dependency> <groupId>org.datanucleus</groupId> <artifactId>datanucleus-enhancer</artifactId> 
+			<version>${datanucleus.maven.plugin}</version> </dependency> -->
+
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.degloba</groupId>
+			<artifactId>degloba-persistence-nosql</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.hbase</groupId>
+					<artifactId>hbase-client</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.hbase</groupId>
+					<artifactId>hbase-mapreduce</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.googlecode.objectify</groupId>
+					<artifactId>objectify</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.google.cloud.bigtable</groupId>
+					<artifactId>bigtable-hbase</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.google.cloud</groupId>
+					<artifactId>google-cloud-bigtable</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.google.cloud</groupId>
+			<artifactId>google-cloud-bigquery</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.cloud</groupId>
+			<artifactId>google-cloud-pubsub</artifactId>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>
