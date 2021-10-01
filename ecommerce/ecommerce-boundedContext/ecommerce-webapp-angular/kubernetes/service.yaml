@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecommerce-webapp-angular-service
+  namespace: default
+spec:
+  selector:
+    app: ecommerce-webapp-angular
+    tier: frontend
+    track: stable
+  ports:
+    - protocol: TCP
+      port: 80    # port del servei
+      targetPort: 80    # la majoria de vegades es identic a containerPort.En el nostre cas el port 80 es el port del nginx
+      nodePort: 4200   # port a través el qual s'accedeix des de fora
+  type: NodePort
+  externalIPs:
+  - 192.168.1.37 # Network IP of my PC      

@@ -1,0 +1,240 @@
+##################################################################################################
+# This file defines the services, service accounts, and deployments for the Bookinfo sample.
+#
+# To apply all services, their corresponding service accounts, and deployments:
+#
+#   kubectl apply -f k8s/ecommerce.yaml
+#
+# Alternatively, you can deploy any resource separately:
+#
+#   kubectl apply -f k8s/ecommerce.yaml -l service=ecommerce-webapp # ecommerce-webapp Service
+#   kubectl apply -f k8s/ecommerce.yaml -l account=ecommerce-webapp # ecommerce-webapp ServiceAccount
+#   kubectl apply -f k8s/ecommerce.yaml -l app=ecommerce-webapp,version=v1 # ecommerce-webapp-v1 Deployment
+##################################################################################################
+
+##################################################################################################
+# ecommerce-webapp service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecommerce-webapp
+  labels:
+    app: ecommerce-webapp
+    service: ecommerce-webapp
+spec:
+  ports:
+  - port: 50051
+    name: http
+  selector:
+    app: ecommerce-webapp
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ecommerce-webapp
+  labels:
+    account: ecommerce-webapp
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-webapp
+  labels:
+    app: ecommerce-webapp
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecommerce-webapp
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: ecommerce-webapp
+        version: v1
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "internal-app"      # ServiceAccount
+        vault.hashicorp.com/agent-inject-secret-database-config.txt: "internal/data/database/config"
+        vault.hashicorp.com/agent-inject-template-database-config: |
+          {{- with secret "internal/data/database/config" -}} postgresql://{{ .Data.data.username }}:{{ .Data.data.password }}@postgres:5432/wizard
+          {{- end }}
+    spec:
+      #serviceAccountName: ecommerce-webapp
+      serviceAccountName: internal-app   # https://learn.hashicorp.com/tutorials/vault/kubernetes-sidecar
+      containers:
+      - name: ecommerce-webapp
+        image: docker.io/degloba/ecommerce-webapp:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        securityContext:
+          runAsUser: 1000
+        env:
+          - name: MONGO_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: mongodb-configmap
+                key: database-name
+          - name: MONGO_INITDB_ROOT_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: mongo-root-username
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: mongo-root-password
+          
+---
+##################################################################################################
+# ecommerce-web-reactive service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecommerce-web-reactive
+  labels:
+    app: ecommerce-web-reactive
+    service: ecommerce-web-reactive
+spec:
+  ports:
+  - port: 50051
+    name: http-reactive
+  selector:
+    app: ecommerce-web-reactive
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ecommerce-web-reactive
+  labels:
+    account: ecommerce-web-reactive
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-web-reactive
+  labels:
+    app: ecommerce-web-reactive
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecommerce-web-reactive
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: ecommerce-web-reactive
+        version: v1
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+#        vault.hashicorp.com/role: "internal-app"      # ServiceAccount
+        vault.hashicorp.com/agent-inject-secret-database-config.txt: "internal/data/database/config"
+        vault.hashicorp.com/agent-inject-template-database-config: |
+          {{- with secret "internal/data/database/config" -}} postgresql://{{ .Data.data.username }}:{{ .Data.data.password }}@postgres:5432/wizard
+          {{- end }}
+    spec:
+      #serviceAccountName: ecommerce-web-reactive
+      serviceAccountName: internal-app   # https://learn.hashicorp.com/tutorials/vault/kubernetes-sidecar
+      containers:
+      - name: ecommerce-web-reactive
+#        image: docker.io/degloba/ecommerce-web-reactive:latest
+        image: ecommerce-web-reactive
+        imagePullPolicy: IfNotPresent
+        resources:
+           requests:
+              memory: "64Mi"
+              cpu: "1000m"
+           limits:
+              memory: "128Mi"
+              cpu: "2000m"
+        args:
+        - -cpus
+        - "2"              
+#        env:
+#        - name: LOG_DIR
+#          value: "/tmp/logs"
+#        ports:
+#        - containerPort: 50051
+#        volumeMounts:
+#        - name: tmp
+#          mountPath: /tmp
+#        - name: wlp-output
+#          mountPath: /opt/ibm/wlp/output
+#        securityContext:
+#          runAsUser: 1000
+#      volumes:
+#      - name: wlp-output
+#        emptyDir: {}
+#      - name: tmp
+#        emptyDir: {}
+---
+##################################################################################################
+# ecommerce-webapp-angular services
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecommerce-webapp-angular
+  labels:
+    app: ecommerce-webapp-angular
+    service: ecommerce-webapp-angular
+spec:
+  ports:
+  - port: 80    # port del servei
+    name: http
+    targetPort: 80    # la majoria de vegades es identic a containerPort.En el nostre cas el port 80 es el port del nginx
+    nodePort: 4200   # port a través el qual s'accedeix des de fora
+  selector:
+    app: ecommerce-webapp-angular
+  type: NodePort
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ecommerce-webapp-angular
+  labels:
+    account: ecommerce-webapp-angular
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-webapp-angular
+  labels:
+    app: ecommerce-webapp-angular
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecommerce-webapp-angular
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: ecommerce-webapp-angular
+        version: v1
+    spec:
+      #serviceAccountName: ecommerce-webapp-angular
+      serviceAccountName: internal-app   # https://learn.hashicorp.com/tutorials/vault/kubernetes-sidecar
+      containers:
+      - name: ecommerce-webapp-angular
+        image: docker.io/degloba/ecommerce-webapp-angular:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80    # port del nginx. !!!NO SE PERQUE : poso un valor qualsevol i segueix funcionant
+#        volumeMounts:
+#        - name: tmp
+#          mountPath: /tmp
+#        securityContext:
+#          runAsUser: 1000
+#      volumes:
+#      - name: tmp
+#        emptyDir: {}
+---

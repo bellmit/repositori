@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: ecommerce-web-reactive
+spec:
+  hosts:
+  - ecommerce-web-reactive
+  http:
+  - route:
+    - destination:
+        host: ecommerce-web-reactive
+        subset: v1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: ecommerce-webapp
+spec:
+  hosts:
+  - ecommerce-webapp
+  http:
+  - route:
+    - destination:
+        hosttt: ecommerce-webapp
+        subset: v2
+---

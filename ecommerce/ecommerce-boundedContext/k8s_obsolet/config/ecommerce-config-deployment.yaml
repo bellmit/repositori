@@ -1,0 +1,35 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ecommerce-config
+spec:
+  selector:
+    app: ecommerce-config
+  ports:
+  - protocol: TCP
+    port: 8080
+    nodePort: 30083
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-config
+spec:
+  selector:
+      matchLabels:
+        app: ecommerce-config
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ecommerce-config
+    spec:
+      containers:
+        - name: ecommerce-config
+#          image: docker.io/degloba/ecommerce-config:latest
+          image: ecommerce-config
+          imagePullPolicy: IfNotPresent
+          #imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080            

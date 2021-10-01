@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.degloba</groupId>
+		<artifactId>ecommerce-boundedContext</artifactId>
+		<version>4.4.3-SNAPSHOT</version>
+	<!-- 	<relativePath>../ecommerce-boundedContext/pom.xml</relativePath> -->
+	</parent>
+	<artifactId>ecommerce-cqrs</artifactId>
+	<name>Ecommerce - Cqrs</name>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.degloba</groupId>
+			<artifactId>degloba-cqrs</artifactId>
+			<version>4.4.3-SNAPSHOT</version>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.degloba</groupId>
+			<artifactId>ecommerce-facade</artifactId>
+			<version>4.4.3-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.axonframework</groupId>
+			<artifactId>axon-modelling</artifactId>
+			<version>${axon.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.axonframework</groupId>
+			<artifactId>axon-spring-boot-autoconfigure</artifactId>
+			<version>${axon.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.axonframework.extensions.amqp</groupId>
+			<artifactId>axon-amqp-spring-boot-starter</artifactId>
+			<version>4.5</version>
+		</dependency>
+		
+		
+		<!-- Dependency to use a spring cloud config server-->
+<!--     <dependency>
+         <groupId>org.springframework.cloud</groupId>
+         <artifactId>spring-cloud-starter-config</artifactId>
+     </dependency> -->
+     
+     
+     <!-- Dependency to register the service within Eureka-->
+     <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-client
+        </artifactId>
+     </dependency>
+     
+     
+	</dependencies>
+
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+			</plugin>
+
+			<!-- <plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.degloba.ecommerce.cqrs.CqrsSpringBootApplication</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin> -->
+
+			<!-- The Surefire Plugin is used during the test phase of the build lifecycle 
+				to execute the unit tests of an application -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin> 			
+			
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+			</plugin>
+			
+			<!-- <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <configuration>
+                    <to>
+                       <image>gcr.io/wwwdegloba/ecommerce-cqrs</image>     Configure the plugin by setting the image to push to Google Container Registry (GCR) 
+                       <image>registry.hub.docker.com/degloba/ecommerce-cqrs</image>
+                         <image>docker.io/degloba/ecommerce-cqrs</image>
+                        <credHelper>wincred</credHelper>
+                    </to>
+                    <to>
+                    <image>docker.io/degloba/ecommerce-cqrs</image>
+                    </to>
+                    <container>
+                    	<mainClass>com.degloba.ecommerce.cqrs.CqrsSpringBootApplication</mainClass>
+                    </container>                    
+                </configuration>
+                <executions>
+				    <execution>
+				      <phase>package</phase>
+				      <goals>
+				        <goal>build</goal>
+				      </goals>
+				    </execution>
+				  </executions>
+                
+            </plugin> -->
+
+		</plugins>
+	</build>
+
+	<description>CQRS stands for Command Query Responsibility Segregation</description>
+</project>

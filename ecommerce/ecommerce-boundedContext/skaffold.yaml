@@ -1,0 +1,42 @@
+apiVersion: skaffold/v2beta11
+kind: Config
+build:
+  tagPolicy:
+     sha256: {}      # etiqueta amb : latest
+#    gitCommit: {}
+  artifacts:
+  - image: ecommerce-webapp-angular
+    context: ecommerce-webapp-angular
+#  - image: ecommerce-cqrs
+#    context: ecommerce-cqrs
+#    jib:
+#      type: maven
+  - image: ecommerce-webapp
+    context: ecommerce-webapp
+    jib:
+      type: maven
+  - image: ecommerce-web-reactive
+    context: ecommerce-web-reactive
+    jib:
+      type: maven
+  - image: ecommerce-config
+    context: ecommerce-config
+    jib:
+      type: maven      
+  local:      # https://skaffold.dev/docs/pipeline-stages/builders/
+#      tryImportMissing: true
+     push: false
+#      useDockerCLI: true
+#  cluster:      # GCR
+deploy:
+  kubectl:
+    manifests:
+#      - k8s/infrastructure/*    # arquitectura (AXON, RABBITMQ, MONGODB,...)
+#      - k8s/ecommerce.yaml    # aplicacio
+      - k8s/istio/ecommerce.yaml    # aplicacio + istio   
+      - k8s/vault/*    # https://learn.hashicorp.com/tutorials/vault/agent-kubernetes?in=vault/kubernetes    
+#      - istio/*
+#      - networking/ecommerce-gateway.yaml      
+  
+    
+

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: ecommerce-config
+  labels:
+    app: ecommerce-config
+    tier: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: backend
+    matchExpressions:
+      - {key: tier, operator: In, values: [backend]}
+  template:
+    metadata:
+      labels:
+        app: ecommerce-config
+        tier: backend
+    spec:
+      containers:
+      - name: ecommerce-config
+        image: docker.io/degloba/ecommerce-config
+        imagePullPolicy: IfNotPresent        
+        ports:
+        - containerPort: 8080

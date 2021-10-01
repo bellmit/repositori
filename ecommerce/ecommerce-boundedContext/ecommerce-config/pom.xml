@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 1) Spring Boot project -->
+  	<parent>
+		<groupId>com.degloba</groupId>
+		<artifactId>ecommerce-boundedContext</artifactId>
+		<version>4.4.3-SNAPSHOT</version>
+	<!-- 	<relativePath>../ecommerce-boundedContext/pom.xml</relativePath> -->
+	</parent>
+		    
+    <artifactId>ecommerce-config</artifactId>
+    <version>1.0-SNAPSHOT</version>
+	
+
+
+    <dependencies>
+        <!-- 3a) Dependency for spring-cloud-config-Server -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-server</artifactId>
+        </dependency>
+        
+
+        <!-- 3b) Dependency for testing boot projects -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+				</exclusion>
+			</exclusions>
+        </dependency>
+        
+        
+         <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+         <dependency>
+         	<groupId>org.springframework.cloud</groupId>
+         	<artifactId>spring-cloud-starter-kubernetes</artifactId>
+         	<version>1.1.9.RELEASE</version>
+         </dependency>
+         <dependency>
+         	<groupId>org.springframework.boot</groupId>
+         	<artifactId>
+         		spring-boot-configuration-processor
+         	</artifactId>
+         	<optional>true</optional>
+         </dependency>
+    </dependencies>
+
+    <!-- 4) Dependency Management -->
+<!--     <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement> -->
+    
+   
+
+    <!-- 5) Maven Plugin to build spring boot applications -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+					<mainClass>com.degloba.ecommerce.config.Application</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+            </plugin>
+            
+            
+            <plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<configuration>
+ 	<!-- 				 <to>
+						<image>registry.hub.docker.com/degloba/ecommerce-config</image>
+						<image>docker.io/degloba/ecommerce-config</image>
+						<credHelper>wincred</credHelper>
+					</to> -->
+					<to>
+					<image>docker.io/degloba/ecommerce-config</image>
+					</to>
+					<container>
+						<mainClass>com.degloba.ecommerce.config.Application</mainClass>
+					</container>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>dockerBuild</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+            
+            
+        </plugins>
+    </build>
+
+    <description>Projecte que centralitza TOTES les propietats de TOTS els frameworks, plataformes,... necessaries per l'aplicació.
+Substituieix la definició dels diferents application.properties (forma distribuida) per una centralitzada.
+Aquestes propietats es converteixen en ConfigMapS/Kubernetes i Secrets/Kubernetes
+Mirar : https://ard333.medium.com/centralized-configuration-spring-application-on-kubernetes-4fd9e1a31f35</description>
+    <name>Ecommerce - Config</name>
+</project>

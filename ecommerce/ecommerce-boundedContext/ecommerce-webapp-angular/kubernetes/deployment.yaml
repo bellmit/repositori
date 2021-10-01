@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-webapp-angular-deployment
+spec:
+  selector:
+    matchLabels:
+      app: ecommerce-webapp-angular
+      tier: frontend
+      track: stable
+  replicas: 3   # tells deployment to run 3 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: ecommerce-webapp-angular
+        tier: frontend
+        track: stable
+    spec:
+      containers:
+        - name: ecommerce-webapp-angular
+          image: degloba/ecommerce-webapp-angular
+          ports:
+            - name: http
+              containerPort: 80    # port del nginx. !!!NO SE PERQUE : poso un valor qualsevol i segueix funcionant  
