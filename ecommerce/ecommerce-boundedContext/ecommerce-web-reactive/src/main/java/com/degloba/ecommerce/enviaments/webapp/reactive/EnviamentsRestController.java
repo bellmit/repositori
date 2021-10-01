@@ -11,18 +11,34 @@ import org.springframework.web.bind.annotation.RestController;
 import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
 import com.degloba.ecommerce.enviaments.webapp.reactive.service.ClientEnviamentsService;
 
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://ecommerce-webapp-angular:4200")
 public class EnviamentsRestController {
 	
 	  ClientEnviamentsService clientEnviamentsService = new ClientEnviamentsService();
 		
+	  
 		@RequestMapping("/enviaments/")
 		@ResponseBody
-		public List<EnviamentDto> getEnviaments(@RequestParam(required = false) String queryParam) {
-									
-			return clientEnviamentsService.buscarTotsEnviaments().collectList().block();
+		public Flux<EnviamentDto> getEnviaments(@RequestParam(required = false) String queryParam) {
+						
+		//  return Flux.just(new EnviamentDto("enviamentId", "comandaId","estatEnviamentId"));
+			
+		return clientEnviamentsService.buscarTotsEnviaments();     ////.collectList().block();
+		}
+		
+		@RequestMapping("/enviaments/add/")
+		@ResponseBody
+		public void setEnviaments(@RequestParam(required = false) String queryParam) {
+						
+			
+		EnviamentDto enviament = new EnviamentDto("7","8","9");
+		clientEnviamentsService.updateEnviament(enviament);
 		}
 
 }
