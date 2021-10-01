@@ -1,22 +1,15 @@
 package com.degloba.ecommerce.enviaments.webapp.reactive.service;
 
 
-import java.util.Map;
-
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.Enviament;
 //////import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.Enviament;
 import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-
 
 /**
  * @category client del {@link EnviamentsRestController} que utilitza {@link WebClient} per poder fer requests HTTP
@@ -29,54 +22,46 @@ import reactor.core.publisher.Mono;
  */
 @Service
 public class ClientEnviamentsService {
+
 	
-   String url = "http://localhost:8080";
-   //String url = "http://ecommerce-webapp:8880/enviaments/";
-    
 	public Flux<EnviamentDto> buscarTotsEnviaments() {
-		
-		 WebClient webclient = WebClient.create(url + "/enviaments");
-		
+		  
+	    WebClient webclient = WebClient.create("http://localhost:8080/enviaments/");  // port intern (no Docker) , ecommerce-webapp
+		//WebClient webclient = WebClient.create("http://localhost:8888/enviaments/");  // port extern (Docker) , ecommerce-webapp
 	    
 	    // simulem una lògica de negoci en la part web (front-End)
 	    // accedint a diferents RestControllers (en aquest cas d'exemple es el mateix Rest)
 	    Flux<EnviamentDto> fluxEnviament1 = webclient.get().accept(MediaType.APPLICATION_JSON).retrieve().bodyToFlux(EnviamentDto.class);
 	    Flux<EnviamentDto> fluxEnviament2 = webclient.get().accept(MediaType.APPLICATION_JSON).retrieve().bodyToFlux(EnviamentDto.class);
 	    Flux<EnviamentDto> fluxEnviament3 = webclient.get().accept(MediaType.APPLICATION_JSON).retrieve().bodyToFlux(EnviamentDto.class);
-	    Flux<EnviamentDto> fluxEnviament4 = webclient.get().accept(MediaType.APPLICATION_JSON).retrieve().bodyToFlux(EnviamentDto.class);
-	    Flux<EnviamentDto> fluxEnviament5 = webclient.get().accept(MediaType.APPLICATION_JSON).retrieve().bodyToFlux(EnviamentDto.class);
-	    Flux<EnviamentDto> fluxEnviament6 = webclient.get().accept(MediaType.APPLICATION_JSON).retrieve().bodyToFlux(EnviamentDto.class);
-	
 	    
-	    Flux<EnviamentDto> fluxEnviaments = Flux.merge(fluxEnviament1,fluxEnviament2,fluxEnviament3,fluxEnviament4,fluxEnviament5,fluxEnviament6);
-	
+	  	    
+	    // ************  aqui convertim EntitatS a DTOs
+	    	    
+	    Flux<EnviamentDto> fluxEnviaments = Flux.merge(fluxEnviament1,fluxEnviament2,fluxEnviament3);
+	    
 	    return fluxEnviaments;    // si els diferents webservices ens tornen DTOs
+	    /////return fluxEnviaments.flatMap(UserrService::covertUserDAOToBUserBO);
 	    
 	   }
 
 	public Mono<EnviamentDto> buscarEnviamentById(String id) {
-		WebClient webclient = WebClient.create(url + id);
+		WebClient webclient = WebClient.create("http://localhost:8080/enviaments/" + id);
 		
 		return webclient.get().retrieve().bodyToMono(EnviamentDto.class);	
 	}
 	
 	public Mono<EnviamentDto> updateEnviament(EnviamentDto enviament)
     {
+		WebClient webclient = WebClient.create("http://localhost:8080/enviaments/1");
 		
-		WebClient webclient = WebClient.create(url);
-	
-		Enviament enviament2 = new Enviament(enviament.getEnviamentId(), enviament.getComandaId(), enviament.getEstatEnviament());
+		Mono<EnviamentDto> enviamentData = webclient.get().retrieve().bodyToMono(EnviamentDto.class);
 		
-		 Mono<EnviamentDto> enviamentMono = webclient.post()
-				 .uri("/enviaments/add")
-				 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-	        .body(Mono.just(enviament2), Enviament.class)
-	        .retrieve()
-	        .bodyToMono(EnviamentDto.class);
-		 
-		 enviamentMono.subscribe();
-		 
-		 return enviamentMono;
-	
+		/*CompraDto existingCompra = hotelData.get(compra.getAggregateId());
+        if(existingCompra!=null)
+        {
+        	existingCompra.setActiu(true);
+        }*/
+        return null ;   ////Mono.just(existingCompra);
     }
 }

@@ -10,7 +10,7 @@ DOCKER_COMPOSE=docker-compose -f $(DOCKER_COMPOSE_FILE)
 all: docker-build-all rebuild-mongo docker-up-all
 
 docker-build-all:
-	pushd docker &&\        # Almacena el directorio actual para que lo use el comando popd y, a continuación, cambia al directorio especificado
+	pushd docker &&\
 	docker-compose build &&\
 	popd
 
@@ -85,9 +85,6 @@ start:
 	
 mount:
 	minikube mount ${PWD}/grafana/config:/grafana
-	
-#app:
-#	kubectl apply -f k8s/ecommerce.yaml
 
 ingress:
 	kubectl apply -f k8s/ingress
@@ -109,13 +106,6 @@ arrancaEcommerceNetwork:
 	
 dashboard:
 	minikube dashboard
-	
-	
-vault:	
-	cfssl_1.5.0_windows_amd64 gencert -initca certs/config/ca-csr.json | cfssljson_1.5.0_windows_amd64 -bare certs/ca
-	cfssl_1.5.0_windows_amd64 gencert  -ca=certs/ca.pem  -ca-key=certs/ca-key.pem -config=certs/config/ca-config.json -profile=default certs/config/consul-csr.json | cfssljson_1.5.0_windows_amd64 -bare certs/consul
-	cfssl_1.5.0_windows_amd64 gencert -ca=certs/ca.pem -ca-key=certs/ca-key.pem -config=certs/config/ca-config.json -profile=default certs/config/vault-csr.json | cfssljson_1.5.0_windows_amd64 -bare certs/vault
-#	./create.sh	
 	
 	
 list:

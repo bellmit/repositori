@@ -28,10 +28,10 @@ spec:
   type: NodePort
   ports:
   - protocol: TCP
-    port: 4200   # port del servei
+  - port: 80   # port del servei
     name: http
-    targetPort: 4200    # la majoria de vegades es identic a containerPort.En el nostre cas el port 80 es el port del nginx
-    nodePort: 80   # port a través el qual s'accedeix des de fora
+    targetPort: 80    # la majoria de vegades es identic a containerPort.En el nostre cas el port 80 es el port del nginx
+    nodePort: 4200   # port a través el qual s'accedeix des de fora
   selector:
     app: ecommerce-webapp-angular
     tier: frontend

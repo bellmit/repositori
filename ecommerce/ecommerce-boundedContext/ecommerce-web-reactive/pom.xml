@@ -211,7 +211,7 @@
 						<credHelper>wincred</credHelper>
 					</to> -->
 					<to>
-					<image>docker.io/degloba/ecommerce-web-reactive</image>   <!-- dockerHub -->
+					<image>docker.io/degloba/ecommerce-web-reactive</image>
 					</to>
 					<container>
 						<mainClass>com.degloba.ecommerce.enviaments.webapp.reactive.EnviamentReactiveSpringApplication</mainClass>

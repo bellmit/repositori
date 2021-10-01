@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 public class EnviamentWebClient {
 
 	   //WebClient client = WebClient.create("http://localhost:8080");   // port intern
-	   WebClient client = WebClient.create("ecommerce-web-reactive-service");   // port extern (Docker)
+	   WebClient client = WebClient.create("http://localhost:8888");   // port extern (Docker)
 	    
 	    public void consume() {
 

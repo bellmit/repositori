@@ -31,10 +31,8 @@ build:
 deploy:
   kubectl:
     manifests:
-#      - k8s/infrastructure/*    # arquitectura (AXON, RABBITMQ, MONGODB,...)
-#      - k8s/ecommerce.yaml    # aplicacio
-      - k8s/istio/ecommerce.yaml    # aplicacio + istio   
-      - k8s/vault/*    # https://learn.hashicorp.com/tutorials/vault/agent-kubernetes?in=vault/kubernetes    
+      - k8s/infrastructure/*    # arquitectura (AXON, RABBITMQ, MONGODB,...)
+      - k8s/ecommerce.yaml    # aplicacio      
 #      - istio/*
 #      - networking/ecommerce-gateway.yaml      
   

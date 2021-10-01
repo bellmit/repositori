@@ -50,7 +50,7 @@ services:
   webapp-reactive:
     container_name: webapp-reactive
     build: ../ecommerce-web-reactive
-    image: ecommerce-webreactive-tag:latest
+    image: ecommerce-webreactive-tag
     hostname: webReactiveHost
     depends_on:
       - webapp      
@@ -70,14 +70,14 @@ services:
     build:
          context: ../ecommerce-webapp-angular
          dockerfile: Dockerfile
-    image: ecommerce-webangular-tag:latest
+    image: ecommerce-webangular-tag
     hostname: webAngularHost
     environment:
       - "BACKEND_API_URL=http://webapp-reactive:8887"
     depends_on:
       - webapp-reactive
     ports:
-        - 4200:80    # Docker 4200 , nginx = 80
+        - 4200:80
     networks: 
         - mired
 #    volumes:
