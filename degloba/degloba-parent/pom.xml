@@ -42,6 +42,7 @@
 		<degloba-persistence-rdbms.version>4.4.3-SNAPSHOT</degloba-persistence-rdbms.version>
 		<degloba-domain.version>4.4.3-SNAPSHOT</degloba-domain.version>
 		<degloba-event-api.version>4.4.3-SNAPSHOT</degloba-event-api.version>
+		<degloba-utilitats.version>4.4.3-SNAPSHOT</degloba-utilitats.version>
 		<degloba-ioc-spring.version>4.4.3-SNAPSHOT</degloba-ioc-spring.version>
 		<degloba-persistence-nosql.version>0.0.1-SNAPSHOT</degloba-persistence-nosql.version>
 		<degloba-infrastructure.version>4.4.3-SNAPSHOT</degloba-infrastructure.version>
@@ -411,6 +412,12 @@
 				<artifactId>degloba-event-api</artifactId>
 				<version>${degloba-event-api.version}</version>
 			</dependency>
+			
+					<dependency>
+			<groupId>com.degloba</groupId>
+			<artifactId>degloba-utilitats</artifactId>
+			<version>${degloba-utilitats.version}</version>
+		</dependency>
 
 			<dependency>
 				<groupId>com.degloba</groupId>
@@ -425,6 +432,11 @@
 			</dependency>
 
 
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>0.9.12</version>
+		</dependency>
 
 			<!-- per poder convertir entity-DTO -->
 			<dependency>
