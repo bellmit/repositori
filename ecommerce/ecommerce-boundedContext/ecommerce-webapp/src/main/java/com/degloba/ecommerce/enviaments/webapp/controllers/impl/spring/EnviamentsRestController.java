@@ -67,11 +67,9 @@ public class EnviamentsRestController {
 			//return enviamentTemplate.findAll().flatMap(e -> UserrService.covertUserDAOToBUserBO(e));
 			
 			return enviamentServiceAPI.getAll().flatMap(e -> UserrService.covertUserDAOToBUserBO(e));
-			
-			
+						
 			//////return enviamentRepository.findAll().flatMap(e -> UserrService.covertUserDAOToBUserBO(e));
-			
-			
+						
 			/*
 			 * if (queryParam == null || "NULL".equals(queryParam)) throw new
 			 * RuntimeException("Give me a Param!"); if (queryParam.equals("STOP")) { try {
