@@ -27,7 +27,7 @@
 		<spring.version>5.3.6</spring.version>
 		<springframework.webflow.version>2.5.1.RELEASE</springframework.webflow.version>
 		<spring-cloud.version>2020.0.0</spring-cloud.version>  <!-- https://stackoverflow.com/questions/65488101/springboot-upgrade-from-2-3-5-release-to-2-4-1-classnotfoundexception-org-spri -->
-		<spring.boot.dependencies.version>2.4.5</spring.boot.dependencies.version>
+		<spring.boot.dependencies.version>2.5.5</spring.boot.dependencies.version>
 		<spring.integration.mongodb.version>5.4.6</spring.integration.mongodb.version>
 		<spring-security-oauth2.version>2.5.1.RELEASE</spring-security-oauth2.version>
 		
