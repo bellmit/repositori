@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webapp.controllers.impl.spring;
+package com.degloba.ecommerce.enviaments.webapp.controllers;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.BodyInserters;
