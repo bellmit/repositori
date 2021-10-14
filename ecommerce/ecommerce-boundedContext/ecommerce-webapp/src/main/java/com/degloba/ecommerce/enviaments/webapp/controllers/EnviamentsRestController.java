@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webapp.controllers.impl.spring;
+package com.degloba.ecommerce.enviaments.webapp.controllers;
 
 import java.util.List;
 import java.util.Map;
@@ -39,15 +39,13 @@ import org.springframework.http.MediaType;
 @RequestMapping("/enviaments")
 public class EnviamentsRestController {
 	
-	 /////@Autowired
-	 /////IEnviamentReactiveRepository enviamentRepository;
-	 
+ 
 	 @Autowired
 	 IEnviamentServiceAPI enviamentServiceAPI;
 	 
 	 
-	 @Autowired
-	 EnviamentTemplateOperations enviamentTemplate;
+	 //@Autowired
+	 //EnviamentTemplateOperations enviamentTemplate;
 			
 	
 		 @RequestMapping("/")
@@ -56,15 +54,12 @@ public class EnviamentsRestController {
 		        return "Hola Web";
 		    }
 		
-		
-		/////@GetMapping("")
+
 		 @GetMapping()
 		    //@ResponseStatus(HttpStatus.OK)
 		public Flux<EnviamentDto> getEnviaments(@RequestParam(required = false) String queryParam) {
 ////			log.debug("Received request at getExample:" + queryParam);
 			
-			
-			//return enviamentTemplate.findAll().flatMap(e -> UserrService.covertUserDAOToBUserBO(e));
 			
 			return enviamentServiceAPI.getAll().flatMap(e -> UserrService.covertUserDAOToBUserBO(e));
 						
