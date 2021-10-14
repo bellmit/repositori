@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webapp.controllers.impl.spring;
+package com.degloba.ecommerce.enviaments.webapp.config;
 
 import javax.annotation.PostConstruct;
 

@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webapp.controllers.impl.spring;
+package com.degloba.ecommerce.enviaments.webapp.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 
 import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.EnviamentTemplateOperations;
 import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.IEnviamentReactiveRepository;
-import com.degloba.ecommerce.enviaments.webapp.controllers.impl.spring.EnviamentReactiveRepository;
+
 
 /**
  * 

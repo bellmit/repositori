@@ -76,7 +76,6 @@ public class ClientEnviamentsService {
 		 
 		 enviamentMono.subscribe();
 		 
-		 return enviamentMono;
-	
+		 return enviamentMono;	
     }
 }
