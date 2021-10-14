@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webapp.controllers.impl.spring;
+package com.degloba.ecommerce.enviaments.webapp.controllers;
 
 import java.util.List;
 import java.util.Map;
