@@ -12,11 +12,11 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  *
  */
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class }) 
-public class EnviamentReactiveSpringApplication {
+public class EnviamentSpringApplication {
 
 	   public static void main(String[] args) {
 	       		   
-	        SpringApplication.run(EnviamentReactiveSpringApplication.class, args);
+	        SpringApplication.run(EnviamentSpringApplication.class, args);
 
 			/*
 			 * EnviamentWebClient enviamentWebClient = new EnviamentWebClient();
