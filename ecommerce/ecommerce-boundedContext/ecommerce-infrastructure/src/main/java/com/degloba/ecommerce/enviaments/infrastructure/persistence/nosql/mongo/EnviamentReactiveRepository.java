@@ -21,9 +21,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
-/////public interface IEnviamentReactiveRepository extends ReactiveMongoRepository<Enviament, String> {
-
-
 @Repository
 public class EnviamentReactiveRepository extends GenericRepositoryImpl<Enviament, String> implements IEnviamentReactiveRepository {
 	
