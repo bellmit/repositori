@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 
 
 import com.degloba.ecommerce.profiles.domain.Profile;
+import com.degloba.ecommerce.profiles.domain.persistence.nosql.mongo.IProfileReactiveRepository;
 import com.degloba.ecommerce.profiles.eventsourcing.events.ProfileCreatedEvent;
 import com.degloba.infrastructure.services.GenericServiceImpl;
-import com.degloba.ecommerce.profiles.domain.IProfileReactiveRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -19,8 +19,6 @@ import reactor.core.publisher.Mono;
 @Log4j2
 @Service
 public class ProfileService extends GenericServiceImpl<Profile, String> implements IProfileServiceAPI {
-//class ProfileService {
-
 
     private ApplicationEventPublisher publisher; // <1>
     private IProfileReactiveRepository profileRepository; // <2>
@@ -51,17 +49,15 @@ public class ProfileService extends GenericServiceImpl<Profile, String> implemen
 		  return this.profileRepository.findById(id).map(p -> new Profile(p.getId(), email))
 	  .flatMap(this.profileRepository::save); }
 	  
-	
 		
       public Mono<Void> delete(String id) { // <6> return return
 		  return this.profileRepository.findById(id).flatMap(p ->
 		  this.profileRepository.deleteById(p.getId()).then());   //thenReturn(p).);
 		  }
 		 
-		 
 	  
 	  public Mono<Profile> create(String email) { // <7> 
-		  return this.profileRepository.save(new Profile(null, email)) .doOnSuccess(profile
-	  -> this.publisher.publishEvent(new ProfileCreatedEvent(profile))); }
+		  return this.profileRepository.save(new Profile(null, email))
+				  .doOnSuccess(profile -> this.publisher.publishEvent(new ProfileCreatedEvent(profile))); }
 	 
 }

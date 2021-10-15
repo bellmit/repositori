@@ -43,27 +43,13 @@ public class EnviamentsRestController {
 	 @Autowired
 	 IEnviamentServiceAPI enviamentServiceAPI;
 	 
-	 
-	 //@Autowired
-	 //EnviamentTemplateOperations enviamentTemplate;
-			
-	
-		 @RequestMapping("/")
-		    @ResponseBody
-		    public String home() {
-		        return "Hola Web";
-		    }
-		
 
-		 @GetMapping()
-		    //@ResponseStatus(HttpStatus.OK)
+	 @GetMapping()
+    //@ResponseStatus(HttpStatus.OK)
 		public Flux<EnviamentDto> getEnviaments(@RequestParam(required = false) String queryParam) {
 ////			log.debug("Received request at getExample:" + queryParam);
 			
-			
 			return enviamentServiceAPI.getAll().flatMap(e -> UserrService.covertUserDAOToBUserBO(e));
-						
-			//////return enviamentRepository.findAll().flatMap(e -> UserrService.covertUserDAOToBUserBO(e));
 						
 			/*
 			 * if (queryParam == null || "NULL".equals(queryParam)) throw new

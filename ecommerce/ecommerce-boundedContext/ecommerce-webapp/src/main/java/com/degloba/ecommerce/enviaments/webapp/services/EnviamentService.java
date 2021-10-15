@@ -15,6 +15,7 @@ import com.degloba.ecommerce.enviaments.eventsourcing.events.EnviamentCreatedEve
 import com.degloba.ecommerce.enviaments.webapp.controllers.IEnviamentServiceAPI;
 import com.degloba.infrastructure.services.GenericServiceImpl;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -26,7 +27,6 @@ import reactor.core.publisher.Mono;
 public class EnviamentService extends GenericServiceImpl<Enviament, String> implements IEnviamentServiceAPI {
 
 	private ApplicationEventPublisher publisher; 
-    ///////private final ProfileRepository profileRepository; 
     
 	
 	EnviamentService(ApplicationEventPublisher publisher, IEnviamentReactiveRepository enviamentReactiveRepository) {
@@ -40,6 +40,11 @@ public class EnviamentService extends GenericServiceImpl<Enviament, String> impl
 	@Override
 	public ReactiveMongoRepository<Enviament, String> getDao() {
 		return enviamentReactiveRepository;
+	}
+	
+	public Flux<Enviament> all() {
+		  return this.enviamentReactiveRepository
+			  .findAll();			
 	}
 	
    /**
@@ -63,7 +68,7 @@ public class EnviamentService extends GenericServiceImpl<Enviament, String> impl
     }
 
     /**
-     * Crea un Enviament nou a la base de dades i publiquem l'event ProfileCreatedEvent 
+     * Crea un Enviament nou a la base de dades i publiquem l'event EnviamentCreatedEvent 
      * si el Save ha acabat bé. 
      * El Callback doOnSuccess pren un Consumer<T> que s'invoca després que les dades del pipeline reactiu 
      * s'hagin escrit a la base de dades.  
