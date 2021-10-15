@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webapp.reactive;
+package com.degloba.ecommerce.enviaments.webapp.reactive.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;

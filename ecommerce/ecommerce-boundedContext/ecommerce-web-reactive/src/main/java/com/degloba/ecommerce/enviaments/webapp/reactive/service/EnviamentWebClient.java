@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webapp.webflux;
+package com.degloba.ecommerce.enviaments.webapp.reactive.service;
 
 
 import org.springframework.http.MediaType;
