@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.degloba.ecommerce.webapp.reactive.jwt.JwtTokenProvider;
+
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -53,12 +53,14 @@ public class WebUtils {
 		return authStr;
 	}
 	
-	public static boolean checkToken(HttpServletRequest request, JwtTokenProvider jwtTokenProvider) {
-		Optional<String> tokenStr = WebUtils.extractToken(Optional.ofNullable(request.getHeader(WebUtils.AUTHORIZATION)));		
-		Optional<Jws<Claims>> claims = jwtTokenProvider.getClaims(tokenStr);
-		if(claims.isPresent() && new Date().before(claims.get().getBody().getExpiration()) && claims.get().getBody().get("auth").toString().contains("USERS")) {
-			return true;
-		}
-		return false;
-	}
+	/*
+	 * public static boolean checkToken(HttpServletRequest request, JwtTokenProvider
+	 * jwtTokenProvider) { Optional<String> tokenStr =
+	 * WebUtils.extractToken(Optional.ofNullable(request.getHeader(WebUtils.
+	 * AUTHORIZATION))); Optional<Jws<Claims>> claims =
+	 * jwtTokenProvider.getClaims(tokenStr); if(claims.isPresent() && new
+	 * Date().before(claims.get().getBody().getExpiration()) &&
+	 * claims.get().getBody().get("auth").toString().contains("USERS")) { return
+	 * true; } return false; }
+	 */
 }

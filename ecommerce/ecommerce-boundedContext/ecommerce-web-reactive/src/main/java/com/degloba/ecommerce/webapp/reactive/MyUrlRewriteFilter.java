@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.trader.webapp.reactive;
+package com.degloba.ecommerce.webapp.reactive;
 
 import java.io.IOException;
 

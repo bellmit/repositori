@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webapp.reactive;
+package com.degloba.ecommerce.enviaments.webapp.reactive.functional;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,21 +12,18 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 
 @Configuration
-public class WebConfiguration {
+public class EnviamentWebConfiguration {
 	
-	/*
-	 * @Bean public RouterFunction<ServerResponse> route(TeamHandler teamHandler) {
-	 * return RouterFunctions .route(RequestPredicates.GET("/teams"),
-	 * teamHandler::getTeams) .andRoute(RequestPredicates.GET("/teams/watch"),
-	 * teamHandler::watchTeams)
-	 * .andRoute(RequestPredicates.GET("/update/{name}/{scoreChange}"),
-	 * teamHandler::updatePlayerScore)
-	 * .andRoute(RequestPredicates.GET("/team/{name}"), teamHandler::watchTeam)
-	 * .andRoute(RequestPredicates.GET("/update/{count}"),
-	 * teamHandler::randomizeScore) .andRoute(RequestPredicates.GET("/zero"),
-	 * teamHandler::allZero); }
-	 */
-    
+		
+	@Bean
+    RouterFunction<ServerResponse> routes(ProfileHandler handler) { // <1>
+        return RouterFunctions.route(RequestPredicates.GET("/enviaments"), handler::all) // <2>
+            .andRoute(RequestPredicates.GET("/enviaments/{id}"), handler::getById)
+            //.andRoute(RequestPredicates.DELETE("/enviaments/{id}"), handler::deleteById) // <3>
+            .andRoute(RequestPredicates.POST("/enviaments"), handler::create)
+            .andRoute(RequestPredicates.PUT("/enviaments/{id}"), handler::updateById);
+    }
+	
 
     @Bean
     CorsWebFilter corsFilter() {

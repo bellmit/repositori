@@ -14,6 +14,8 @@ import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
+import com.degloba.ecommerce.webapp.reactive.exceptions.JwtTokenValidationException;
+
 import reactor.core.publisher.Mono;
 
 @Component

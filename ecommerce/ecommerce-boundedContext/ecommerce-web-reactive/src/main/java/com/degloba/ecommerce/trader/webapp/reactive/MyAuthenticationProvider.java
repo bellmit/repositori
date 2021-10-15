@@ -18,7 +18,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
 import com.degloba.ecommerce.trader.facade.dtos.MyUser;
-import com.degloba.ecommerce.trader.webapp.reactive.utils.PasswordEncryption;
+////import com.degloba.ecommerce.trader.webapp.reactive.utils.PasswordEncryption;
 
 
 
@@ -27,8 +27,8 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
 	private static final Logger log = LoggerFactory.getLogger(MyAuthenticationProvider.class);
 	@Autowired
 	private ReactiveMongoOperations operations;
-	@Autowired
-	private PasswordEncryption passwordEncryption;
+	////@Autowired
+	////private PasswordEncryption passwordEncryption;
 	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -40,11 +40,6 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
 		String encryptedPw = null;
 		if(user == null) {
 			throw new BadCredentialsException("User not found");
-		}
-		try {
-			encryptedPw = this.passwordEncryption.getEncryptedPassword(password, user.getSalt());
-		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-			log.error("Pw decrytion error: ",e);
 		}
 		if(encryptedPw == null || !encryptedPw.equals(user.getPassword())) {
 			throw new AuthenticationCredentialsNotFoundException("User: "+name+" not found.");
