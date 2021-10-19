@@ -24,7 +24,6 @@ import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.Enviament
 import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.IEnviamentReactiveRepository;
 import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
 
-import com.degloba.ecommerce.enviaments.webapp.services.UserrService;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
@@ -32,6 +31,8 @@ import reactor.core.publisher.Mono;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+
+import com.degloba.ecommerce.facade.impl.assembler.EnviamentConverter;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8887")    // port intern (No Docker)
@@ -49,7 +50,7 @@ public class EnviamentsRestController {
 		public Flux<EnviamentDto> getEnviaments(@RequestParam(required = false) String queryParam) {
 ////			log.debug("Received request at getExample:" + queryParam);
 			
-			return enviamentServiceAPI.getAll().flatMap(e -> UserrService.covertUserDAOToBUserBO(e));
+			return enviamentServiceAPI.getAll().flatMap(e -> EnviamentConverter.toDto(e));
 						
 			/*
 			 * if (queryParam == null || "NULL".equals(queryParam)) throw new
