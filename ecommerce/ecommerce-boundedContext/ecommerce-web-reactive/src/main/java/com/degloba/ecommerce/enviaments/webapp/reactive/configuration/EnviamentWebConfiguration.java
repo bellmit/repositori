@@ -2,6 +2,7 @@ package com.degloba.ecommerce.enviaments.webapp.reactive.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
@@ -38,11 +39,11 @@ public class EnviamentWebConfiguration {
 		
 	@Bean
     RouterFunction<ServerResponse> routes(EnviamentHandler handler) { // <1>
-        return RouterFunctions.route(RequestPredicates.GET("/enviaments"), handler::all) // <2>
-            .andRoute(RequestPredicates.GET("/enviaments/{id}"), handler::getById)
-            //.andRoute(RequestPredicates.DELETE("/enviaments/{id}"), handler::deleteById) // <3>
-            .andRoute(RequestPredicates.POST("/enviaments"), handler::create)
-            .andRoute(RequestPredicates.PUT("/enviaments/{id}"), handler::updateById);
+        return RouterFunctions.route(GET("/enviaments"), handler::all)
+            .andRoute(GET("/enviaments/{id}"), handler::getById)
+            .andRoute(RequestPredicates.DELETE("/enviaments/{id}"), handler::deleteById) // <3>
+            .andRoute(POST("/enviaments"), handler::create)
+            .andRoute(PUT("/enviaments/{id}"), handler::updateById);
     }
 	
 

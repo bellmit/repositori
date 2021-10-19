@@ -13,75 +13,60 @@ import reactor.core.publisher.Mono;
 import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.Enviament;
 import com.degloba.ecommerce.enviaments.webapp.services.EnviamentService;
 
-
 import java.net.URI;
 
 @Component
 public class EnviamentHandler {
 
-    // <1>
-    private final EnviamentService enviamentService;
+	// <1>
+	private final EnviamentService enviamentService;
 
-    EnviamentHandler(EnviamentService enviamentService) {
-        this.enviamentService = enviamentService;
-    }
-    
+	public EnviamentHandler(EnviamentService enviamentService) {
+		this.enviamentService = enviamentService;
+	}
 
-    // <2>
-    Mono<ServerResponse> getById(ServerRequest r) {
-        return defaultReadResponse(this.enviamentService.get(id(r)));
-    }
+	// <2>
+	public Mono<ServerResponse> getById(ServerRequest r) {
+		return defaultReadResponse(this.enviamentService.get(id(r)));
+	}
 
-	
-	  Flux<ServerResponse> all(ServerRequest r) { return
-	  defaultReadResponse_v2(this.enviamentService.all()); }
-	 
+	public Mono<ServerResponse> all(ServerRequest r) {
+		return defaultReadResponse(this.enviamentService.all());
+	}
 
-	
-	/*
-	 * Mono<ServerResponse> deleteById(ServerRequest r) { return
-	 * defaultReadResponse(this.enviamentService.delete(id(r))); }
-	 */
-	 
-    Mono<ServerResponse> updateById(ServerRequest r) {
-        Flux<Enviament> id = r.bodyToFlux(Enviament.class)
-            .flatMap(e -> this.enviamentService.update(id(r), e.getComandaId(), e.getEstatEnviament()));
-        return defaultReadResponse(id);
-    }
+	public Mono<ServerResponse> deleteById(ServerRequest r) {
+		return defaultReadResponse_v2(this.enviamentService.delete(id(r)));
+	}
 
-    Mono<ServerResponse> create(ServerRequest request) {
-        Flux<Enviament> flux = request
-            .bodyToFlux(Enviament.class)
-            .flatMap(toWrite -> this.enviamentService.create(toWrite.getComandaId(),toWrite.getEstatEnviament()));
-        return defaultWriteResponse(flux);
-    }
+	public Mono<ServerResponse> updateById(ServerRequest r) {
+		Flux<Enviament> id = r.bodyToFlux(Enviament.class)
+				.flatMap(e -> this.enviamentService.update(id(r), e.getComandaId(), e.getEstatEnviament()));
+		return defaultReadResponse(id);
+	}
 
-    // <3>
-    private static Mono<ServerResponse> defaultWriteResponse(Publisher<Enviament> enviaments) {
-        return Mono
-            .from(enviaments)
-            .flatMap(e -> ServerResponse
-                .created(URI.create("/enviaments/" + e.getEnviamentId()))
-                .contentType(MediaType.APPLICATION_JSON)
-                .build()
-            );
-    }
+	public Mono<ServerResponse> create(ServerRequest request) {
+		Flux<Enviament> flux = request.bodyToFlux(Enviament.class)
+				.flatMap(toWrite -> this.enviamentService.create(toWrite.getComandaId(), toWrite.getEstatEnviament()));
+		return defaultWriteResponse(flux);
+	}
 
-    // <4>
-    private Mono<ServerResponse> defaultReadResponse(Publisher<Enviament> enviaments) {
-        return ServerResponse
-            .ok()
-            .contentType(MediaType.APPLICATION_JSON)
-            .body(enviaments, Enviament.class);
-    }
-    
-    private Flux<ServerResponse> defaultReadResponse_v2(Flux<Enviament> flux) {
-		  return ServerResponse .ok() .contentType(MediaType.APPLICATION_JSON)
-	  .body(flux, Enviament.class).concatWith(null);
-		 
-    }
+	// <3>
+	private static Mono<ServerResponse> defaultWriteResponse(Publisher<Enviament> enviaments) {
+		return Mono.from(enviaments)
+				.flatMap(e -> ServerResponse.created(URI.create("/enviaments/" + e.getEnviamentId()))
+						.contentType(MediaType.APPLICATION_JSON).build());
+	}
 
-    private static String id(ServerRequest r) {
-        return r.pathVariable("id");
-    }
+	// <4>
+	private Mono<ServerResponse> defaultReadResponse(Publisher<Enviament> enviaments) {
+		return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(enviaments, Enviament.class);
+	}
+
+	private Mono<ServerResponse> defaultReadResponse_v2(Mono<Void> enviament) {
+		return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(enviament, Enviament.class).cache();
+	}
+
+	private static String id(ServerRequest r) {
+		return r.pathVariable("id");
+	}
 }
