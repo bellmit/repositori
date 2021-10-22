@@ -1,9 +1,10 @@
-package com.degloba.ecommerce.enviaments.webapp.services;
+package com.degloba.ecommerce.enviaments.webapp.controllers;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -12,9 +13,9 @@ import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.Enviament
 import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.IEnviamentReactiveRepository;
 
 import com.degloba.ecommerce.enviaments.eventsourcing.events.EnviamentCreatedEvent;
-import com.degloba.ecommerce.enviaments.webapp.controllers.IEnviamentServiceAPI;
 import com.degloba.infrastructure.services.GenericServiceImpl;
 
+import lombok.AllArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -24,15 +25,10 @@ import reactor.core.publisher.Mono;
  *
  */
 @Service
-public class EnviamentService extends GenericServiceImpl<Enviament, String> implements IEnviamentServiceAPI {
+public class EnviamentService extends GenericServiceImpl<Enviament, String> implements IEnviamentService {
 
 	private ApplicationEventPublisher publisher; 
     
-	
-	EnviamentService(ApplicationEventPublisher publisher, IEnviamentReactiveRepository enviamentReactiveRepository) {
-		this.publisher = publisher;
-	    this.enviamentReactiveRepository = enviamentReactiveRepository;
-	}
 	   
 	@Autowired
 	private IEnviamentReactiveRepository enviamentReactiveRepository;

@@ -24,7 +24,6 @@ import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.Enviament
 import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.IEnviamentReactiveRepository;
 import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
 
-
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -35,46 +34,27 @@ import org.springframework.http.MediaType;
 import com.degloba.ecommerce.facade.impl.assembler.EnviamentConverter;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8887")    // port intern (No Docker)
+@CrossOrigin(origins = "http://localhost:8887") // port intern (No Docker)
 //@CrossOrigin(origins = "http://webAngularHost:8887")    // port extern (Docker)
 @RequestMapping("/enviaments")
 public class EnviamentsRestController {
-	
- 
-	 @Autowired
-	 IEnviamentServiceAPI enviamentServiceAPI;
-	 
 
-	 @GetMapping()
-    //@ResponseStatus(HttpStatus.OK)
-		public Flux<EnviamentDto> getEnviaments(@RequestParam(required = false) String queryParam) {
+	@Autowired
+	IEnviamentService enviamentService;
+
+	@GetMapping()
+	// @ResponseStatus(HttpStatus.OK)
+	public Flux<EnviamentDto> getEnviaments(@RequestParam(required = false) String queryParam) {
 ////			log.debug("Received request at getExample:" + queryParam);
-			
-			return enviamentServiceAPI.getAll().flatMap(e -> EnviamentConverter.toDto(e));
-						
-			/*
-			 * if (queryParam == null || "NULL".equals(queryParam)) throw new
-			 * RuntimeException("Give me a Param!"); if (queryParam.equals("STOP")) { try {
-			 * Thread.sleep(5000); } catch (Exception k) {k.printStackTrace();} }
-			 * 
-			 * return ResponseEntity.ok().body(queryParam);
-			 */
-			 
-		}
-		
-		@PostMapping("add")
-		@ResponseStatus(HttpStatus.CREATED)
-		public Mono<EnviamentDto> postEnviament(@RequestBody Enviament e) {
-			
-			enviamentServiceAPI.Save(e);
-			
-			return null;
-			/*
-			 * String s="the server said: "+body+"\n"; for (Entry<String, List<String>> map
-			 * : request.getHeaders().entrySet()) { //log.debug("Headers -> "+map.getKey()+
-			 * ":"+map.getValue().get(0)); //s+="Headers: "+map.getKey()+
-			 * ":"+map.getValue().get(0)+"\n"; } return ResponseEntity.ok().body(s);
-			 */
-		}
+
+		return enviamentService.getAll().flatMap(e -> EnviamentConverter.toDto(e));
+	}
+
+	@PostMapping("add")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Mono<EnviamentDto> postEnviament(@RequestBody Enviament e) {
+
+		return enviamentService.Save(e).flatMap(ee -> EnviamentConverter.toDto(ee));
+	}
 
 }

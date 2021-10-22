@@ -1,13 +1,15 @@
-package com.degloba.ecommerce.enviaments.webapp.controllers;
+package com.degloba.ecommerce;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
-@SpringBootApplication
-public class SpringBootPersistenceApplication {
+
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
+public class EcommerceWebappSpringBootApplication {
 
     public static void main(String ... args) {
-        SpringApplication.run(SpringBootPersistenceApplication.class, args);
+        SpringApplication.run(EcommerceWebappSpringBootApplication.class, args);
     }
 
 }
