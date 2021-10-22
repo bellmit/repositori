@@ -25,21 +25,22 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@AggregateRoot
-public class Enviament extends BaseAggregateRoot {
+////@AggregateRoot
+public class Enviament { /////////extends BaseAggregateRoot {
 
 	private static final long serialVersionUID = 1L;
 	
+	private Long enviamentId;
 	
 	@AttributeOverrides({
 		@AttributeOverride(name = "aggregateId", column = @Column(name = "comandaId"))})  
-    private AggregateId comandaId;
+    private Long comandaId;
 	
     private EstatEnviament estatEnviament;
 
    
-    public Enviament(AggregateId enviamentId, AggregateId comandaId) {
-        this.aggregateId = enviamentId;
+    public Enviament(Long enviamentId, Long comandaId) {
+        this.enviamentId = enviamentId;
     	this.comandaId = comandaId;
         this.estatEnviament = EstatEnviament.WAITING;
     }

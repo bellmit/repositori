@@ -18,13 +18,13 @@ import lombok.Setter;
  * @author degloba
  *
  */
+////@AggregateRoot
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@AggregateRoot
-public class Client extends BaseAggregateRoot{
+public class Client { ////extends BaseAggregateRoot{
 
 	public enum EstatClient{
 		STANDARD, VIP, PLATINUM

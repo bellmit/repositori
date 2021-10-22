@@ -1,7 +1,6 @@
 package com.degloba.ecommerce.profiles.infrastructure.persistence.nosql.mongo;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 

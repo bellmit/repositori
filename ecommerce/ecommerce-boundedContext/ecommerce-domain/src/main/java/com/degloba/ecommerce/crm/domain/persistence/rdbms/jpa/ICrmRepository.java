@@ -1,8 +1,8 @@
 package com.degloba.ecommerce.crm.domain.persistence.rdbms.jpa;
 
 
-import com.degloba.domain.annotations.DomainRepository;
-import com.degloba.persistence.rdbms.api.jpa.IEntityRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 
 
 /**
@@ -11,7 +11,8 @@ import com.degloba.persistence.rdbms.api.jpa.IEntityRepository;
  * @category Repository JPA pel CRM
  * 
  */
-@DomainRepository
-public interface ICrmRepository extends IEntityRepository {
+////@DomainRepository
+////public interface ICrmRepository extends IEntityRepository {     // implementacio amb classes degloba
+public interface ICrmRepository extends JpaRepository<Client, Long> {    // implementacio amb classes Spring
 
 }
