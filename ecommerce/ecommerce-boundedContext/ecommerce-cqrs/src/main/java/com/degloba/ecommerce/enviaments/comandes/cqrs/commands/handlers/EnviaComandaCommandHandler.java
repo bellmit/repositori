@@ -23,7 +23,7 @@ public class EnviaComandaCommandHandler implements ICommandHandler<EntregarEnvia
 
     @Override
     public Void handle(EntregarEnviamentCommand command) {
-        Enviament enviament = enviamentsRepository.get(Enviament.class,command.getEnviamentId());
+        Enviament enviament = enviamentsRepository.getById(command.getEnviamentId());
         enviament.envia();
         return null;
     }

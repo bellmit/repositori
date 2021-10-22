@@ -21,6 +21,6 @@ import lombok.Value;
 @AllArgsConstructor
 public class EntregarEnviamentCommand implements Serializable {
 
-    private final AggregateId enviamentId;
+    private final Long enviamentId;
 
 }

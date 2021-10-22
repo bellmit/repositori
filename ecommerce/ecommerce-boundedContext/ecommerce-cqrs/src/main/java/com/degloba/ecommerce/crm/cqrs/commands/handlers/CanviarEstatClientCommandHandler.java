@@ -2,6 +2,7 @@ package com.degloba.ecommerce.crm.cqrs.commands.handlers;
 
 import javax.inject.Inject;
 
+
 import com.degloba.cqrs.commands.annotations.CommandHandlerAnnotation;
 import com.degloba.cqrs.commands.handlers.ICommandHandler;
 import com.degloba.ecommerce.crm.cqrs.commands.CanviarEstatClientCommand;
@@ -23,7 +24,7 @@ public class CanviarEstatClientCommandHandler implements ICommandHandler<Canviar
 	
 	@Override
 	public Boolean handle(CanviarEstatClientCommand command) {
-		Client client = crmRepository.get(Client.class, command.getClientId());
+		Client client = crmRepository.getById(command.getClientId());
 		client.canviaEstatClient(command.getEstatClient());
 		crmRepository.save(client);		
 		return true;

@@ -23,7 +23,7 @@ import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
 @FinderAnnotation
 public class EnviamentFinder implements IEnviamentFinder {
 
-    @PersistenceContext(name="transactions-optional")
+    @PersistenceContext(name="transactions-optionaldddd")
     @Qualifier(value="entityManagerFactoryDatastore")
     private EntityManager entityManager;
 
