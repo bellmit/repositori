@@ -20,10 +20,10 @@ import com.degloba.persistence.rdbms.api.jpa.AggregateId;
 @Value
 public class CanviarEstatClientCommand implements Serializable {
 
-	private Long clientId;	
+	private String clientId;	
 	private EstatClient estatClient;
 
-	public CanviarEstatClientCommand(Long clientId, EstatClient estatClient) {
+	public CanviarEstatClientCommand(String clientId, EstatClient estatClient) {
 		super();
 		this.clientId = clientId;
 		this.estatClient = estatClient;
