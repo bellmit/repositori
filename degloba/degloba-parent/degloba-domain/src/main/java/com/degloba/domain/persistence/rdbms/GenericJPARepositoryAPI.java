@@ -1,4 +1,4 @@
-package com.degloba.infrastructure.services;
+package com.degloba.domain.persistence.rdbms;
 
 import java.io.Serializable;
 import java.util.List;

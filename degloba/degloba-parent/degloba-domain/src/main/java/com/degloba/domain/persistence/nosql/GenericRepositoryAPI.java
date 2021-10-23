@@ -1,4 +1,4 @@
-package com.degloba.infrastructure.services;
+package com.degloba.domain.persistence.nosql;
 
 import java.io.Serializable;
 

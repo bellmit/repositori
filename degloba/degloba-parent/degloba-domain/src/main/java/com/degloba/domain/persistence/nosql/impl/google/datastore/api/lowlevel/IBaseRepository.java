@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.degloba.domain.annotations.DomainRepository;
+import com.degloba.domain.exceptions.DatabaseException;
 import com.google.cloud.datastore.Batch;
 import com.google.cloud.datastore.Entity;
 import com.google.cloud.datastore.Key;
