@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
+import com.degloba.domain.persistence.nosql.GenericRepositoryAPI;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
