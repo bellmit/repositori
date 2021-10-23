@@ -1,7 +1,7 @@
 package com.degloba.ecommerce.enviaments.domain.persistence.rdbms.jpa;
 
-import com.degloba.domain.annotations.DomainRepository;
-import com.degloba.persistence.rdbms.api.jpa.IEntityRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 
 
 /**
@@ -9,7 +9,8 @@ import com.degloba.persistence.rdbms.api.jpa.IEntityRepository;
  * 
  * @author degloba
  */
-@DomainRepository
-public interface IEnviamentsRepository extends IEntityRepository {
+/////@DomainRepository
+//////public interface IEnviamentsRepository extends IEntityRepository {
+public interface IEnviamentsRepository extends JpaRepository<Enviament, Long> {    // implementacio amb classes Spring
 
 }

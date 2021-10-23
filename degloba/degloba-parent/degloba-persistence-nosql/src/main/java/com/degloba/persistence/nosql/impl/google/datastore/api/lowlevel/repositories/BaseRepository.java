@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.degloba.domain.persistence.nosql.impl.google.datastore.api.lowlevel.DatabaseException;
+import com.degloba.domain.exceptions.DatabaseException;
 import com.degloba.domain.persistence.nosql.impl.google.datastore.api.lowlevel.IBaseRepository;
 import com.google.cloud.datastore.Batch;
 import com.google.cloud.datastore.Datastore;

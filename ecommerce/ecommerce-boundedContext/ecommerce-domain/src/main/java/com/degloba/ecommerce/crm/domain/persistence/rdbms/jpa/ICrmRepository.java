@@ -13,6 +13,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 ////@DomainRepository
 ////public interface ICrmRepository extends IEntityRepository {     // implementacio amb classes degloba
-public interface ICrmRepository extends JpaRepository<Client, Long> {    // implementacio amb classes Spring
+public interface ICrmRepository extends JpaRepository<Client, String> {    // implementacio amb classes Spring
 
 }
