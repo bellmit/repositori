@@ -1,9 +1,10 @@
-package com.degloba.ecommerce.enviaments.cqrs.queries.finders;
+package com.degloba.ecommerce.enviaments.cqrs.finders;
 
-import java.util.List;
 
 import com.degloba.cqrs.queries.annotations.FinderAnnotation;
 import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
+
+import reactor.core.publisher.Flux;
 
 
 /**
@@ -15,6 +16,6 @@ import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
 @FinderAnnotation
 public interface IEnviamentFinder {
 
-    List<EnviamentDto> buscaEnviaments();
+	Flux<EnviamentDto> buscaEnviaments();
 
 }

@@ -1,12 +1,11 @@
-package com.degloba.ecommerce.enviaments.comandes.cqrs.commands.handlers;
+package com.degloba.ecommerce.enviaments.cqrs.handlers;
 
-import javax.inject.Inject;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.degloba.cqrs.commands.annotations.CommandHandlerAnnotation;
 import com.degloba.cqrs.commands.handlers.ICommandHandler;
-import com.degloba.ecommerce.enviaments.comandes.cqrs.commands.EntregarEnviamentCommand;
-import com.degloba.ecommerce.enviaments.domain.persistence.rdbms.jpa.Enviament;
-import com.degloba.ecommerce.enviaments.domain.persistence.rdbms.jpa.IEnviamentsRepository;
+import com.degloba.ecommerce.enviaments.application.IEnviamentService;
+import com.degloba.ecommerce.enviaments.cqrs.commands.EntregarEnviamentCommand;
 
 
 /**
@@ -18,13 +17,11 @@ import com.degloba.ecommerce.enviaments.domain.persistence.rdbms.jpa.IEnviaments
 @CommandHandlerAnnotation
 public class EnviaComandaCommandHandler implements ICommandHandler<EntregarEnviamentCommand, Void> {
 
-    @Inject
-    private IEnviamentsRepository enviamentsRepository;
+	@Autowired
+	IEnviamentService enviamentService;
 
     @Override
     public Void handle(EntregarEnviamentCommand command) {
-        Enviament enviament = enviamentsRepository.getById(command.getEnviamentId());
-        enviament.envia();
-        return null;
+    	return enviamentService.envia(command.getEnviamentId());
     }
 }

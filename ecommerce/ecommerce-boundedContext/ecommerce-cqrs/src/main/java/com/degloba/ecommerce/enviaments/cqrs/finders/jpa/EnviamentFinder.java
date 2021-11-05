@@ -1,15 +1,16 @@
-package com.degloba.ecommerce.enviaments.cqrs.queries.finders;
+package com.degloba.ecommerce.enviaments.cqrs.finders.jpa;
 
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.degloba.cqrs.queries.annotations.FinderAnnotation;
+import com.degloba.ecommerce.enviaments.cqrs.finders.IEnviamentFinder;
 import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
+
+import reactor.core.publisher.Flux;
 
 
 /**
@@ -27,11 +28,8 @@ public class EnviamentFinder implements IEnviamentFinder {
     @Qualifier(value="entityManagerFactoryDatastore")
     private EntityManager entityManager;
 
-    @SuppressWarnings("unchecked")
 	@Override
-    public List<EnviamentDto> buscaEnviaments() {
-        String jpql = "select new com.degloba.ecommerce.enviaments.cqrs.readmodel.dtos.EnviamentDto(s.id, s.comandaId, s.status) from com.degloba.ecommerce.shipping.domain.Shipment s";
-        Query query = entityManager.createQuery(jpql);
-        return query.getResultList();
+    public Flux<EnviamentDto> buscaEnviaments() {
+    	throw new RuntimeException("not implemented yet!");
     }
 }

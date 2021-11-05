@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.comandes.cqrs.commands;
+package com.degloba.ecommerce.enviaments.cqrs.commands;
 
 import java.io.Serializable;
 
@@ -21,6 +21,6 @@ import lombok.Value;
 @AllArgsConstructor
 public class EntregarEnviamentCommand implements Serializable {
 
-    private final Long enviamentId;
+    private final String enviamentId;
 
 }

@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.cqrs.commands;
+package com.degloba.ecommerce.comandes.cqrs.commands;
 
 import com.degloba.cqrs.commands.annotations.ICommandAnnotation;
 

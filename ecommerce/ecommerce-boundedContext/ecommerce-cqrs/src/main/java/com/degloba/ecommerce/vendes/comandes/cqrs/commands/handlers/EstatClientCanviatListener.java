@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.vendes.eventsourcing.events.eventlisteners;
+package com.degloba.ecommerce.vendes.comandes.cqrs.commands.handlers;
 
 import javax.inject.Inject;
 

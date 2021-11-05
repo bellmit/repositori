@@ -1,11 +1,11 @@
-package com.degloba.ecommerce.enviaments.application.events.eventlisteners;
+package com.degloba.ecommerce.enviaments.cqrs.handlers;
 
 import javax.inject.Inject;
 
 import com.degloba.ecommerce.enviaments.domain.events.ComandaEnviadaEvent;
 import com.degloba.ecommerce.enviaments.domain.factories.EnviamentsFactory;
-import com.degloba.ecommerce.enviaments.domain.persistence.rdbms.jpa.Enviament;
-import com.degloba.ecommerce.enviaments.domain.persistence.rdbms.jpa.IEnviamentsRepository;
+import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.Enviament;
+import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.IEnviamentReactiveRepository;
 import com.degloba.ecommerce.vendes.comandes.cqrs.queries.finders.IVendaFinder;
 import com.degloba.ecommerce.vendes.comandes.facade.dtos.ComandaDto;
 import com.degloba.events.annotations.EventListenerAnnotation;
@@ -32,7 +32,7 @@ public class ComandaEnviadaPerEnviamentListener {
     private IVendaFinder vendesFinder;
 
     @Inject
-    private IEnviamentsRepository enviamentsRepository;
+    private IEnviamentReactiveRepository enviamentsRepository;
 
     @EventListenerAnnotation(asynchronous = true)
     public void handle(ComandaEnviadaEvent event) {
