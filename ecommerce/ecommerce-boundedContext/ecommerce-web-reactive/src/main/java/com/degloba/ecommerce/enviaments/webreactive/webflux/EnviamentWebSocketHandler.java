@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webapp.webflux;
+package com.degloba.ecommerce.enviaments.webreactive.webflux;
 
 import static java.time.LocalDateTime.now;
 import static java.util.UUID.randomUUID;
