@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webreactive.reactive;
+package com.degloba.ecommerce.enviaments.webreactive.reactive.functional;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -22,7 +22,7 @@ import reactor.core.publisher.Mono;
  *
  */
 @Service
-public class EnviamentClientService {
+public class EnviamentWebClientService {
 
 	String url = "http://localhost:8080";
 	// String url = "http://ecommerce-webapp:8880/enviaments/";
@@ -75,4 +75,25 @@ public class EnviamentClientService {
 
 		return enviamentMono;
 	}
+	
+	 public void consume() {
+		 
+		 	WebClient webclient = WebClient.create(url);
+
+			/*
+			 * Mono<EnviamentDto> enviamentMono = client.get() .uri("/enviaments/{id}", "1")
+			 * .accept(MediaType.APPLICATION_JSON) .retrieve()
+			 * .bodyToMono(EnviamentDto.class);
+			 * 
+			 * enviamentMono.subscribe(System.out::println);
+			 */
+	        
+	        Flux<EnviamentDto> enviamentFlux = webclient.get()
+	            .uri("/enviaments/")
+	            .accept(MediaType.APPLICATION_JSON)
+	            .retrieve()	           
+	            .bodyToFlux(EnviamentDto.class);
+	        
+	        enviamentFlux.subscribe(System.out::println);
+	    }
 }

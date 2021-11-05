@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
-import com.degloba.ecommerce.enviaments.webreactive.reactive.EnviamentClientService;
+import com.degloba.ecommerce.enviaments.webreactive.reactive.functional.EnviamentWebClientService;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -17,7 +17,7 @@ import reactor.core.publisher.Mono;
 //@CrossOrigin(origins = "http://ecommerce-webapp-angular:4200")
 public class EnviamentsRestController {
 
-	EnviamentClientService clientEnviamentsService = new EnviamentClientService();
+	EnviamentWebClientService clientEnviamentsService = new EnviamentWebClientService();
 
 	@RequestMapping("/enviaments/")
 	@ResponseBody

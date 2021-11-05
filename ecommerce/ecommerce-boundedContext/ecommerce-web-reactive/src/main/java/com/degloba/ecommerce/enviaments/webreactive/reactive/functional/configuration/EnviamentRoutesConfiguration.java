@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webreactive.reactive.configuration;
+package com.degloba.ecommerce.enviaments.webreactive.reactive.functional.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping;
 import org.springframework.web.reactive.socket.WebSocketHandler;
 import org.springframework.web.reactive.socket.server.support.WebSocketHandlerAdapter;
 
-import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.Enviament;
+
 import com.degloba.ecommerce.enviaments.webreactive.reactive.functional.EnviamentHandler;
 import com.degloba.ecommerce.enviaments.webreactive.webflux.EnviamentWebSocketHandler;
 
@@ -33,7 +33,7 @@ import java.util.Map;
  *
  */
 @Configuration
-public class EnviamentWebConfiguration {
+public class EnviamentRoutesConfiguration {
 		
 	@Bean
     RouterFunction<ServerResponse> routes(EnviamentHandler handler) { // <1>
