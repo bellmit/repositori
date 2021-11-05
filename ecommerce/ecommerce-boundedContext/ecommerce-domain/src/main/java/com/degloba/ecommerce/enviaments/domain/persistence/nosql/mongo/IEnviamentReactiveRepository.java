@@ -2,6 +2,8 @@ package com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
+import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
+
 
 /**
  * 

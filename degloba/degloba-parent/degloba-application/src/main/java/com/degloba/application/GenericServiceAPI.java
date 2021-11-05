@@ -1,4 +1,4 @@
-package com.degloba.infrastructure.services;
+package com.degloba.application;
 
 import java.io.Serializable;
 

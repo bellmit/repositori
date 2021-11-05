@@ -2,7 +2,7 @@ package com.degloba.ecommerce.enviaments.eventsourcing.events;
 
 import org.springframework.context.ApplicationEvent;
 
-import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.Enviament;
+import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
 
 import lombok.Data;
 

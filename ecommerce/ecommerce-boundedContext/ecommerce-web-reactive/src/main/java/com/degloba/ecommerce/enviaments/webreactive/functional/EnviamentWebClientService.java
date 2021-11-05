@@ -1,11 +1,11 @@
-package com.degloba.ecommerce.enviaments.webreactive.reactive.functional;
+package com.degloba.ecommerce.enviaments.webreactive.functional;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.Enviament;
+import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
 import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
 
 import reactor.core.publisher.Flux;
@@ -60,40 +60,19 @@ public class EnviamentWebClientService {
 		return webclient.get().retrieve().bodyToMono(EnviamentDto.class);
 	}
 
-	public Mono<EnviamentDto> updateEnviament(EnviamentDto enviament) {
+	public Mono<EnviamentDto> updateEnviament(EnviamentDto enviamentDto) {
 
 		WebClient webclient = WebClient.create(url);
 
-		Enviament enviament2 = new Enviament(enviament.getEnviamentId(), enviament.getComandaId(),
-				enviament.getEstatEnviament());
+		Enviament enviament = new Enviament(enviamentDto.getEnviamentId(), enviamentDto.getComandaId(), enviamentDto.getEstatEnviament());
 
 		Mono<EnviamentDto> enviamentMono = webclient.post().uri("/enviaments/add")
 				.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-				.body(Mono.just(enviament2), Enviament.class).retrieve().bodyToMono(EnviamentDto.class);
+				.body(Mono.just(enviament), Enviament.class).retrieve().bodyToMono(EnviamentDto.class);
 
 		enviamentMono.subscribe();
 
 		return enviamentMono;
 	}
 	
-	 public void consume() {
-		 
-		 	WebClient webclient = WebClient.create(url);
-
-			/*
-			 * Mono<EnviamentDto> enviamentMono = client.get() .uri("/enviaments/{id}", "1")
-			 * .accept(MediaType.APPLICATION_JSON) .retrieve()
-			 * .bodyToMono(EnviamentDto.class);
-			 * 
-			 * enviamentMono.subscribe(System.out::println);
-			 */
-	        
-	        Flux<EnviamentDto> enviamentFlux = webclient.get()
-	            .uri("/enviaments/")
-	            .accept(MediaType.APPLICATION_JSON)
-	            .retrieve()	           
-	            .bodyToFlux(EnviamentDto.class);
-	        
-	        enviamentFlux.subscribe(System.out::println);
-	    }
 }

@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo;
+package com.degloba.ecommerce.enviaments.domain.entitats;
 
 
 import lombok.AllArgsConstructor;

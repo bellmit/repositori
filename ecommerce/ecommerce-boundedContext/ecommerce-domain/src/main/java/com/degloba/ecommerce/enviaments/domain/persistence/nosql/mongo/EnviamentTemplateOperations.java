@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.ReactiveRemoveOperation;
 import org.springframework.stereotype.Service;
+
+import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

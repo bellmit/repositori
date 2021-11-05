@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webreactive.reactive.functional;
+package com.degloba.ecommerce.enviaments.webreactive.functional;
 
 import org.reactivestreams.Publisher;
 import org.springframework.http.MediaType;
@@ -9,7 +9,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import com.degloba.ecommerce.enviaments.application.IEnviamentService;
-import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.Enviament;
+import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
 
 import java.net.URI;
 

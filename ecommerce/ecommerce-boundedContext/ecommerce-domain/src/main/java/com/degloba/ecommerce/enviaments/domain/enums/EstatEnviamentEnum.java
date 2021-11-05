@@ -3,6 +3,6 @@ package com.degloba.ecommerce.enviaments.domain.enums;
 /**
  * @category Estat d'Enviament
  */
-public enum EstatEnviament {
+public enum EstatEnviamentEnum {
     WAITING, SENT, DELIVERED;
 }

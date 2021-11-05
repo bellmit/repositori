@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webreactive.reactive.controller;
+package com.degloba.ecommerce.enviaments.webreactive.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
-import com.degloba.ecommerce.enviaments.webreactive.reactive.functional.EnviamentWebClientService;
+import com.degloba.ecommerce.enviaments.webreactive.functional.EnviamentWebClientService;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -17,19 +17,19 @@ import reactor.core.publisher.Mono;
 //@CrossOrigin(origins = "http://ecommerce-webapp-angular:4200")
 public class EnviamentsRestController {
 
-	EnviamentWebClientService clientEnviamentsService = new EnviamentWebClientService();
+	EnviamentWebClientService enviamentWebClientService = new EnviamentWebClientService();
 
 	@RequestMapping("/enviaments/")
 	@ResponseBody
 	public Flux<EnviamentDto> getEnviaments(@RequestParam(required = false) String queryParam) {
-		return clientEnviamentsService.buscarTotsEnviaments(); //// .collectList().block();
+		return enviamentWebClientService.buscarTotsEnviaments(); //// .collectList().block();
 	}
 
 	@RequestMapping("/enviaments/add/")
 	@ResponseBody
 	public void setEnviaments(@RequestParam(required = false) String queryParam) {
 		EnviamentDto enviament = new EnviamentDto("7", "8", "9");
-		clientEnviamentsService.updateEnviament(enviament);
+		enviamentWebClientService.updateEnviament(enviament);
 	}
 
 }
