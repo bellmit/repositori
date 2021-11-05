@@ -18,7 +18,7 @@ import lombok.Setter;
  */
 public class ComandaDto {
 
-	@Getter @Setter private AggregateId comandaId;
-	@Getter @Setter  private List<ProductesDemanatsDto> productesDemanats = new ArrayList<ProductesDemanatsDto>();
+	@Getter @Setter private String comandaId;
+	@Getter @Setter private List<ProductesDemanatsDto> productesDemanats = new ArrayList<ProductesDemanatsDto>();
 	@Getter @Setter private EstatComanda estatComanda;
 }
