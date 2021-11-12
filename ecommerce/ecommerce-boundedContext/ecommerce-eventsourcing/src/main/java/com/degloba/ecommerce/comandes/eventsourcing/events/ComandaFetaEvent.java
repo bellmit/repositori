@@ -14,7 +14,6 @@ import lombok.Value;
 @Value
 @Data
 @AllArgsConstructor
-//@NoArgsConstructor
 public class ComandaFetaEvent {
 
 	private final String comandaId;

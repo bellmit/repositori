@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.degloba.ecommerce.enviaments.application.IEnviamentService;
 import com.degloba.ecommerce.enviaments.cqrs.commands.CreaEnviamentCommand;
 import com.degloba.ecommerce.enviaments.cqrs.commands.GuardaEnviamentCommand;
+import com.degloba.ecommerce.enviaments.cqrs.commands.handlers.EntregaEnviamentCommandHandler;
 import com.degloba.ecommerce.enviaments.cqrs.finders.IEnviamentFinder;
 import com.degloba.ecommerce.enviaments.cqrs.queries.ObtenirEnviamentQuery;
 import com.degloba.ecommerce.enviaments.cqrs.queries.ObtenirEnviamentsQuery;
@@ -45,7 +46,12 @@ import reactor.core.publisher.Mono;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
-
+/**
+ * RestController 
+ * 
+ * @author pere
+ *
+ */
 @RestController
 @CrossOrigin(origins = "http://localhost:8887") // port intern (No Docker)
 //@CrossOrigin(origins = "http://webAngularHost:8887")    // port extern (Docker)
@@ -56,14 +62,19 @@ public class EnviamentsRestController {
 	/**
 	 * Axon
 	 */
-	private CommandGateway commandGateway;
-	private QueryGateway queryGateway;
+//	private CommandGateway commandGateway;
+//	private QueryGateway queryGateway;
 	
 	// https://docs.axoniq.io/reference-guide/extensions/reactor/reactive-gateways
 	private ReactorQueryGateway reactiveQueryGateway;
 	private ReactorCommandGateway reactiveCommandGateway; 
 	
-	
+	/**
+	 * GET is used to request data from a specified resource.
+	 * 
+	 * @param queryParam
+	 * @return
+	 */
 	@GetMapping()
 	// @ResponseStatus(HttpStatus.OK)
 	public Mono<EnviamentDto> getEnviament(@RequestParam(required = false) String queryParam) {
@@ -116,18 +127,28 @@ public class EnviamentsRestController {
 	}
 	
    
-	
+	/**
+	 * POST is used to send data to a server to create/update a resource.
+	 */
 	@PostMapping
-    public Mono<Void> sendCommand(@RequestBody EnviamentDto e) {
-		CreaEnviamentCommand command = new CreaEnviamentCommand("","","");
-        return reactiveCommandGateway.send(command);
+    public Mono<Void> postEnviament(@RequestBody EnviamentDto enviamentDto) {
+		CreaEnviamentCommand creaEnviamentCommand = new CreaEnviamentCommand(enviamentDto.enviamentId,enviamentDto.getComandaId(),enviamentDto.getEstat());
+		
+        return reactiveCommandGateway.send(creaEnviamentCommand);
     }
 	
 
+	/**
+	 * PUT is used to send data to a server to create/update a resource.
+	 * 
+	 * La diferencia entre POST y PUT es que las solicitudes PUT son idempotentes. Es decir, llamar a la misma solicitud PUT 
+	 * varias veces siempre producirá el mismo resultado. Por el contrario, 
+	 * llamar a una solicitud POST repetidamente tiene los efectos secundarios de crear el mismo recurso varias veces.
+	 */
 	@PostMapping("add")
 	@ResponseStatus(HttpStatus.CREATED)
-	public CompletableFuture<Object> postEnviament(@RequestBody EnviamentDto e) {
-		return commandGateway.send(new GuardaEnviamentCommand(e,"","",""));	
+	public Mono<EntregaEnviamentCommandHandler> putEnviament(@RequestBody EnviamentDto command) {
+			return reactiveCommandGateway.send(command);
 	}
 	
 	
