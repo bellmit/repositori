@@ -38,13 +38,13 @@ public class EnviamentHandler {
 
 	public Mono<ServerResponse> updateById(ServerRequest r) {
 		Flux<Enviament> id = r.bodyToFlux(Enviament.class)
-				.flatMap(e -> this.enviamentService.update(id(r), e.getComandaId(), e.getEstatEnviament()));
+				.flatMap(e -> this.enviamentService.update(id(r), e.getComandaId(), e.getEstat()));
 		return defaultReadResponse(id);
 	}
 
 	public Mono<ServerResponse> create(ServerRequest request) {
 		Flux<Enviament> flux = request.bodyToFlux(Enviament.class)
-				.flatMap(toWrite -> this.enviamentService.create(toWrite.getComandaId(), toWrite.getEstatEnviament()));
+				.flatMap(toWrite -> this.enviamentService.create(toWrite.getComandaId(), toWrite.getEstat()));
 		return defaultWriteResponse(flux);
 	}
 

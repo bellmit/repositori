@@ -19,12 +19,19 @@ public class EnviamentsRestController {
 
 	EnviamentWebClientService enviamentWebClientService = new EnviamentWebClientService();
 
+	/**
+	 * Get enviaments
+	 * 
+	 * @param queryParam
+	 * @return
+	 */
 	@RequestMapping("/enviaments/")
 	@ResponseBody
 	public Flux<EnviamentDto> getEnviaments(@RequestParam(required = false) String queryParam) {
-		return enviamentWebClientService.buscarTotsEnviaments(); //// .collectList().block();
+		return enviamentWebClientService.buscarTotsEnviaments();
 	}
 
+	
 	@RequestMapping("/enviaments/add/")
 	@ResponseBody
 	public void setEnviaments(@RequestParam(required = false) String queryParam) {

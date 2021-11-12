@@ -1,23 +1,30 @@
 package com.degloba.ecommerce.enviaments.eventsourcing.events;
 
-import org.springframework.context.ApplicationEvent;
-
 import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Value;
 
 
+@Value
 @Data
-public class EnviamentCreatedEvent extends ApplicationEvent {
+@AllArgsConstructor
+public class EnviamentCreatEvent {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
+	public EnviamentCreatEvent(Enviament e) {
+		this.comandaId = "";
+		this.enviamentId = "";
+		this.estatEnviament = "";
+		// TODO Auto-generated constructor stub
+	}
+
 	public String enviamentId;
+	
+	public String comandaId;
+	
+	public String estatEnviament;
 
-	public EnviamentCreatedEvent(Enviament source) {
-        super(source);
-    }
+
+
 }
