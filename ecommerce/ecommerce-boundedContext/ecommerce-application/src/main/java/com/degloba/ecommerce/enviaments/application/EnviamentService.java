@@ -12,13 +12,14 @@ import org.springframework.stereotype.Service;
 import com.degloba.application.GenericServiceImpl;
 import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
 import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.IEnviamentReactiveRepository;
-import com.degloba.ecommerce.enviaments.eventsourcing.events.EnviamentCreatedEvent;
+import com.degloba.ecommerce.enviaments.eventsourcing.events.EnviamentCreatEvent;
 
 import lombok.AllArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
+ * Servei de {@link Enviament}S reactiu
  * 
  * @author pere
  *
@@ -38,8 +39,7 @@ public class EnviamentService extends GenericServiceImpl<Enviament, String> impl
 	}
 	
 	public Flux<Enviament> all() {
-		  return this.enviamentReactiveRepository
-			  .findAll();			
+		  return this.enviamentReactiveRepository.findAll();			
 	}
 	
    /**
@@ -57,10 +57,8 @@ public class EnviamentService extends GenericServiceImpl<Enviament, String> impl
 	    }
 
     public Mono<Void> delete(String id) { 
-        return this.enviamentReactiveRepository
-            .findById(id)
-            .flatMap(e -> this.enviamentReactiveRepository.deleteById(e.getEnviamentId()).then());    ///Return(e));
-    }
+        return this.enviamentReactiveRepository.deleteById(id);
+	  }
 
     /**
      * Crea un Enviament nou a la base de dades i publiquem l'event EnviamentCreatedEvent 
@@ -74,19 +72,8 @@ public class EnviamentService extends GenericServiceImpl<Enviament, String> impl
     public Mono<Enviament> create(String comandaId, String estatEnviament) { 
         return this.enviamentReactiveRepository
             .save(new Enviament(null, comandaId, estatEnviament ))
-            .doOnSuccess(e -> this.publisher.publishEvent(new EnviamentCreatedEvent(e)));
+            .doOnSuccess(e -> this.publisher.publishEvent(new EnviamentCreatEvent(e)));
     }
 
-	@Override
-	public Void entregarEnviament(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Void envia(String enviamentId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

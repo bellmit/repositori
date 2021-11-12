@@ -18,10 +18,7 @@ public interface IEnviamentService extends GenericServiceAPI<Enviament, String> 
 
 	Publisher<Enviament> update(String id, String comandaId, String estatEnviament);
 
-	Publisher<Enviament>  create(String comandaId, String estatEnviament);
-	
-	Void entregarEnviament(String id);
+	Publisher<Enviament> create(String comandaId, String estatEnviament);
 
-	Void envia(String enviamentId);
 
 }

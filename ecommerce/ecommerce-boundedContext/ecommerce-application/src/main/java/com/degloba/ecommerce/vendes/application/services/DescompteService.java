@@ -14,7 +14,7 @@ import com.degloba.persistence.rdbms.api.jpa.AggregateId;
 @InternalApplicationService
 public class DescompteService {
 
-	public void aplicaDescompte(AggregateId comandaId, Money quantitat){
+	public void aplicaDescompte(String comandaId, Money quantitat){
 		//TODO implement
 	}
 }
