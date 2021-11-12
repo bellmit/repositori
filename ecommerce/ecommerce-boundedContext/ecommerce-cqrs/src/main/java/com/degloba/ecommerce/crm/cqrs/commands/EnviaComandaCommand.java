@@ -13,7 +13,7 @@ import lombok.Value;
  *
  */
 @Value
-public class EnviarComandaCommand {
+public class EnviaComandaCommand {
 	
 	@TargetAggregateIdentifier
     private final String comandaId;

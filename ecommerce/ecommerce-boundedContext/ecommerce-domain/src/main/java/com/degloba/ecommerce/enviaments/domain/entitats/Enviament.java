@@ -20,5 +20,5 @@ public class Enviament {
     @Id
     private String enviamentId;
     private String comandaId;
-    private String estatEnviament;
+    private String estat;
 }

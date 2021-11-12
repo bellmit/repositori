@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.cqrs;
+package com.degloba.ecommerce;
 
 
 import lombok.extern.slf4j.Slf4j;

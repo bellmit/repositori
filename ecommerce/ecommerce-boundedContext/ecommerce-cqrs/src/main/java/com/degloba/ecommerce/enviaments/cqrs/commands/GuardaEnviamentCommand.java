@@ -2,29 +2,25 @@ package com.degloba.ecommerce.enviaments.cqrs.commands;
 
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
+
 import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Value;
 
-
-public class GuardarEnviamentCommand {
+@Value
+@Data
+@AllArgsConstructor
+public class GuardaEnviamentCommand {
 	
 	   public EnviamentDto enviamentDto;
 
-		public GuardarEnviamentCommand(EnviamentDto e) {
-		// TODO Auto-generated constructor stub
-			this.enviamentDto = e;
-	}
-		@Getter @Setter
 		@TargetAggregateIdentifier
 		private String enviamentId;
 
-		@Getter @Setter
-		private String comanda;
+		private String comandaId;
 		
-		@Getter @Setter
 		private String estat;
 
-	    // Constructor and getters
 	}

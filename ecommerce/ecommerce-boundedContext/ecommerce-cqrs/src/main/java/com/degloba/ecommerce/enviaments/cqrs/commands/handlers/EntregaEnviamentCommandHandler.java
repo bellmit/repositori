@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.cqrs.handlers;
+package com.degloba.ecommerce.enviaments.cqrs.commands.handlers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.degloba.cqrs.commands.annotations.CommandHandlerAnnotation;
 import com.degloba.cqrs.commands.handlers.ICommandHandler;
 import com.degloba.ecommerce.enviaments.application.IEnviamentService;
-import com.degloba.ecommerce.enviaments.cqrs.commands.EntregarEnviamentCommand;
+import com.degloba.ecommerce.enviaments.cqrs.commands.EntregaEnviamentCommand;
 
 
 /**
@@ -16,13 +16,13 @@ import com.degloba.ecommerce.enviaments.cqrs.commands.EntregarEnviamentCommand;
  *
  */
 @CommandHandlerAnnotation
-public class EntregarEnviamentCommandHandler implements ICommandHandler<EntregarEnviamentCommand, Void> {
+public class EntregaEnviamentCommandHandler implements ICommandHandler<EntregaEnviamentCommand, Void> {
 
 	@Autowired
 	IEnviamentService enviamentService;
 
     @Override
-    public Void handle(EntregarEnviamentCommand command) {
+    public Void handle(EntregaEnviamentCommand command) {
     	return enviamentService.entregarEnviament(command.getEnviamentId());
     }
 }

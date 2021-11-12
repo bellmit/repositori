@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 
 import com.degloba.domain.annotations.DomainFactory;
-import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.Enviament;
+import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
 
 
 /**

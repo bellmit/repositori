@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

@@ -1,10 +1,10 @@
-package com.degloba.ecommerce.enviaments.cqrs.handlers;
+package com.degloba.ecommerce.enviaments.cqrs.commands.handlers;
 
 import javax.inject.Inject;
 
+import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
 import com.degloba.ecommerce.enviaments.domain.events.ComandaEnviadaEvent;
 import com.degloba.ecommerce.enviaments.domain.factories.EnviamentsFactory;
-import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.Enviament;
 import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.IEnviamentReactiveRepository;
 import com.degloba.ecommerce.vendes.comandes.cqrs.queries.finders.IVendaFinder;
 import com.degloba.ecommerce.vendes.comandes.facade.dtos.ComandaDto;

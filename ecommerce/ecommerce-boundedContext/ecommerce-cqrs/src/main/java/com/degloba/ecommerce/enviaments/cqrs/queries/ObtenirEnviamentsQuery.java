@@ -1,5 +1,7 @@
 package com.degloba.ecommerce.enviaments.cqrs.queries;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,8 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ObtenirEnviamentQuery {
-	private String enviamentId;
-
-    // constructor and getter
+public class ObtenirEnviamentsQuery {
+	private List<String> enviaments;
 }

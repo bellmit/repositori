@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import com.degloba.domain.annotations.AggregateRoot;
-import com.degloba.ecommerce.enviaments.domain.enums.EstatEnviament;
+import com.degloba.ecommerce.enviaments.domain.enums.EstatEnviamentEnum;
 import com.degloba.persistence.rdbms.api.jpa.AggregateId;
 import com.degloba.persistence.rdbms.api.jpa.BaseAggregateRoot;
 import lombok.AllArgsConstructor;
@@ -36,23 +36,23 @@ public class Enviament { /////////extends BaseAggregateRoot {
 		@AttributeOverride(name = "aggregateId", column = @Column(name = "comandaId"))})  
     private Long comandaId;
 	
-    private EstatEnviament estatEnviament;
+    private EstatEnviamentEnum estatEnviament;
 
    
     public Enviament(Long enviamentId, Long comandaId) {
         this.enviamentId = enviamentId;
     	this.comandaId = comandaId;
-        this.estatEnviament = EstatEnviament.WAITING;
+        this.estatEnviament = EstatEnviamentEnum.WAITING;
     }
 
     /**
      * L'entrega ha estat enviada al client.
      */
     public void envia() {
-        if (estatEnviament != EstatEnviament.WAITING) {
+        if (estatEnviament != EstatEnviamentEnum.WAITING) {
             throw new IllegalStateException("cannot ship in status " + estatEnviament);
         }
-        estatEnviament = EstatEnviament.SENT;
+        estatEnviament = EstatEnviamentEnum.SENT;
   ////////eventPublisher.publish(new OrderShippedEvent(comandaId, getAggregateId()));
     }
 
@@ -60,10 +60,10 @@ public class Enviament { /////////extends BaseAggregateRoot {
      * L'entrega ha estat confirmada com a rebuda pel client.
      */
     public void entregar() {
-        if (estatEnviament != EstatEnviament.SENT) {
+        if (estatEnviament != EstatEnviamentEnum.SENT) {
             throw new IllegalStateException("cannot deliver in status " + estatEnviament);
         }
-        estatEnviament = EstatEnviament.DELIVERED;
+        estatEnviament = EstatEnviamentEnum.DELIVERED;
         
        // eventPublisher.publish(new EnviamentLliuratEvent(getAggregateId()));
     }
