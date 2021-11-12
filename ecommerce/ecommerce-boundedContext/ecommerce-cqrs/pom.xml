@@ -40,11 +40,6 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>com.degloba</groupId>
-			<artifactId>ecommerce-facade</artifactId>
-			<version>4.4.3-SNAPSHOT</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.axonframework</groupId>
@@ -83,8 +78,24 @@
         <artifactId>spring-cloud-starter-netflix-eureka-client
         </artifactId>
      </dependency>
-     
-     
+
+
+     <dependency>
+     	<groupId>com.degloba</groupId>
+     	<artifactId>ecommerce-facade</artifactId>
+     	<version>4.4.3-SNAPSHOT</version>
+     </dependency>
+     <dependency>
+     	<groupId>com.degloba</groupId>
+     	<artifactId>ecommerce-application</artifactId>
+     	<version>4.4.3-SNAPSHOT</version>
+     </dependency>
+     <dependency>
+     	<groupId>com.degloba</groupId>
+     	<artifactId>ecommerce-facade-impl</artifactId>
+     	<version>4.4.3-SNAPSHOT</version>
+     </dependency>
+
 	</dependencies>
 
 

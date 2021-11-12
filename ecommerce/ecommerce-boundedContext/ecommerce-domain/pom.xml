@@ -72,6 +72,8 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+			<version>2.5.5</version>
+			<type>module</type>
 		</dependency>
 
     <dependency>

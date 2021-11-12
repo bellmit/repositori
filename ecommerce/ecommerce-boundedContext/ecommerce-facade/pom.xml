@@ -7,7 +7,7 @@
 		<groupId>com.degloba</groupId>
 		<artifactId>ecommerce-boundedContext</artifactId>
 		<version>4.4.3-SNAPSHOT</version>
-	 	<!-- <relativePath>../ecommerce-boundedContext/pom.xml</relativePath> -->
+		<!-- <relativePath>../ecommerce-boundedContext/pom.xml</relativePath> -->
 		<relativePath>../ecommerce-boundedContext/pom.xml</relativePath>  <!-- lookup parent from repository -->
 	</parent>
 	<artifactId>ecommerce-facade</artifactId>
@@ -31,23 +31,23 @@
 			<artifactId>degloba-facade</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-jackson</artifactId>
 			<version>0.11.2</version>
 			<scope>runtime</scope>
 		</dependency>
-		
-				<dependency>
+
+		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
 		</dependency>
-				<dependency>
-					<groupId>org.springframework.security</groupId>
-					<artifactId>spring-security-core</artifactId>
-				</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+		</dependency>
 	</dependencies>
 
 
@@ -81,21 +81,10 @@
 			</plugin>
 
 			<!-- comentar si no te classe SpringBoot -->
-					<!-- <plugin>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-maven-plugin</artifactId>
-					<configuration>
-					<mainClass>XXXXXXXXXXXX</mainClass>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
-				</plugin>
- -->
+			<!-- <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> 
+				<configuration> <mainClass>XXXXXXXXXXXX</mainClass> </configuration> <executions> 
+				<execution> <goals> <goal>repackage</goal> </goals> </execution> </executions> 
+				</plugin> -->
 
 		</plugins>
 
