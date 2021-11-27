@@ -6,9 +6,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.CompletableFuture;
 
+import org.axonframework.commandhandling.callbacks.LoggingCallback;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.extensions.reactor.commandhandling.gateway.ReactorCommandGateway;
 import org.axonframework.extensions.reactor.queryhandling.gateway.ReactorQueryGateway;
+import org.axonframework.messaging.ExecutionException;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 ////import org.apache.log4j.Logger;
@@ -19,9 +21,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -30,15 +34,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.degloba.ecommerce.enviaments.application.IEnviamentService;
 import com.degloba.ecommerce.enviaments.cqrs.commands.CreaEnviamentCommand;
 import com.degloba.ecommerce.enviaments.cqrs.commands.GuardaEnviamentCommand;
-import com.degloba.ecommerce.enviaments.cqrs.commands.handlers.EntregaEnviamentCommandHandler;
-import com.degloba.ecommerce.enviaments.cqrs.finders.IEnviamentFinder;
+
 import com.degloba.ecommerce.enviaments.cqrs.queries.ObtenirEnviamentQuery;
 import com.degloba.ecommerce.enviaments.cqrs.queries.ObtenirEnviamentsQuery;
 import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
-import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.EnviamentTemplateOperations;
-import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.IEnviamentReactiveRepository;
+
 import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -52,12 +55,12 @@ import org.springframework.http.MediaType;
  * @author pere
  *
  */
+@AllArgsConstructor
 @RestController
 @CrossOrigin(origins = "http://localhost:8887") // port intern (No Docker)
 //@CrossOrigin(origins = "http://webAngularHost:8887")    // port extern (Docker)
 @RequestMapping("/enviaments")
 public class EnviamentsRestController {
-
 
 	/**
 	 * Axon
@@ -75,10 +78,10 @@ public class EnviamentsRestController {
 	 * @param queryParam
 	 * @return
 	 */
-	@GetMapping()
+	@GetMapping("/{id}")
 	// @ResponseStatus(HttpStatus.OK)
-	public Mono<EnviamentDto> getEnviament(@RequestParam(required = false) String queryParam) {
-		return reactiveQueryGateway.query(new ObtenirEnviamentsQuery(), EnviamentDto.class);
+	public Mono<EnviamentDto> getEnviament(@PathVariable String id) throws InterruptedException, ExecutionException {
+		return reactiveQueryGateway.query(new ObtenirEnviamentQuery(id), EnviamentDto.class);
 	}
 	
 
@@ -130,11 +133,15 @@ public class EnviamentsRestController {
 	/**
 	 * POST is used to send data to a server to create/update a resource.
 	 */
-	@PostMapping
-    public Mono<Void> postEnviament(@RequestBody EnviamentDto enviamentDto) {
-		CreaEnviamentCommand creaEnviamentCommand = new CreaEnviamentCommand(enviamentDto.enviamentId,enviamentDto.getComandaId(),enviamentDto.getEstat());
-		
-        return reactiveCommandGateway.send(creaEnviamentCommand);
+	@PostMapping("add")
+	@ResponseStatus(HttpStatus.CREATED)
+	@RequestMapping(
+	        value = "add", method = RequestMethod.POST,
+	        produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, 
+	        consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+	)
+    public Mono<Void> addEnviament(@RequestBody EnviamentDto enviamentDto) {
+        return reactiveCommandGateway.send(new CreaEnviamentCommand(enviamentDto.enviamentId,enviamentDto.getComandaId(),enviamentDto.getEstat()));
     }
 	
 
@@ -145,13 +152,7 @@ public class EnviamentsRestController {
 	 * varias veces siempre producirá el mismo resultado. Por el contrario, 
 	 * llamar a una solicitud POST repetidamente tiene los efectos secundarios de crear el mismo recurso varias veces.
 	 */
-	@PostMapping("add")
-	@ResponseStatus(HttpStatus.CREATED)
-	public Mono<EntregaEnviamentCommandHandler> putEnviament(@RequestBody EnviamentDto command) {
-			return reactiveCommandGateway.send(command);
-	}
-	
-	
-	
+
+
 
 }

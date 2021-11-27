@@ -6,6 +6,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
+import org.modelmapper.ModelMapper;
 /*import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;*/
@@ -51,6 +52,8 @@ import com.degloba.ecommerce.enviaments.webapp.controllers.EnviamentWebFluxHandl
 ////////@Order(1000)
 public class EnviamentFunctionalConfig {
 
+
+	
 	/**
 	 * @category configura la ruta /hello enviant la petició a enviamentHandler:hello
 	 * @param enviamentHandler
