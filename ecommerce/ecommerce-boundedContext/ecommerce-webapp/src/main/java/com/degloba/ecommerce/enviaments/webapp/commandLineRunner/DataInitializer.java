@@ -13,30 +13,30 @@ import reactor.core.publisher.Flux;
 
 @Component
 @Slf4j
-class DataInitializer implements CommandLineRunner {
+class DataInitializer { ///////////implements CommandLineRunner {
     private final IEnviamentReactiveRepository repositori;
     
     public DataInitializer(IEnviamentReactiveRepository repositori) {
         this.repositori = repositori;
     }
     
-    @Override
-    public void run(String[] args) {
-        log.info("start data initialization  ...");
-        this.repositori
-                .deleteAll()
-                .thenMany(
-                        Flux
-                                .just("Enviament primer", "Enviament segon")
-                                .flatMap(
-                                        enviament -> this.repositori.save(Enviament.builder().enviamentId(enviament).comandaId("2").build())
-                                )
-                )
-                .log()
-                .subscribe(
-                        null,
-                        null,
-                        () -> log.info("done initialization...")
-                );
-    }
+//    @Override
+//    public void run(String[] args) {
+//        log.info("start data initialization  ...");
+//        this.repositori
+//                .deleteAll()
+//                .thenMany(
+//                        Flux
+//                                .just("Enviament primer", "Enviament segon")
+//                                .flatMap(
+//                                        enviament -> this.repositori.save(Enviament.builder().enviamentId(enviament).comandaId("2").build())
+//                                )
+//                )
+//                .log()
+//                .subscribe(
+//                        null,
+//                        null,
+//                        () -> log.info("done initialization...")
+//                );
+//    }
 }

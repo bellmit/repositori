@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webapp.controllers;
+package com.degloba.ecommerce.webapp;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,13 +12,12 @@ import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 
-import com.degloba.ecommerce.enviaments.webapp.controllers.impl.spring.SpringBootPersistenceApplication;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBObject;
 
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ContextConfiguration(classes = SpringBootPersistenceApplication.class)
+@ContextConfiguration(classes = EcommerceWebappSpringBootApplication.class)
 @DataMongoTest
 @ExtendWith(SpringExtension.class)
 public class MongoDbSpringIntegrationTest {
