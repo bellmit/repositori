@@ -20,7 +20,6 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.data.mongodb.repository.query.MongoEntityInformation;
 import org.springframework.data.mongodb.repository.support.SimpleReactiveMongoRepository;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.FluentQuery.ReactiveFluentQuery;
 import org.springframework.stereotype.Repository;
 
 import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
@@ -29,6 +28,7 @@ import com.degloba.infrastructure.services.GenericRepositoryImpl;
 import com.mongodb.client.result.DeleteResult;
 
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -38,6 +38,7 @@ import reactor.core.scheduler.Scheduler;
 @Repository
 public class EnviamentReactiveRepository extends SimpleReactiveMongoRepository<Enviament, String>
 		implements IEnviamentReactiveRepository {
+
 
 	public EnviamentReactiveRepository(@NonNull MongoEntityInformation<Enviament, String> entityInformation,
 			@NonNull ReactiveMongoOperations mongoOperations) {

@@ -12,7 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
-import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
+
 
 import com.degloba.domain.annotations.DomainRepositoryImpl;
 import com.degloba.ecommerce.crm.domain.persistence.rdbms.jpa.Client;

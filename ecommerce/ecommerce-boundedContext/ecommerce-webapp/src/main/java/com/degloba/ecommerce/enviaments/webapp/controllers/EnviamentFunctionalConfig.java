@@ -12,6 +12,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;*/
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.core.ReactiveMongoOperations;
+import org.springframework.data.mongodb.repository.query.MongoEntityInformation;
 import org.springframework.http.MediaType;
 //////////////import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 //////////////import org.springframework.security.web.server.WebFilterChainProxy;
@@ -29,6 +31,7 @@ import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
 import com.degloba.ecommerce.enviaments.infrastructure.persistence.nosql.mongo.EnviamentReactiveRepository;
 import com.degloba.ecommerce.enviaments.webapp.controllers.EnviamentWebFluxHandler;
 
+import lombok.NonNull;
 
 
 /**
@@ -66,24 +69,25 @@ public class EnviamentFunctionalConfig {
 	      .route(RequestPredicates.GET("/hello").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), enviamentHandler::hello);
 	  }
 	  
-    @Bean
-    EnviamentReactiveRepository enviamentRepository() {
-        return new EnviamentReactiveRepository();
-    }
-
-    @Bean
-    RouterFunction<ServerResponse> getAllEnviamentsRoute() {
-      return RouterFunctions.route(GET("/enviaments"), 
-        req -> ok().body(
-        		enviamentRepository().findAll(), EnviamentDto.class));
-    }
-
-    @Bean
-    RouterFunction<ServerResponse> getEnviamentByIdRoute() {
-      return RouterFunctions.route(GET("/enviaments/{id}"), 
-        req -> ok().body(
-        		enviamentRepository().findById(req.pathVariable("id")), EnviamentDto.class));
-    }
+//    @Bean
+//    EnviamentReactiveRepository enviamentRepository() {
+//        return new EnviamentReactiveRepository(MongoEntityInformation<Enviament, String> entityInformation,
+//    			 ReactiveMongoOperations mongoOperations);
+//    }
+//
+//    @Bean
+//    RouterFunction<ServerResponse> getAllEnviamentsRoute() {
+//      return RouterFunctions.route(GET("/enviaments"), 
+//        req -> ok().body(
+//        		enviamentRepository().findAll(), EnviamentDto.class));
+//    }
+//
+//    @Bean
+//    RouterFunction<ServerResponse> getEnviamentByIdRoute() {
+//      return RouterFunctions.route(GET("/enviaments/{id}"), 
+//        req -> ok().body(
+//        		enviamentRepository().findById(req.pathVariable("id")), EnviamentDto.class));
+//    }
 
 	/*
 	 * @Bean RouterFunction<ServerResponse> updateEnviamentRoute() { return

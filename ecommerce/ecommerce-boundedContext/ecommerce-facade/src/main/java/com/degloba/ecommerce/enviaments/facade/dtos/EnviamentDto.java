@@ -1,6 +1,8 @@
 package com.degloba.ecommerce.enviaments.facade.dtos;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -18,9 +20,9 @@ import lombok.Value;
 @AllArgsConstructor
 public class EnviamentDto {
 	
-	@Setter @Getter public String enviamentId;
-    @Setter @Getter public String comandaId;
-    @Setter @Getter public String estat;
+	@JsonProperty("enviamentId") @Setter @Getter public String enviamentId;
+	@JsonProperty("comandaId") @Setter @Getter public String comandaId;
+	@JsonProperty("estat") @Setter @Getter public String estat;
     
 	public EnviamentDto() {
 		super();
