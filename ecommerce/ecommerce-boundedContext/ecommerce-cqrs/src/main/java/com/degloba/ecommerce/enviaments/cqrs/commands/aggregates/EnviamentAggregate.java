@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.cqrs.aggregates;
+package com.degloba.ecommerce.enviaments.cqrs.commands.aggregates;
 
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -34,6 +34,10 @@ public class EnviamentAggregate {
         // Required by Axon to build a default Aggregate prior to Event Sourcing
     }
 
+    /**
+     * Constructor amb el paràmetre {@link CreaEnviamentCommand}
+     * @param creaEnviamentCommand
+     */
     @CommandHandler
     public EnviamentAggregate(CreaEnviamentCommand creaEnviamentCommand) {
     	

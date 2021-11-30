@@ -18,4 +18,5 @@ import reactor.core.publisher.Flux;
 public interface IEnviamentReactiveRepository extends ReactiveMongoRepository<Enviament, String> {
 
 	Flux<Enviament> findAllByIdNotNullOrderByIdAsc(final Pageable page);
+	
 }

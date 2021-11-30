@@ -1,7 +1,5 @@
 package com.degloba.ecommerce.enviaments.cqrs.queries.handlers;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.queryhandling.QueryHandler;
@@ -24,8 +22,7 @@ public class EnviamentsEventHandler {
 	
 	@Autowired
 	IEnviamentService enviamentService;
-	
-	  private final Map<String, Enviament> enviaments = new HashMap<>();
+
 	  
 	    /**
 	     * 
@@ -44,8 +41,7 @@ public class EnviamentsEventHandler {
 
 	    @EventHandler
 	    public void on(EnviamentCreatEvent event) {
-	        String enviamentId = event.getEnviamentId();
-	        enviaments.put(enviamentId, new Enviament(enviamentId, event.getComandaId(), event.getEstatEnviament()));
+	        enviamentService.create(event.getEnviamentId(), event.getComandaId());
 	    }
 
 	    @EventHandler

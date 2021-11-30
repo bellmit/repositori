@@ -5,9 +5,11 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -34,6 +36,7 @@ import com.google.common.base.Preconditions;
  * 
  * @EnableJpaRepositories(basePackages = "com.degloba.persistence.rdbms.dao")
  */
+@EnableJpaRepositories(basePackages = "com.degloba.ecommerce.crm.domain.persistence.rdbms.jpa")
 public class PersistenceRdbmsSpringConfiguration {
 
     @Autowired
@@ -87,6 +90,16 @@ public class PersistenceRdbmsSpringConfiguration {
         hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
         // hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
         return hibernateProperties;
+    }
+    
+    @Bean
+    public DataSource datasource() {
+        return DataSourceBuilder.create()
+                .driverClassName("com.mysql.cj.jdbc.Driver")
+                .url("jdbc:mysql://localhost:3306/myDb")
+                .username("root")
+                .password("pass")
+                .build();
     }
 
 }

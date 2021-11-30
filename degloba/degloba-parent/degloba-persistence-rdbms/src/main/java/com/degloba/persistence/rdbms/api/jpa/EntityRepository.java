@@ -31,7 +31,7 @@ public class EntityRepository implements IEntityRepository {
 
 
 	@PersistenceContext(unitName="transactions-optional")
-    ///////////@Qualifier(value="entityManagerFactoryDatastore")
+    ///////@Qualifier(value="entityManagerFactoryDatastore")
     protected EntityManager entityManager;
 	
     
