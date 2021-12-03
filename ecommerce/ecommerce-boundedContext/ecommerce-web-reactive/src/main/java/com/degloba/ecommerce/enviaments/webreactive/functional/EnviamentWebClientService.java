@@ -1,5 +1,6 @@
 package com.degloba.ecommerce.enviaments.webreactive.functional;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,7 @@ public class EnviamentWebClientService {
 	
 	// String url = "http://ecommerce-webapp:8880/enviaments/";
 
+	@Cacheable(value = "buscarTotsEnviamentsCache")
 	public Flux<EnviamentDto> buscarTotsEnviaments() {
 
 		// simulem una lògica de negoci en la part web (front-End)

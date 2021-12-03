@@ -1,5 +1,6 @@
 package com.degloba.ecommerce.enviaments.webreactive.functional.configuration;
 
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -32,6 +33,7 @@ import java.util.Map;
  *
  */
 @Configuration
+@EnableCaching    // https://www.baeldung.com/spring-boot-ehcache
 public class EnviamentRoutesConfiguration {
 		
 	@Bean

@@ -11,8 +11,8 @@ import org.modelmapper.TypeMap;
 import org.modelmapper.TypeToken;
 import org.modelmapper.config.Configuration.AccessLevel;
 
-import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.Enviament;
-import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentListDto;
+import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
+
 
 /*import com.degloba.hotels.HotelList;
 import com.degloba.hotels.facade.impl.converters.HotelListConverter;*/
