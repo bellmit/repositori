@@ -58,19 +58,8 @@
 			<version>4.4.3-SNAPSHOT</version>
 		</dependency>
 		
-		<dependency>
-			<groupId>org.axonframework</groupId>
-			<artifactId>axon-spring-boot-starter</artifactId>
-			<version>${axon.version}</version>
-		</dependency>
-		
-		<dependency>
-        <groupId>org.axonframework</groupId>
-        <artifactId>axon-test</artifactId>
-        <scope>test</scope>
-        <version>${axon.version}</version>
-		</dependency>
 
+		
 		<dependency>
 			<groupId>com.querydsl</groupId>
 			<artifactId>querydsl-codegen</artifactId>
@@ -81,7 +70,22 @@
 		</dependency>
 
 
-
+		<dependency>
+			<groupId>org.axonframework</groupId>
+			<artifactId>axon-spring-boot-starter</artifactId>
+			<version>4.5.3</version>			
+			<exclusions>
+                <exclusion>
+                    <groupId>org.axonframework</groupId>
+                    <artifactId>axon-server-connector</artifactId>
+                </exclusion>
+            </exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.axonframework</groupId>
+			<artifactId>axon-test</artifactId>
+			<version>4.5.3</version>
+		</dependency>
 		<dependency>
 			<groupId>org.axonframework.extensions.amqp</groupId>
 			<artifactId>axon-amqp-spring-boot-starter</artifactId>
