@@ -26,6 +26,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jetty</artifactId>
 		</dependency>
+		
+		     <dependency>
+     	<groupId>org.axonframework.extensions.reactor</groupId>
+     	<artifactId>axon-reactor-spring-boot-starter</artifactId>
+     	<version>4.5</version>
+     </dependency>
+     
 
  	<!-- 	<dependency>
 			<groupId>org.projectreactor</groupId>
@@ -187,53 +194,6 @@
 
 
 
-		<dependency>
-			<groupId>com.degloba</groupId>
-			<artifactId>ecommerce-cqrs</artifactId>
-			<version>4.4.3-SNAPSHOT</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.axonframework.extensions.amqp</groupId>
-					<artifactId>
-						axon-amqp-spring-boot-starter
-					</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.axonframework</groupId>
-					<artifactId>
-						axon-spring-boot-autoconfigure
-					</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.axonframework</groupId>
-					<artifactId>axon-modelling</artifactId>
-				</exclusion>
-				<!-- <exclusion> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-autoconfigure</artifactId> 
-					</exclusion> -->
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-actuator</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>
-						spring-boot-actuator-autoconfigure
-					</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>
-						spring-boot-starter-actuator
-					</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework.cloud</groupId>
-					<artifactId>
-						spring-cloud-starter-netflix-eureka-client
-					</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 
 
 		<dependency>
@@ -298,10 +258,6 @@
 		</dependency>
 
 		<!-- Dependency to use a spring cloud config server -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
-		</dependency>
 
 		<!-- Dependency to register the service within Eureka -->
 		<!-- <dependency> <groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-netflix-eureka-client 
@@ -322,10 +278,6 @@
 
 
     <dependency>
-    	<groupId>org.springframework.cloud</groupId>
-    	<artifactId>spring-cloud-context</artifactId>
-    </dependency>
-    <dependency>
     	<groupId>org.springframework.boot</groupId>
     	<artifactId>
     		spring-boot-starter-data-mongodb-reactive
@@ -334,6 +286,31 @@
     <dependency>
     	<groupId>de.flapdoodle.embed</groupId>
     	<artifactId>de.flapdoodle.embed.mongo</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>com.degloba</groupId>
+    	<artifactId>ecommerce-infrastructure</artifactId>
+    	<version>4.4.3-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.degloba</groupId>
+    	<artifactId>degloba-infrastructure</artifactId>
+    	<version>4.4.3-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.degloba</groupId>
+    	<artifactId>ecommerce-facade-impl</artifactId>
+    	<version>4.4.3-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.degloba</groupId>
+    	<artifactId>ecommerce-application</artifactId>
+    	<version>4.4.3-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.degloba</groupId>
+    	<artifactId>ecommerce-cqrs</artifactId>
+    	<version>4.4.3-SNAPSHOT</version>
     </dependency>
 	</dependencies>
 
@@ -409,7 +386,6 @@
 			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>jib-maven-plugin</artifactId>
-				<version>3.0.0</version>
 				<configuration>
 			<!-- 		<to>
 						<image>registry.hub.docker.com/degloba/ecommerce-webapp</image>

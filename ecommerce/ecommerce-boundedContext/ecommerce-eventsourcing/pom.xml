@@ -35,11 +35,6 @@
 
 
 		<!-- https://mvnrepository.com/artifact/org.axonframework/axon-spring-boot-autoconfigure -->
-		<dependency>
-			<groupId>org.axonframework</groupId>
-			<artifactId>axon-spring-boot-autoconfigure</artifactId>
-			<version>4.3.3</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.amqp</groupId>
@@ -47,11 +42,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.axonframework.extensions.amqp</groupId>
-			<artifactId>axon-amqp-spring-boot-autoconfigure</artifactId>
-			<version>4.5</version>
-		</dependency>
 		<dependency>
 			<groupId>com.degloba</groupId>
 			<artifactId>degloba-persistence-rdbms</artifactId>
@@ -66,6 +56,36 @@
 			<groupId>com.degloba</groupId>
 			<artifactId>ecommerce-facade</artifactId>
 			<version>4.4.3-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.axonframework</groupId>
+			<artifactId>axon-spring-boot-starter</artifactId>
+			<version>${axon.version}</version>
+		</dependency>
+		
+		<dependency>
+        <groupId>org.axonframework</groupId>
+        <artifactId>axon-test</artifactId>
+        <scope>test</scope>
+        <version>${axon.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-codegen</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>org.axonframework.extensions.amqp</groupId>
+			<artifactId>axon-amqp-spring-boot-starter</artifactId>
+			<version>4.5</version>
 		</dependency>
 	</dependencies>	
 	

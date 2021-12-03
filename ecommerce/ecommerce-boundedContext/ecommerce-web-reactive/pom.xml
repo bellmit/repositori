@@ -155,7 +155,24 @@
         <artifactId>reactor-test</artifactId> 
         <scope>test</scope>
     </dependency>
-    
+
+    <dependency>
+    	<groupId>org.springframework.data</groupId>
+    	<artifactId>spring-data-mongodb</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>org.mongodb</groupId>
+    	<artifactId>mongodb-driver-reactivestreams</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>com.degloba</groupId>
+    	<artifactId>degloba-webapp</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.eclipse.jetty.http2</groupId>
+    	<artifactId>http2-server</artifactId>
+    </dependency>
 	</dependencies>
 
 
@@ -203,7 +220,6 @@
 			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>jib-maven-plugin</artifactId>
-				<version>3.0.0</version>
 				<configuration>
  				<!-- 	 <to>
 						<image>registry.hub.docker.com/degloba/ecommerce-web-reactive</image>
@@ -211,7 +227,7 @@
 						<credHelper>wincred</credHelper>
 					</to> -->
 					<to>
-					<image>docker.io/degloba/ecommerce-web-reactive</image>
+					<image>docker.io/degloba/ecommerce-web-reactive</image>   <!-- dockerHub -->
 					</to>
 					<container>
 						<mainClass>com.degloba.ecommerce.enviaments.webapp.reactive.EnviamentReactiveSpringApplication</mainClass>
