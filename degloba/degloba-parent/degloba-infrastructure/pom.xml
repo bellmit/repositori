@@ -59,14 +59,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
-			<groupId>com.google.cloud</groupId>
-			<artifactId>google-cloud-bigquery</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.google.cloud</groupId>
-			<artifactId>google-cloud-pubsub</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>com.querydsl</groupId>
@@ -128,10 +120,6 @@
 		</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-r2dbc</artifactId>
-		</dependency>
 
 		<!-- a R2DBC driver -->
 		<dependency>

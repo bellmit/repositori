@@ -93,6 +93,12 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>org.axonframework</groupId>
+            <artifactId>axon-bom</artifactId>
+            <version>${axon.version}</version>
+        </dependency>
+
 		</dependencies>
 
 	</dependencyManagement>
