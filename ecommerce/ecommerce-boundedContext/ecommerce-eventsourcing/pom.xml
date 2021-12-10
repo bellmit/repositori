@@ -7,7 +7,7 @@
 		<groupId>com.degloba</groupId>
 		<artifactId>ecommerce-boundedContext</artifactId>
 		<version>4.4.3-SNAPSHOT</version>
-		<relativePath>../ecommerce-boundedContext/pom.xml</relativePath>
+		<!-- <relativePath>../ecommerce-boundedContext/pom.xml</relativePath> -->
 	</parent>
 
 	<artifactId>ecommerce-eventsourcing</artifactId>
@@ -64,32 +64,17 @@
 			<groupId>com.querydsl</groupId>
 			<artifactId>querydsl-codegen</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-amqp</artifactId>
-		</dependency>
+
 
 
 		<dependency>
 			<groupId>org.axonframework</groupId>
 			<artifactId>axon-spring-boot-starter</artifactId>
-			<version>4.5.3</version>			
-			<exclusions>
-                <exclusion>
-                    <groupId>org.axonframework</groupId>
-                    <artifactId>axon-server-connector</artifactId>
-                </exclusion>
-            </exclusions>
 		</dependency>
-		<dependency>
-			<groupId>org.axonframework</groupId>
-			<artifactId>axon-test</artifactId>
-			<version>4.5.3</version>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.axonframework.extensions.amqp</groupId>
 			<artifactId>axon-amqp-spring-boot-starter</artifactId>
-			<version>4.5</version>
 		</dependency>
 	</dependencies>	
 	

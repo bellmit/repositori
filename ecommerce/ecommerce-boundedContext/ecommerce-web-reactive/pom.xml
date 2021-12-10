@@ -134,15 +134,11 @@
 					<artifactId>
 								spring-boot-starter-data-mongodb-reactive
 							</artifactId>
-				</exclusion>
+				</exclusion>		
 			</exclusions>
 		</dependency>
 
 		<!-- Dependency to use a spring cloud config server -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
-		</dependency>
 
 
 <dependency>
@@ -156,14 +152,6 @@
         <scope>test</scope>
     </dependency>
 
-    <dependency>
-    	<groupId>org.springframework.data</groupId>
-    	<artifactId>spring-data-mongodb</artifactId>
-    </dependency>
-    <dependency>
-    	<groupId>org.mongodb</groupId>
-    	<artifactId>mongodb-driver-reactivestreams</artifactId>
-    </dependency>
     <dependency>
     	<groupId>com.degloba</groupId>
     	<artifactId>degloba-webapp</artifactId>
@@ -184,11 +172,11 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.degloba.ecommerce.enviaments.webapp.reactive.EnviamentReactiveSpringApplication</mainClass>
+					<mainClass>com.degloba.ecommerce.enviaments.webreactive.EnviamentsSpringApplication</mainClass>
 				</configuration>
 				<executions>
 					<execution>
@@ -197,7 +185,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

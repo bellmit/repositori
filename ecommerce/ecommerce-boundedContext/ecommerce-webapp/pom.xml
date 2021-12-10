@@ -284,10 +284,6 @@
     	</artifactId>
     </dependency>
     <dependency>
-    	<groupId>de.flapdoodle.embed</groupId>
-    	<artifactId>de.flapdoodle.embed.mongo</artifactId>
-    </dependency>
-    <dependency>
     	<groupId>com.degloba</groupId>
     	<artifactId>ecommerce-infrastructure</artifactId>
     	<version>4.4.3-SNAPSHOT</version>
@@ -311,6 +307,11 @@
     	<groupId>com.degloba</groupId>
     	<artifactId>ecommerce-cqrs</artifactId>
     	<version>4.4.3-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.axonframework.extensions.mongo</groupId>
+    	<artifactId>axon-mongo</artifactId>
+    	<version>4.5</version>
     </dependency>
 	</dependencies>
 
