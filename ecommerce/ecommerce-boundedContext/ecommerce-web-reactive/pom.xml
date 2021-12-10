@@ -134,7 +134,15 @@
 					<artifactId>
 								spring-boot-starter-data-mongodb-reactive
 							</artifactId>
-				</exclusion>		
+				</exclusion>
+				<exclusion>
+					<groupId>
+						org.axonframework.extensions.reactor
+					</groupId>
+					<artifactId>
+						axon-reactor-spring-boot-starter
+					</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
