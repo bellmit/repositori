@@ -9,8 +9,8 @@
 		<groupId>com.degloba</groupId>
 		<artifactId>degloba-parent</artifactId>
 		<version>4.4.3-SNAPSHOT</version>
-	<!-- 	<relativePath>../ecommerce/pom.xml</relativePath> -->
-		<!--    <relativePath /> --> <!-- lookup parent from repository -->
+		<!-- <relativePath>../ecommerce/pom.xml</relativePath> -->
+		<!-- <relativePath /> --> <!-- lookup parent from repository -->
 	</parent>
 
 
@@ -77,47 +77,59 @@
 				<artifactId>spring-data-mongodb</artifactId>
 				<version>3.0.4.RELEASE</version>
 			</dependency>
-			
+
 			<dependency>
-			<groupId>net.sf.jasperreports</groupId>
-			<artifactId>jasperreports</artifactId>
-			<version>${jasperreports.version}</version>
-		</dependency>
-		
-        <dependency>
-            <groupId>io.projectreactor</groupId>
-            <artifactId>reactor-bom</artifactId>
-            <version>2020.0.6</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
+				<groupId>net.sf.jasperreports</groupId>
+				<artifactId>jasperreports</artifactId>
+				<version>${jasperreports.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.projectreactor</groupId>
+				<artifactId>reactor-bom</artifactId>
+				<version>2020.0.6</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 
 
-        <dependency>
-            <groupId>org.axonframework</groupId>
-            <artifactId>axon-bom</artifactId>
-            <version>${axon.version}</version>
-        </dependency>
 
+			<dependency>
+				<groupId>org.axonframework</groupId>
+				<artifactId>axon-bom</artifactId>
+				<version>${axon.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.axonframework</groupId>
+				<artifactId>axon-spring-boot-starter</artifactId>
+				<version>4.5</version>
+			</dependency>
+			<dependency>
+				<groupId>org.axonframework.extensions.amqp</groupId>
+				<artifactId>axon-amqp-spring-boot-starter</artifactId>
+				<version>4.5</version>
+			</dependency>
 		</dependencies>
 
 	</dependencyManagement>
 
 	<dependencies>
 
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>${spring.boot.dependencies.version}</version>
-				<type>pom</type>
-				<!-- <scope>import</scope> -->
-			</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-dependencies</artifactId>
+			<version>${spring.boot.dependencies.version}</version>
+			<type>pom</type>
+			<!-- <scope>import</scope> -->
+		</dependency>
+
 
 	</dependencies>
 
 	<build>
 
- 	<pluginManagement>
+		<pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -232,17 +244,17 @@
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<version>${spring.boot.dependencies.version}</version>
-					 <executions> 
-						<execution> 
-							<goals> 
-								<goal>repackage</goal> 
-							</goals> 
-						</execution> 
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
 					</executions>
 				</plugin>
 
 
-				<!--   https://cloud.google.com/endpoints/docs/frameworks/java/maven-endpoints-frameworks-plugin -->
+				<!-- https://cloud.google.com/endpoints/docs/frameworks/java/maven-endpoints-frameworks-plugin -->
 				<plugin>
 					<groupId>com.google.cloud.tools</groupId>
 					<artifactId>endpoints-framework-maven-plugin</artifactId>
@@ -255,8 +267,8 @@
 
 
 			</plugins>
-			
-			
+
+
 		</pluginManagement>
 
 
@@ -265,7 +277,7 @@
 			<!-- proporciona objectius per controlar algunes restriccions de l'entorn 
 				com la versió Maven, la versió JDK i la família del sistema operatiu, juntament 
 				amb moltes altres regles integrades i regles creades per l'usuari. -->
-			 <plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
 				<version>${maven.enforcer.plugin.version}</version>
@@ -294,7 +306,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 
 		</plugins>
 
@@ -338,7 +350,7 @@
 	</build>
 
 	<reporting>
-	
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -426,11 +438,12 @@
 		<endpoints.framework.maven.plugin.version>1.0.2</endpoints.framework.maven.plugin.version>
 
 		<endpoints.project.id>wwwdegloba-1350</endpoints.project.id>
-		
-		<jasperreports.version>6.16.0</jasperreports.version>
-		
-		<axon.version>4.5</axon.version>
 
+		<jasperreports.version>6.16.0</jasperreports.version>
+
+		<axon.version>4.5.3</axon.version>
+
+		<axon.amqp.version>4.5</axon.amqp.version>
 	</properties>
 
 	<profiles>
@@ -472,21 +485,16 @@
 			</properties>
 		</profile>
 	</profiles>
-	
-	
-<!-- 	<repositories>
-	<repository>
-		<id>degloba</id>
-		<url>file://G:\.m2\repository222</url>
-	</repository>
-	</repositories> -->
+
+
+	<!-- <repositories> <repository> <id>degloba</id> <url>file://G:\.m2\repository222</url> 
+		</repository> </repositories> -->
 
 	<modules>
-		<!-- 	<module>ecommerce-gateway-api</module> 
-		<module>ecommerce-config</module>
-		<module>ecommerce-eureka</module>  -->
+		<!-- <module>ecommerce-gateway-api</module> <module>ecommerce-config</module> 
+			<module>ecommerce-eureka</module> -->
 		<module>./ecommerce-domain</module>
-				<module>./ecommerce-application</module>
+		<module>./ecommerce-application</module>
 		<module>./ecommerce-cqrs</module>
 		<module>./ecommerce-eventsourcing</module>
 		<module>./ecommerce-infrastructure</module>
