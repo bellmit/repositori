@@ -27,11 +27,6 @@
 			<artifactId>spring-boot-starter-jetty</artifactId>
 		</dependency>
 		
-		     <dependency>
-     	<groupId>org.axonframework.extensions.reactor</groupId>
-     	<artifactId>axon-reactor-spring-boot-starter</artifactId>
-     	<version>4.5</version>
-     </dependency>
      
 
  	<!-- 	<dependency>
@@ -63,11 +58,6 @@
 		<!-- *********** -->
 		<!-- BACKEND API -->
 		<!-- *********** -->
-		<dependency>
-			<groupId>com.google.appengine</groupId>
-			<artifactId>appengine-endpoints</artifactId>
-			<version>${google.appengine.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
@@ -153,26 +143,6 @@
 					</exclusion> -->
 			</exclusions>
 		</dependency>
-		<dependency>
-			<groupId>com.degloba</groupId>
-			<artifactId>degloba-ioc-spring</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.apache.tomcat.embed</groupId>
-					<artifactId>tomcat-embed-core</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>com.degloba</groupId>
-			<artifactId>degloba-event-api</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.integration</groupId>
-					<artifactId>spring-integration-core</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 
 		<dependency>
 			<groupId>com.degloba</groupId>
@@ -210,17 +180,7 @@
 
 
 
-		<dependency>
-			<groupId>com.google.cloud</groupId>
-			<artifactId>google-cloud-datastore</artifactId>
-		</dependency>
 
-		<dependency>
-			<groupId>com.google.auth</groupId>
-			<artifactId>
-				 		google-auth-library-appengine
-				 	</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>io.reactivex.rxjava2</groupId>
 			<artifactId>rxjava</artifactId>
@@ -251,11 +211,6 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.degloba</groupId>
-			<artifactId>ecommerce-domain</artifactId>
-			<version>4.4.3-SNAPSHOT</version>
-		</dependency>
 
 		<!-- Dependency to use a spring cloud config server -->
 
@@ -285,32 +240,50 @@
     </dependency>
     <dependency>
     	<groupId>com.degloba</groupId>
-    	<artifactId>ecommerce-infrastructure</artifactId>
-    	<version>4.4.3-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-    	<groupId>com.degloba</groupId>
-    	<artifactId>degloba-infrastructure</artifactId>
-    	<version>4.4.3-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-    	<groupId>com.degloba</groupId>
     	<artifactId>ecommerce-facade-impl</artifactId>
-    	<version>4.4.3-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-    	<groupId>com.degloba</groupId>
-    	<artifactId>ecommerce-application</artifactId>
     	<version>4.4.3-SNAPSHOT</version>
     </dependency>
     <dependency>
     	<groupId>com.degloba</groupId>
     	<artifactId>ecommerce-cqrs</artifactId>
     	<version>4.4.3-SNAPSHOT</version>
+    	<exclusions>
+    		<exclusion>
+    			<groupId>org.axonframework</groupId>
+    			<artifactId>axon-configuration</artifactId>
+    		</exclusion>
+    		<exclusion>
+    			<groupId>org.axonframework</groupId>
+    			<artifactId>axon-spring-boot-starter</artifactId>
+    		</exclusion>
+    		<exclusion>
+    			<groupId>com.degloba</groupId>
+    			<artifactId>ecommerce-eventsourcing</artifactId>
+    		</exclusion>
+    	</exclusions>
     </dependency>
     <dependency>
-    	<groupId>org.axonframework.extensions.mongo</groupId>
-    	<artifactId>axon-mongo</artifactId>
+    	<groupId>org.axonframework</groupId>
+    	<artifactId>axon-spring-boot-starter</artifactId>
+    	<exclusions>
+    		<exclusion>
+    			<groupId>org.axonframework</groupId>
+    			<artifactId>axon-server-connector</artifactId>
+    		</exclusion>
+    		<exclusion>
+    			<groupId>io.axoniq</groupId>
+    			<artifactId>axonserver-connector-java</artifactId>
+    		</exclusion>
+    		<exclusion>
+    			<groupId>org.axonframework</groupId>
+    			<artifactId>axon-spring-boot-autoconfigure</artifactId>
+    		</exclusion>
+    	</exclusions>
+    </dependency>
+
+    <dependency>
+    	<groupId>org.axonframework.extensions.reactor</groupId>
+    	<artifactId>axon-reactor-spring-boot-starter</artifactId>
     	<version>4.5</version>
     </dependency>
 	</dependencies>
