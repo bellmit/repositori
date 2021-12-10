@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webapp.config;
+package com.degloba.ecommerce.webapp.enviaments.config;
 
 import com.mongodb.reactivestreams.client.MongoClient;
 import com.mongodb.reactivestreams.client.MongoClients;

@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webapp.controllers;
+package com.degloba.ecommerce.webapp.enviaments.controllers;
 
 import static org.springframework.web.reactive.function.BodyExtractors.toMono;
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
@@ -28,8 +28,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
 import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
-import com.degloba.ecommerce.enviaments.infrastructure.persistence.nosql.mongo.EnviamentReactiveRepository;
-import com.degloba.ecommerce.enviaments.webapp.controllers.EnviamentWebFluxHandler;
+import com.degloba.ecommerce.webapp.enviaments.controllers.EnviamentWebFluxHandler;
 
 import lombok.NonNull;
 

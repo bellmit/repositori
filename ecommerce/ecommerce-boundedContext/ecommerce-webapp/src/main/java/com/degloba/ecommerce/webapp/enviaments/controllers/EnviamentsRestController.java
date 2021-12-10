@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webapp.controllers;
+package com.degloba.ecommerce.webapp.enviaments.controllers;
 
 import java.time.Duration;
 import java.util.List;
@@ -8,11 +8,13 @@ import java.util.concurrent.CompletableFuture;
 
 import org.axonframework.commandhandling.callbacks.LoggingCallback;
 import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.axonframework.extensions.reactor.commandhandling.gateway.ReactorCommandGateway;
-import org.axonframework.extensions.reactor.queryhandling.gateway.ReactorQueryGateway;
+//import org.axonframework.extensions.reactor.commandhandling.gateway.ReactorCommandGateway;
+//import org.axonframework.extensions.reactor.queryhandling.gateway.ReactorQueryGateway;
 import org.axonframework.messaging.ExecutionException;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
+import org.axonframework.queryhandling.GenericQueryMessage;
 import org.axonframework.queryhandling.QueryGateway;
+import org.hamcrest.CoreMatchers;
 ////import org.apache.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,7 @@ import com.degloba.ecommerce.enviaments.cqrs.queries.ObtenirEnviamentsQuery;
 import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
 
 import com.degloba.ecommerce.enviaments.facade.dtos.EnviamentDto;
+import com.querydsl.core.Query;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -65,12 +68,12 @@ public class EnviamentsRestController {
 	/**
 	 * Axon
 	 */
-//	private CommandGateway commandGateway;
-//	private QueryGateway queryGateway;
+	private CommandGateway commandGateway;
+	private QueryGateway queryGateway;
 	
 	// https://docs.axoniq.io/reference-guide/extensions/reactor/reactive-gateways
-	private ReactorQueryGateway reactiveQueryGateway;
-	private ReactorCommandGateway reactiveCommandGateway; 
+//	private ReactorQueryGateway reactiveQueryGateway;
+//	private ReactorCommandGateway reactiveCommandGateway; 
 	
 	/**
 	 * GET is used to request data from a specified resource.
@@ -81,18 +84,31 @@ public class EnviamentsRestController {
 	@GetMapping("/{id}")
 	// @ResponseStatus(HttpStatus.OK)
 	public Mono<EnviamentDto> getEnviament(@PathVariable String id) throws InterruptedException, ExecutionException {
-		return reactiveQueryGateway.query(new ObtenirEnviamentQuery(id), EnviamentDto.class);
+		//return reactiveQueryGateway.query(new ObtenirEnviamentQuery(id), EnviamentDto.class);
+		return Mono.fromFuture(queryGateway.query(new ObtenirEnviamentQuery(id), EnviamentDto.class));
 	}
 	
 
 	@GetMapping()
 	// @ResponseStatus(HttpStatus.OK)
 	public Flux<EnviamentDto> getEnviaments(@RequestParam(required = false) String queryParam) {
+		GenericQueryMessage<String, List<EnviamentDto>> query2 =
+		        new GenericQueryMessage<>("criteria", "query", ResponseTypes.multipleInstancesOf(EnviamentDto.class));
+		// send a query message and print query response
+		
+		Query query = null;
+		//return reactiveQueryGateway.scatterGather(query2, ResponseTypes.instanceOf(EnviamentDto.class), Duration.ofSeconds(5)).take(3);
+		
+		return null;
+		
 ////			log.debug("Received request at getExample:" + queryParam);
+		
+//		return Flux.fromStream(queryGateway.query(new ObtenirEnviamentsQuery(), 
+//				ResponseTypes.instanceOf(EnviamentDto.class)));
 				
 		// (1)
-		return reactiveQueryGateway.scatterGather(new ObtenirEnviamentsQuery(), 
-				ResponseTypes.instanceOf(EnviamentDto.class), Duration.ofSeconds(5)).take(3);
+		//return reactiveQueryGateway.scatterGather(new ObtenirEnviamentsQuery(), 
+		//		ResponseTypes.instanceOf(EnviamentDto.class), Duration.ofSeconds(5)).take(3);
 		
 		
 		// (2)
@@ -141,7 +157,8 @@ public class EnviamentsRestController {
 	        consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
 	)
     public Mono<Void> addEnviament(@RequestBody EnviamentDto enviamentDto) {
-        return reactiveCommandGateway.send(new CreaEnviamentCommand(enviamentDto.enviamentId,enviamentDto.getComandaId(),enviamentDto.getEstat()));
+        //return reactiveCommandGateway.send(new CreaEnviamentCommand(enviamentDto.enviamentId,enviamentDto.getComandaId(),enviamentDto.getEstat()));
+        return Mono.fromFuture(commandGateway.send(new CreaEnviamentCommand(enviamentDto.enviamentId,enviamentDto.getComandaId(),enviamentDto.getEstat())));
     }
 	
 

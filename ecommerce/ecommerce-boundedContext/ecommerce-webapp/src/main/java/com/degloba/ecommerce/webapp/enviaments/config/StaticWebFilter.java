@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webapp.config;
+package com.degloba.ecommerce.webapp.enviaments.config;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;

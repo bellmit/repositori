@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webapp.config;
+package com.degloba.ecommerce.webapp.enviaments.config;
 
 import javax.annotation.PostConstruct;
 
@@ -13,15 +13,15 @@ import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.http.codec.support.DefaultServerCodecConfigurer;
 
 import com.degloba.events.bus.EventBus;
-import com.mongodb.reactivestreams.client.MongoClient;
-import com.mongodb.reactivestreams.client.MongoClients;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-//////@Configuration
-public class SpringMongoConfig  {
-	//private static final Logger log = LoggerFactory.getLogger(SpringMongoConfig.class);
+@Configuration
+public class MongoConfig  {
+	//private static final Logger log = LoggerFactory.getLogger(MongoConfig.class);
 	
     @Value("${spring.data.mongodb.host}")
     private String mongoHost;        	
@@ -36,7 +36,7 @@ public class SpringMongoConfig  {
     }
     
     @Bean
-    public MongoClient reactiveMongoClient()  {
+    public MongoClient mongoClient()  {
     	String myHost = System.getenv("MONGODB_HOST");		
 		log.info("MONGODB_HOST="+myHost);
         if(myHost==null) {

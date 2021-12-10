@@ -1,7 +1,6 @@
 package com.degloba.ecommerce.crm.cqrs.commands;
 
 
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import lombok.Value;
 
@@ -15,7 +14,7 @@ import lombok.Value;
 @Value
 public class EnviaComandaCommand {
 	
-	@TargetAggregateIdentifier
+	////@TargetAggregateIdentifier
     private final String comandaId;
 
 }

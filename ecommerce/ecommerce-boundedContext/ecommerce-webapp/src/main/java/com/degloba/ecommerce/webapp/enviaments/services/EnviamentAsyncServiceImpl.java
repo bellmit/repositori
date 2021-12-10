@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.webapp.services;
+package com.degloba.ecommerce.webapp.enviaments.services;
 
 import java.util.concurrent.CompletableFuture;
 
