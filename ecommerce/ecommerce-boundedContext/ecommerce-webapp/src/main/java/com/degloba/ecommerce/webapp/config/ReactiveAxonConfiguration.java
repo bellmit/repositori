@@ -101,26 +101,13 @@ public class ReactiveAxonConfiguration {
 	@Bean
 	ReactorQueryGateway reactorQueryGateway(QueryBus queryBus) {
 		DefaultReactorQueryGateway reactorQueryGateway =
-				DefaultReactorQueryGateway.builder().build();
+				DefaultReactorQueryGateway.builder().queryBus(queryBus).build();
 			
 		
 		return reactorQueryGateway;
 	}
 	
 	
-	@Bean
-	CommandBus commandBus() {
-		SimpleCommandBus commandBus =
-			      SimpleCommandBus.builder().build();
-//			              .transactionManager(txManager)
-//			              .messageMonitor(axonConfiguration.messageMonitor(CommandBus.class, "commandBus"))
-//			              .build();
-//			  commandBus.registerHandlerInterceptor(
-//			      new CorrelationDataInterceptor<>(axonConfiguration.correlationDataProviders())
-//			  );
-		
-		return commandBus;
-	}
 	
 	@Bean
 	ReactorCommandGateway reactorCommandGateway(CommandBus commandBus) {
@@ -128,25 +115,6 @@ public class ReactiveAxonConfiguration {
 				DefaultReactorCommandGateway.builder().commandBus(commandBus).build();
 					
 		return reactorCommandGateway;
-	}
-	
-
-	
-	@Bean
-	QueryBus queryBus() {
-		SimpleQueryBus queryBus =
-				SimpleQueryBus.builder().build();
-		
-		return queryBus;
-	}
-	
-	
-	@Bean
-	EventBus eventBus() {
-		SimpleEventBus eventBus =
-				SimpleEventBus.builder().build();
-		
-		return eventBus;
 	}
 	
 
