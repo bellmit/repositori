@@ -1,6 +1,5 @@
 package com.degloba.ecommerce.comandes.eventsourcing.events;
 
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import lombok.AllArgsConstructor;
 import lombok.Value;
