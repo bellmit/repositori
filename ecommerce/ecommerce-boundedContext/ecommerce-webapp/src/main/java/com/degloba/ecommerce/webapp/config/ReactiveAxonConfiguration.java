@@ -8,7 +8,6 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
 
 //import org.axonframework.axonserver.connector.command.AxonServerCommandBus;
 import org.axonframework.commandhandling.CommandBus;
@@ -47,14 +46,13 @@ import org.axonframework.queryhandling.QueryBus;
 
 import org.axonframework.queryhandling.QueryGateway;
 import org.axonframework.queryhandling.SimpleQueryBus;
+import org.axonframework.spring.config.annotation.AnnotationCommandHandlerBeanPostProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.degloba.ecommerce.enviaments.cqrs.commands.aggregates.EnviamentAggregate;
-import com.mongodb.client.MongoClient;
 
 
 /**
@@ -97,6 +95,8 @@ public class ReactiveAxonConfiguration {
 //	  return commandBus;
 //	}
 	
+	
+
 	
 	@Bean
 	ReactorQueryGateway reactorQueryGateway(QueryBus queryBus) {
