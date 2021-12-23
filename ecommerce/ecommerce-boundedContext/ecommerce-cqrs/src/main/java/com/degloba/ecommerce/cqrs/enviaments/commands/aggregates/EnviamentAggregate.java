@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.cqrs.commands.aggregates;
+package com.degloba.ecommerce.cqrs.enviaments.commands.aggregates;
 
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -6,16 +6,11 @@ import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.spring.stereotype.Aggregate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.degloba.ecommerce.cqrs.enviaments.commands.*;
 import com.degloba.ecommerce.enviaments.application.IEnviamentService;
-import com.degloba.ecommerce.enviaments.cqrs.commands.CreaEnviamentCommand;
-import com.degloba.ecommerce.enviaments.cqrs.commands.EliminaEnviamentCommand;
-import com.degloba.ecommerce.enviaments.cqrs.commands.EntregaEnviamentCommand;
-import com.degloba.ecommerce.enviaments.cqrs.commands.GuardaEnviamentCommand;
+
 import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
-import com.degloba.ecommerce.enviaments.eventsourcing.events.EnviamentCreatEvent;
-import com.degloba.ecommerce.enviaments.eventsourcing.events.EnviamentEliminatEvent;
-import com.degloba.ecommerce.enviaments.eventsourcing.events.EnviamentEntregatEvent;
-import com.degloba.ecommerce.enviaments.eventsourcing.events.EnviamentGuardatEvent;
+import com.degloba.ecommerce.eventsourcing.enviaments.events.*;
 import com.degloba.ecommerce.facade.impl.assembler.EnviamentConverter;
 
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
