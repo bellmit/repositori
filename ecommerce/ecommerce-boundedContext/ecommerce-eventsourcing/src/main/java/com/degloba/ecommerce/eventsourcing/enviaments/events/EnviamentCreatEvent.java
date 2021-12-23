@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.enviaments.eventsourcing.events;
+package com.degloba.ecommerce.eventsourcing.enviaments.events;
 
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
