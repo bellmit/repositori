@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.webapp;
+package com.degloba.ecommerce.cqrs.enviaments;
 
 import java.util.Arrays;
 
@@ -15,26 +15,13 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @author pere
  *
  */
+///@EnableAxon  Deprecated
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
 public class EcommerceWebappSpringBootApplication {
 
     public static void main(String ... args) {
         SpringApplication.run(EcommerceWebappSpringBootApplication.class, args);
     }
-    
-//    @Bean
-//	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-//		return args -> {
-//
-//			System.out.println("Let's inspect the beans provided by Spring Boot:");
-//
-//			String[] beanNames = ctx.getBeanDefinitionNames();
-//			Arrays.sort(beanNames);
-//			for (String beanName : beanNames) {
-//				System.out.println(beanName);
-//			}
-//
-//		};
-//	}
+   
 
 }

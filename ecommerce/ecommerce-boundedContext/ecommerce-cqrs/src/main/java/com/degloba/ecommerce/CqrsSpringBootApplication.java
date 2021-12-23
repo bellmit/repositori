@@ -20,6 +20,6 @@ public class CqrsSpringBootApplication {
         SpringApplication.run(CqrsSpringBootApplication.class, args);
         
         log.debug("[CqrsSpringBootApplication] Run");
-    }
+    }    
 
 }
