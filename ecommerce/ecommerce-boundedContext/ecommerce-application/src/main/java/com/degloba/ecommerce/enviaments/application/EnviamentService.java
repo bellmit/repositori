@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.degloba.application.GenericServiceImpl;
 import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
 import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.IEnviamentReactiveRepository;
-import com.degloba.ecommerce.enviaments.eventsourcing.events.EnviamentCreatEvent;
+import com.degloba.ecommerce.eventsourcing.enviaments.events.EnviamentCreatEvent;
 
 import lombok.AllArgsConstructor;
 import reactor.core.publisher.Flux;
