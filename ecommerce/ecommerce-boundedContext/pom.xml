@@ -23,6 +23,12 @@
 
 		<dependencies>
 
+	<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+			<version>${spring-boot-admin.version}</version>
+		</dependency>
+		
 			<dependency>
 				<groupId>javax.el</groupId>
 				<artifactId>el-api</artifactId>
@@ -103,14 +109,27 @@
 			<dependency>
 				<groupId>org.axonframework</groupId>
 				<artifactId>axon-spring-boot-starter</artifactId>
-				<version>4.5</version>
+				<version>${axon.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.axonframework.extensions.amqp</groupId>
 				<artifactId>axon-amqp-spring-boot-starter</artifactId>
-				<version>4.5</version>
+				<version>${axon.amqp.version}</version>
 			</dependency>
+			
+			
+						<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring.boot.dependencies.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			
+			
 		</dependencies>
+		
+	
 
 	</dependencyManagement>
 
@@ -441,9 +460,11 @@
 
 		<jasperreports.version>6.16.0</jasperreports.version>
 
-		<axon.version>4.5.3</axon.version>
+		<axon.version>4.5.5</axon.version>
 
 		<axon.amqp.version>4.5</axon.amqp.version>
+		
+			<spring-boot-admin.version>2.5.4</spring-boot-admin.version>
 	</properties>
 
 	<profiles>

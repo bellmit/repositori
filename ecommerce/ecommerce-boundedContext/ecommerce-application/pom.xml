@@ -26,12 +26,6 @@
 			</dependency> -->
 
 
-		<dependency>
-			<groupId>org.axonframework</groupId>
-			<artifactId>axon-test</artifactId>
-			<version>${axon.version}</version>
-		</dependency>
-
 
 		<dependency>
 			<groupId>com.degloba</groupId>
@@ -48,22 +42,16 @@
 			<artifactId>ecommerce-eventsourcing</artifactId>
 			<version>4.4.3-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
 
 		<plugins>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-			</plugin>
-			
+		
 			<!-- The Surefire Plugin is used during the test phase of the build lifecycle 
 				to execute the unit tests of an application -->
 			<plugin>

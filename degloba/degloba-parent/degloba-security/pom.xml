@@ -18,7 +18,7 @@
 
 	<properties>
 
-		
+
 
 	</properties>
 
@@ -65,14 +65,14 @@
 	</dependencies>
 
 	<build>
-	<plugins>
-	
-				<plugin>
+		<plugins>
+
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
-	
-	</plugins>
+
+		</plugins>
 		<testResources>
 			<testResource>
 				<directory>src/test/resources</directory>

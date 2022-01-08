@@ -24,15 +24,19 @@
 		<servlet.version>4.0.0</servlet.version>
 
 		<!-- Spring -->
-		<spring.version>5.3.6</spring.version>
+		<spring.version>5.3.13</spring.version>
 		<springframework.webflow.version>2.5.1.RELEASE</springframework.webflow.version>
-		<spring-cloud.version>2020.0.0</spring-cloud.version>  <!-- https://stackoverflow.com/questions/65488101/springboot-upgrade-from-2-3-5-release-to-2-4-1-classnotfoundexception-org-spri -->
-		<spring.boot.dependencies.version>2.5.5</spring.boot.dependencies.version>
+		<spring-cloud.version>2021.0.0</spring-cloud.version>  <!-- https://stackoverflow.com/questions/65488101/springboot-upgrade-from-2-3-5-release-to-2-4-1-classnotfoundexception-org-spri -->
+		<spring.boot.dependencies.version>2.6.2</spring.boot.dependencies.version>
 		<spring.integration.mongodb.version>5.4.6</spring.integration.mongodb.version>
 		<spring-security-oauth2.version>2.5.1.RELEASE</spring-security-oauth2.version>
-		
+
 		<spring.cloud.k8s.version>1.1.8.RELEASE</spring.cloud.k8s.version>
-		
+
+
+		<axon-version>4.5.5</axon-version>
+
+
 		<doxia.module.markdown.version>1.9.1</doxia.module.markdown.version>
 
 		<wagon.git.version>2.0.4</wagon.git.version>
@@ -69,12 +73,12 @@
 			so that generated project uses correct version of richfaces. -->
 		<org.richfaces.bom.version>4.3.7.Final</org.richfaces.bom.version>
 
-			<!-- Test Dependencies -->
+		<!-- Test Dependencies -->
 		<mockito.version>3.3.3</mockito.version>
 		<junit.jupiter.version>5.6.1</junit.jupiter.version>
 		<lombok.version>1.18.12</lombok.version>
 		<junit.version>4.13</junit.version>
-		
+
 
 		<hibernate.version>6.0.0.Alpha4</hibernate.version>
 		<dbunit.version>2.7.0</dbunit.version>
@@ -113,12 +117,12 @@
 		<maven.site.plugin.version>3.9.1</maven.site.plugin.version>
 		<maven.bundle.plugin.version>5.1.2</maven.bundle.plugin.version>
 		<maven.deploy.plugin.version>3.0.0-M1</maven.deploy.plugin.version>
-		<maven.war.plugin.version>3.3.1</maven.war.plugin.version>		
+		<maven.war.plugin.version>3.3.1</maven.war.plugin.version>
 		<maven.enforcer.plugin.version>3.0.0-M3</maven.enforcer.plugin.version>
 		<maven.failsafe.plugin.version>3.0.0-M5</maven.failsafe.plugin.version>
 		<maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
 		<maven.surefire.report.plugin.version>3.0.0-M5</maven.surefire.report.plugin.version>
-		
+
 		<jib.maven.plugin.version>3.1.1</jib.maven.plugin.version>
 
 		<appengine.maven.plugin.version>2.4.0</appengine.maven.plugin.version>
@@ -127,15 +131,20 @@
 
 		<exec.maven.plugin.version>3.0.0</exec.maven.plugin.version>
 
+		<r2dbc-releasetrain.version>Borca-M2</r2dbc-releasetrain.version>
+
 	</properties>
 
 	<repositories>
 
-<!-- 		<repository>
+		<!-- <repository> <id>spring-milestone</id> <name>Spring Milestone Repository</name> 
+			<url>https://repo.spring.io/milestone</url> </repository> -->
+
+		<repository>
 			<id>spring-milestone</id>
-			<name>Spring Milestone Repository</name>
-			<url>https://repo.spring.io/milestone</url>
-		</repository> -->
+			<name>Spring Maven MILESTONE Repository</name>
+			<url>https://repo.spring.io/libs-milestone</url>
+		</repository>
 
 	</repositories>
 
@@ -144,7 +153,7 @@
 	</pluginRepositories>
 
 	<modules>
- 		<module>./degloba-domain</module>
+		<module>./degloba-domain</module>
 		<module>./degloba-ioc-spring</module>
 		<module>./degloba-persistence</module>
 		<module>./degloba-integration</module>
@@ -160,19 +169,19 @@
 	<dependencyManagement>
 
 		<dependencies>
-		
-		<dependency>
-    		<groupId>org.springframework.cloud</groupId>
-	    	<artifactId>spring-cloud-starter-kubernetes</artifactId>
-		</dependency>
-		
-		<dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-kubernetes-dependencies</artifactId>
-                <version>${spring.cloud.k8s.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-kubernetes</artifactId>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-kubernetes-dependencies</artifactId>
+				<version>${spring.cloud.k8s.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 
 
 			<!-- https://cloud.google.com/storage/docs/reference/libraries https://github.com/GoogleCloudPlatform/cloud-opensource-java/wiki/The-Google-Cloud-Platform-Libraries-BOM -->
@@ -186,21 +195,13 @@
 
 
 			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-
-			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-framework-bom</artifactId>
 				<version>${spring.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-dependencies</artifactId>
@@ -208,6 +209,14 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+
+			<dependency>
+				<groupId>org.axonframework</groupId>
+				<artifactId>axon-bom</artifactId>
+				<version>${axon-version}></version>
+			</dependency>
+
 
 			<dependency>
 				<groupId>javax.inject</groupId>
@@ -412,12 +421,12 @@
 				<artifactId>degloba-event-api</artifactId>
 				<version>${degloba-event-api.version}</version>
 			</dependency>
-			
-					<dependency>
-			<groupId>com.degloba</groupId>
-			<artifactId>degloba-utilitats</artifactId>
-			<version>${degloba-utilitats.version}</version>
-		</dependency>
+
+			<dependency>
+				<groupId>com.degloba</groupId>
+				<artifactId>degloba-utilitats</artifactId>
+				<version>${degloba-utilitats.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>com.degloba</groupId>
@@ -432,11 +441,11 @@
 			</dependency>
 
 
-		<dependency>
-			<groupId>org.reflections</groupId>
-			<artifactId>reflections</artifactId>
-			<version>0.9.12</version>
-		</dependency>
+			<dependency>
+				<groupId>org.reflections</groupId>
+				<artifactId>reflections</artifactId>
+				<version>0.9.12</version>
+			</dependency>
 
 			<!-- per poder convertir entity-DTO -->
 			<dependency>
@@ -449,6 +458,14 @@
 				<groupId>com.googlecode.objectify</groupId>
 				<artifactId>objectify</artifactId>
 				<version>${objectify.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.r2dbc</groupId>
+				<artifactId>r2dbc-bom</artifactId>
+				<version>${r2dbc-releasetrain.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 
 		</dependencies>
@@ -466,15 +483,10 @@
 			or abstraction for various logging frameworks (e.g. java.util.logging, logback, 
 			log4j) allowing the end user to plug in the desired logging framework at 
 			deployment time. -->
-<!-- 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-		</dependency> -->
-		
+		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId> 
+			</dependency> <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
+			</dependency> -->
+
 
 
 		<dependency>
@@ -524,12 +536,12 @@
 			<artifactId>log4j-to-slf4j</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-autoconfigure</artifactId>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
+			<artifactId>spring-web</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -544,7 +556,7 @@
 			<!-- proporciona objectius per controlar algunes restriccions de l'entorn 
 				com la versió Maven, la versió JDK i la família del sistema operatiu, juntament 
 				amb moltes altres regles integrades i regles creades per l'usuari. -->
-			 <plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
 				<version>${maven.enforcer.plugin.version}</version>
@@ -562,23 +574,23 @@
 								<requireJavaVersion>
 									<version>${jdk.version}</version>
 								</requireJavaVersion>
-								<!-- <requireOS> 
-									<family>unix</family> 
-								</requireOS>  -->
-							<!-- 	<requireReleaseVersion> 
-									<message>No se permite una versión Snapshot</message> 
-								</requireReleaseVersion> -->
+								<!-- <requireOS> <family>unix</family> </requireOS> -->
+								<!-- <requireReleaseVersion> <message>No se permite una versión Snapshot</message> 
+									</requireReleaseVersion> -->
 							</rules>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-			
-			
-<!-- 			<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>versions-maven-plugin</artifactId>
-			</plugin> -->
+
+
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>versions-maven-plugin</artifactId> 
+				</plugin> -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+			</plugin>
 
 		</plugins>
 
@@ -587,34 +599,22 @@
 		<pluginManagement>
 
 			<plugins>
-			
-			<plugin>
-				<groupId>com.google.cloud.tools</groupId>
-				<artifactId>jib-maven-plugin</artifactId>
-				<version>${jib.maven.plugin.version}</version>
-			</plugin>
-			
 
-<!-- 				https://www.mojohaus.org/versions-maven-plugin/usage.html
- 				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>versions-maven-plugin</artifactId>
-					<version>${versions.maven.plugin.version}</version>
-					<executions>
-						<execution>
-							<phase>compile</phase>
-							<goals>
-								<goal>display-dependency-updates</goal>
-								<goal>display-plugin-updates</goal>
-							</goals>
-						</execution>
-					</executions>
-					<configuration>
-						<generateBackupPoms>false</generateBackupPoms>
-						<rulesUri>file:///${session.executionRootDirectory}/rules.xml</rulesUri> https://www.mojohaus.org/versions-maven-plugin/version-rules.html 
-						
-					</configuration>
-				</plugin> -->
+				<plugin>
+					<groupId>com.google.cloud.tools</groupId>
+					<artifactId>jib-maven-plugin</artifactId>
+					<version>${jib.maven.plugin.version}</version>
+				</plugin>
+
+
+				<!-- https://www.mojohaus.org/versions-maven-plugin/usage.html <plugin> 
+					<groupId>org.codehaus.mojo</groupId> <artifactId>versions-maven-plugin</artifactId> 
+					<version>${versions.maven.plugin.version}</version> <executions> <execution> 
+					<phase>compile</phase> <goals> <goal>display-dependency-updates</goal> <goal>display-plugin-updates</goal> 
+					</goals> </execution> </executions> <configuration> <generateBackupPoms>false</generateBackupPoms> 
+					<rulesUri>file:///${session.executionRootDirectory}/rules.xml</rulesUri> 
+					https://www.mojohaus.org/versions-maven-plugin/version-rules.html </configuration> 
+					</plugin> -->
 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -629,15 +629,11 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>${maven.compiler.plugin.version}</version>
 					<configuration>
-					 <release>11</release>
-<!-- 					els seguents parametres son substituits pel parametre release en Java11	
-						<source>${jdk.version}</source>   
-						<target>${jdk.version}</target> 
-						<compilerVersion>${jdk.version}</compilerVersion>
-						<fork>true</fork>
-						<meminitial>128m</meminitial>
-						<maxmem>768m</maxmem>
-						<useIncrementalCompilation>false</useIncrementalCompilation> -->
+						<release>11</release>
+						<!-- els seguents parametres son substituits pel parametre release 
+							en Java11 <source>${jdk.version}</source> <target>${jdk.version}</target> 
+							<compilerVersion>${jdk.version}</compilerVersion> <fork>true</fork> <meminitial>128m</meminitial> 
+							<maxmem>768m</maxmem> <useIncrementalCompilation>false</useIncrementalCompilation> -->
 						<!-- <sourceDirectory>${project.build.directory}/generated-sources/java8</sourceDirectory> -->
 						<outputDirectory>${basedir}/target/classes</outputDirectory>
 					</configuration>
@@ -834,13 +830,8 @@
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<version>${spring.boot.dependencies.version}</version>
-					<!-- <executions>
-						<execution>
-							<goals>
-								<goal>repackage</goal>
-							</goals>
-						</execution>
-					</executions> -->
+					<!-- <executions> <execution> <goals> <goal>repackage</goal> </goals> 
+						</execution> </executions> -->
 				</plugin>
 
 				<!-- The Failsafe Plugin is designed to run integration tests while the 
@@ -880,11 +871,11 @@
 					<value>dev</value>
 				</property>
 			</activation>
-			
+
 			<properties>
 				<jdk.version>11</jdk.version>
 			</properties>
-			
+
 			<build>
 				<plugins>
 
