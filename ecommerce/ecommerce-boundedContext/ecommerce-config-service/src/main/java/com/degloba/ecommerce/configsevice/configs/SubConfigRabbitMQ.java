@@ -1,17 +1,17 @@
-package com.degloba.ecommerce.config.configs;
+package com.degloba.ecommerce.configsevice.configs;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Configura totes les propietats relacionades amb PostgresSQL
+ * Configura totes les propietats relacionades amb RabbitMQ
  * 
  * @author pere
  *
  */
 @Data @AllArgsConstructor @NoArgsConstructor
-public class SubConfigPostgresSQL {
+public class SubConfigRabbitMQ {
 	
 	/**
 	 * Nom de la database
@@ -30,9 +30,6 @@ public class SubConfigPostgresSQL {
 	private String username;
 	
 	private String password;
-	
-	private String driver;
-	
 	
 }
 

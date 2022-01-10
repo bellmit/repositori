@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.config;
+package com.degloba.ecommerce.configservice;
 
 
 import java.io.Serializable;
@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-import com.degloba.ecommerce.config.configs.SubConfigMongo;
+import com.degloba.ecommerce.configsevice.configs.SubConfigMongo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

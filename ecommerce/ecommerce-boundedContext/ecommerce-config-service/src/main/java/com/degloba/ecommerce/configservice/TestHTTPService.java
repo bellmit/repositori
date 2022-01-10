@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.config;
+package com.degloba.ecommerce.configservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,17 +1,17 @@
-package com.degloba.ecommerce.config.configs;
+package com.degloba.ecommerce.configsevice.configs;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Configura totes les propietats relacionades amb Eureka
+ * Configura totes les propietats relacionades amb MemCache
  * 
  * @author pere
  *
  */
 @Data @AllArgsConstructor @NoArgsConstructor
-public class SubConfigEureka {
+public class SubConfigMemcache {
 	
 	/**
 	 * Nom de la database

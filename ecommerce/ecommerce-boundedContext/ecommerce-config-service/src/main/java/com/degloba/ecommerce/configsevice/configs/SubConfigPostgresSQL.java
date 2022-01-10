@@ -1,17 +1,17 @@
-package com.degloba.ecommerce.config.configs;
+package com.degloba.ecommerce.configsevice.configs;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Configura totes les propietats relacionades amb MemCache
+ * Configura totes les propietats relacionades amb PostgresSQL
  * 
  * @author pere
  *
  */
 @Data @AllArgsConstructor @NoArgsConstructor
-public class SubConfigMemcache {
+public class SubConfigPostgresSQL {
 	
 	/**
 	 * Nom de la database
@@ -30,6 +30,9 @@ public class SubConfigMemcache {
 	private String username;
 	
 	private String password;
+	
+	private String driver;
+	
 	
 }
 

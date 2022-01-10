@@ -1,17 +1,17 @@
-package com.degloba.ecommerce.config.configs;
+package com.degloba.ecommerce.configsevice.configs;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Configura totes les propietats relacionades amb RabbitMQ
+ * Configura totes les propietats relacionades amb Mongo
  * 
  * @author pere
  *
  */
 @Data @AllArgsConstructor @NoArgsConstructor
-public class SubConfigRabbitMQ {
+public class SubConfigMongo {
 	
 	/**
 	 * Nom de la database

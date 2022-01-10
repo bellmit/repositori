@@ -1,17 +1,17 @@
-package com.degloba.ecommerce.config.configs;
+package com.degloba.ecommerce.configsevice.configs;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Configura totes les propietats relacionades amb ElasticSearch
+ * Configura totes les propietats relacionades amb Redis
  * 
  * @author pere
  *
  */
 @Data @AllArgsConstructor @NoArgsConstructor
-public class SubConfigElasticSearch {
+public class SubConfigRedis {
 	
 	/**
 	 * Nom de la database

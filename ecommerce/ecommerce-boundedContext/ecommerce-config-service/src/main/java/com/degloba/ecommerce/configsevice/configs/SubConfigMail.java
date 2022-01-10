@@ -1,4 +1,4 @@
-package com.degloba.ecommerce.config.configs;
+package com.degloba.ecommerce.configsevice.configs;
 
 import java.util.Properties;
 
