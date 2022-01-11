@@ -1,6 +1,4 @@
-# https://github.com/roaugusto/spring-microservices-new/blob/master/config-service/Dockerfile
 FROM openjdk:11
-#ENV APP_FILE config-service-1.0.0-SNAPSHOT.jar
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 EXPOSE 8088
