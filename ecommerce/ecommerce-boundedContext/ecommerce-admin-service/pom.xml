@@ -16,10 +16,9 @@
 	</parent>
 	<artifactId>ecommerce-admin-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ecommerce-admin-service</name>
+	<name>Ecommerce - Admin-service</name>
 	<description>Mòdul que utilitza Spring Boot Admin per supervisar les aplicacions Spring Boot i utilitzar el mòdul Spring Boot Actuator en segon pla</description>
 	<properties>
-		<java.version>11</java.version>
 		<spring-boot-admin.version>2.5.4</spring-boot-admin.version>
 	</properties>
 	<dependencies>
