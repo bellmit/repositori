@@ -1,0 +1,74 @@
+---
+apiVersion: v1
+kind: List
+items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        app: discoveryserver
+      name: discoveryserver
+    spec:
+      ports:
+        - name: http
+          port: 80
+          targetPort: 8761
+      selector:
+        app: discoveryserver
+      type: ClusterIP
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      labels:
+        app: discoveryserver
+      name: discoveryserver
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      labels:
+        app: discoveryserver
+      name: discoveryserver:view
+    roleRef:
+      kind: Role
+      apiGroup: rbac.authorization.k8s.io
+      name: namespace-reader
+    subjects:
+      - kind: ServiceAccount
+        name: discoveryserver
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      namespace: default
+      name: namespace-reader
+    rules:
+      - apiGroups: ["", "extensions", "apps"]
+        resources: ["services", "endpoints"]
+        verbs: ["get", "list", "watch"]
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: discoveryserver-deployment
+    spec:
+      selector:
+        matchLabels:
+          app: discoveryserver
+      template:
+        metadata:
+          labels:
+            app: discoveryserver
+        spec:
+          serviceAccount: discoveryserver
+          containers:
+          - name: discoveryserverr
+            image: springcloud/spring-cloud-kubernetes-discoveryserver:2.1.0-M3
+            imagePullPolicy: IfNotPresent
+            readinessProbe:
+              httpGet:
+                port: 8761
+                path: /actuator/health/readiness
+            livenessProbe:
+              httpGet:
+                port: 8761
+                path: /actuator/health/liveness
+            ports:
+            - containerPort: 8761
