@@ -93,7 +93,7 @@ ingress:
 #	kubectl apply -f ecommerce-webapp-angular/kubernetes
 
 # mongo, rabbit, axon,...
-arrancaArquitectura:
+arrancaInfrastructure:
 	kubectl apply -R -f ./k8s/infrastructure
 
 	
