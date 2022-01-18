@@ -1,0 +1,87 @@
+##################################################################################################
+# This file defines the services, service accounts, and deployments for the Ecommerce.
+#
+# To apply all services, their corresponding service accounts, and deployments:
+#
+#   kubectl apply -f k8s/ecommerce.yaml
+#
+# Alternatively, you can deploy any resource separately:
+#
+#   kubectl apply -f k8s/ecommerce.yaml -l service=ecommerce-webapp # ecommerce-webapp Service
+#   kubectl apply -f k8s/ecommerce.yaml -l account=ecommerce-webapp # ecommerce-webapp ServiceAccount
+#   kubectl apply -f k8s/ecommerce.yaml -l app=ecommerce-webapp,version=v1 # ecommerce-webapp-v1 Deployment
+##################################################################################################
+
+##################################################################################################
+# ecommerce-webapp service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecommerce-webapp
+  labels:
+    app: ecommerce-webapp
+    service: ecommerce-webapp
+spec:
+  ports:
+  - port: 50051
+    name: http
+  selector:
+    app: ecommerce-webapp
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ecommerce-webapp
+  labels:
+    account: ecommerce-webapp
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-webapp
+  labels:
+    app: ecommerce-webapp
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecommerce-webapp
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: ecommerce-webapp
+        version: v1
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "internal-app"      # ServiceAccount
+        vault.hashicorp.com/agent-inject-secret-database-config.txt: "internal/data/database/config"
+    spec:
+      #serviceAccountName: ecommerce-webapp
+      serviceAccountName: internal-app   # https://learn.hashicorp.com/tutorials/vault/kubernetes-sidecar
+      containers:
+      - name: ecommerce-webapp
+        image: docker.io/degloba/ecommerce-webapp:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        securityContext:
+          runAsUser: 1000
+        env:
+          - name: MONGO_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: mongodb-configmap
+                key: database-name
+          - name: MONGO_INITDB_ROOT_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: mongo-root-username
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: mongo-root-password

@@ -1,0 +1,78 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecommerce-web-reactive
+  labels:
+    app: ecommerce-web-reactive
+    service: ecommerce-web-reactive
+spec:
+  ports:
+  - port: 50051
+    name: http-reactive
+  selector:
+    app: ecommerce-web-reactive
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ecommerce-web-reactive
+  labels:
+    account: ecommerce-web-reactive
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-web-reactive
+  labels:
+    app: ecommerce-web-reactive
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecommerce-web-reactive
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: ecommerce-web-reactive
+        version: v1
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "internal-app"      # ServiceAccount
+        vault.hashicorp.com/agent-inject-secret-database-config.txt: "internal/data/database/config"
+    spec:
+      #serviceAccountName: ecommerce-web-reactive
+      serviceAccountName: internal-app   # https://learn.hashicorp.com/tutorials/vault/kubernetes-sidecar
+      containers:
+      - name: ecommerce-web-reactive
+#        image: docker.io/degloba/ecommerce-web-reactive:latest
+        image: ecommerce-web-reactive
+        imagePullPolicy: IfNotPresent
+        resources:
+           requests:
+              memory: "64Mi"
+              cpu: "1000m"
+           limits:
+              memory: "128Mi"
+              cpu: "2000m"
+        args:
+        - -cpus
+        - "2"              
+#        env:
+#        - name: LOG_DIR
+#          value: "/tmp/logs"
+#        ports:
+#        - containerPort: 50051
+#        volumeMounts:
+#        - name: tmp
+#          mountPath: /tmp
+#        - name: wlp-output
+#          mountPath: /opt/ibm/wlp/output
+#        securityContext:
+#          runAsUser: 1000
+#      volumes:
+#      - name: wlp-output
+#        emptyDir: {}
+#      - name: tmp
+#        emptyDir: {}

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
 
 /**
- * Configuració dels beans necessaris per implementar el servei Discovery de Kubernetes
+ * Configuració dels beans necessaris per implementar el servei Discovery client contra Kubernetes
  * 
  * @author pere
  *
@@ -19,6 +19,8 @@ public class K8sDiscoveryReactiveConfiguration {
     @Bean
     public KubernetesReactiveDiscoveryClient KubernetesReactiveDiscoveryClient(WebClient.Builder webClientBuilder, 
     		KubernetesDiscoveryClientProperties properties) {
+    	
+    	properties.setDiscoveryServerUrl("wwwwwwwww");
 
         return new KubernetesReactiveDiscoveryClient(webClientBuilder, properties);
     }
