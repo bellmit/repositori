@@ -1,28 +1,47 @@
-apiVersion: skaffold/v2beta11
+# https://skaffold.dev/docs/pipeline-stages/builders/jib/
+apiVersion: skaffold/v2beta22
 kind: Config
+metadata:
+  name: ecommerce-services
 build:
   tagPolicy:
      sha256: {}      # etiqueta amb : latest
 #    gitCommit: {}
   artifacts:
-  - image: ecommerce-webapp-angular
+  - image: ecommerce-webapp-angular        # podem referenciar una imatge en el DockerHub : degloba/ecommerce-webapp-angular
     context: ecommerce-webapp-angular
 #  - image: ecommerce-cqrs
 #    context: ecommerce-cqrs
 #    jib:
 #      type: maven
-  - image: ecommerce-webapp
+  - image: ecommerce-webapp       # podem referenciar una imatge en el DockerHub : degloba/ecommerce-webapp
     context: ecommerce-webapp
     jib:
+      project: ecommerce-webapp
+      args:
+          - -Pjib
       type: maven
-  - image: ecommerce-web-reactive
+  - image: ecommerce-web-reactive     # podem referenciar una imatge en el DockerHub : degloba/ecommerce-web-reactive
     context: ecommerce-web-reactive
     jib:
+      project: ecommerce-web-reactive
+      args:
+          - -Pjib    
       type: maven
-  - image: ecommerce-config
-    context: ecommerce-config
+  - image: ecommerce-config-service     # podem referenciar una imatge en el DockerHub : degloba/ecommerce-config-service 
+    context: ecommerce-config-service
     jib:
-      type: maven      
+      project: ecommerce-config-service
+      args:
+          - -Pjib     
+      type: maven    
+  - image: ecommerce-discovery-service       # podem referenciar una imatge en el DockerHub : degloba/ecommerce-discovery-service
+    context: ecommerce-config-service
+    jib:
+      project: ecommerce-config-service
+      args:
+          - -Pjib     
+      type: maven        
   local:      # https://skaffold.dev/docs/pipeline-stages/builders/
 #      tryImportMissing: true
      push: false

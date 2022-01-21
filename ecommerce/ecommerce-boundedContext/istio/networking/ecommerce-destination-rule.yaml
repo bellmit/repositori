@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: ecommerce-webapp-angular
+  name: ecommerce-webapp-angular-destination
 spec:
   host: ecommerce-webapp-angular
   subsets:
@@ -12,7 +12,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: ecommerce-web-reactive
+  name: ecommerce-web-reactive-destination
 spec:
   host: ecommerce-web-reactive
   subsets:
@@ -29,7 +29,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: ecommerce-webapp
+  name: ecommerce-webapp-destination
 spec:
   host: ecommerce-webapp
   subsets:

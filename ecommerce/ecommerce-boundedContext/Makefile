@@ -74,34 +74,14 @@ mongo-logs:
 # Obtingut de : https://octoperf.com/blog/2019/09/05/kraken-kubernetes-ingress-nginx-frontend/#tl-dr
 # -----------------------------------------------------------
 
+#####################################################################################
+##  MINIKUBE
+#####################################################################################	
 delete:
 	minikube delete
 
 stop:
 	minikube stop
-
-start:    
-	minikube start --vm-driver=hyperv -v 9999 --extra-config=apiserver.service-node-port-range=1-40000
-	
-mount:
-	minikube mount ${PWD}/grafana/config:/grafana
-
-ingress:
-	kubectl apply -f k8s/ingress
-
-# frontend:
-#	kubectl apply -f ecommerce-webapp-angular/kubernetes
-
-# mongo, rabbit, axon,...
-arrancaInfrastructure:
-	kubectl apply -R -f ./k8s/infrastructure
-
-	
-arrancaEcommerceIstio:
-	kubectl apply -f ./istio/ecommerce.yaml
-	
-arrancaEcommerceNetwork:
-	kubectl apply -f ./networking/ecommerce-gateway.yaml	
 	
 	
 dashboard:
@@ -109,12 +89,61 @@ dashboard:
 	
 	
 list:
-	minikube service list
+	minikube service list	
+
+start: 
+	# https://airwavetechio.medium.com/istio-with-minikube-on-windows-pt-1-e33e5f193b2   
+	minikube start --memory=4096 --cpus=4 --vm-driver hyperv --hyperv-virtual-switch "minikube" -v 9999 --extra-config=apiserver.service-node-port-range=1-40000
+#	minikube start --vm-driver=hyperv -v 9999 --extra-config=apiserver.service-node-port-range=1-40000
+#####################################################################################
+
+	
+
+#####################################################################################
+##  ISTIO
+#####################################################################################	
+creaEcommerceIstio:
+	kubectl apply -R -f ./istio
+#	kubectl apply -f ./istio/ecommerce.yaml
+
+eliminaEcommerceIstio:	
+	sh ./istio/cleanup.sh
+#####################################################################################	
+
+
+mount:
+	minikube mount ${PWD}/grafana/config:/grafana
+
+
+
+#####################################################################################
+##  KUBERNETES
+#####################################################################################	
+
+ingress:
+	kubectl apply -f k8s/ingress
+
+
+## frontend:
+##	kubectl apply -f ecommerce-webapp-angular/kubernetes
+
+	
+arrancaEcommerceNetwork:
+	kubectl apply -f ./networking/ecommerce-gateway.yaml	
+	
 
 watch:
 	kubectl get pods -A --watch
+
+
+## mongo, rabbit, axon,...
+creaInfrastructure:
+	kubectl apply -R -f ./k8s/infrastructure	
+
+
+creaVaultConsul:	
+	sh ./k8s/infrastructure/vault-consul-kubernetes/create.sh	
 	
+
 	
-# Prometheus, Grafana, and Jaeger.	
-addons:	
-	kubectl apply -f k8s/addons
+
