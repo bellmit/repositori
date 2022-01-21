@@ -12,8 +12,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;*/
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.core.ReactiveMongoOperations;
-import org.springframework.data.mongodb.repository.query.MongoEntityInformation;
 import org.springframework.http.MediaType;
 //////////////import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 //////////////import org.springframework.security.web.server.WebFilterChainProxy;
@@ -68,11 +66,6 @@ public class EnviamentFunctionalConfig {
 	      .route(RequestPredicates.GET("/hello").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), enviamentHandler::hello);
 	  }
 	  
-//    @Bean
-//    EnviamentReactiveRepository enviamentRepository() {
-//        return new EnviamentReactiveRepository(MongoEntityInformation<Enviament, String> entityInformation,
-//    			 ReactiveMongoOperations mongoOperations);
-//    }
 //
 //    @Bean
 //    RouterFunction<ServerResponse> getAllEnviamentsRoute() {

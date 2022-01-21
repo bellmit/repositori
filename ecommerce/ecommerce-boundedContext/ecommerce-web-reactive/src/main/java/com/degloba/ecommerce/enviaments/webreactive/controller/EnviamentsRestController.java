@@ -1,5 +1,7 @@
 package com.degloba.ecommerce.enviaments.webreactive.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +19,9 @@ import reactor.core.publisher.Mono;
 //@CrossOrigin(origins = "http://ecommerce-webapp-angular:4200")
 public class EnviamentsRestController {
 
+	@Autowired
+    private DiscoveryClient discoveryClient;
+	
 	EnviamentWebClientService enviamentWebClientService = new EnviamentWebClientService();
 
 	/**

@@ -32,7 +32,7 @@ import java.util.Map;
  * @author pere
  *
  */
-@Configuration
+/////@Configuration
 @EnableCaching    // https://www.baeldung.com/spring-boot-ehcache
 public class EnviamentRoutesConfiguration {
 		
@@ -52,8 +52,8 @@ public class EnviamentRoutesConfiguration {
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowCredentials(true);
-        /////config.addAllowedOrigin("http://localhost:4200");
-        config.addAllowedOrigin("http://webapp-angular:4200");
+        config.addAllowedOrigin("http://localhost:4200");
+        /////config.addAllowedOrigin("http://webapp-angular:4200");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
 

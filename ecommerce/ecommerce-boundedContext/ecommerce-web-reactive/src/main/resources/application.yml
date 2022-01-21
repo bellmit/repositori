@@ -2,7 +2,7 @@
 # http://www.robertocrespo.net/kaizen/como-construir-microservicios-con-spring-boot/
 spring:
   application:
-     name: ecommerce-web-reactive  # Service registers under this name
+     name: ecommerce-web-reactive-service  # Service registers under this name
   freemarker:
     enabled: false           # Ignore Eureka dashboard FreeMarker templates
   thymeleaf:
@@ -10,6 +10,16 @@ spring:
     prefix: classpath:/templates/    # Trailing / mandatory
                              # Template location for this application only
 
+  cloud:
+    config:
+      enabled: true
+    kubernetes:
+      discovery-server-url : kkkkkkk      
+  config:
+    import: optional:configserver:${CONFIG_SERVER:http://localhost:8088/}   # where the config-service is running
+    
+    
+    
 # Discovery Server Access
 #eureka:
 #   client:
@@ -20,8 +30,4 @@ spring:
 #server:
   port: 1111   # HTTP (Tomcat) port
   
-
-  cloud:
-    config:
-      uri: http://localhost:8889  #where the config-service is running
-      fail-fast: true
+  
