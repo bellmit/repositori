@@ -17,6 +17,9 @@ import lombok.Setter;
 
 /**
  * @author pere
+ * 
+ * Object Mapping for Configuration in ConfigMap
+ * https://ard333.medium.com/centralized-configuration-spring-application-on-kubernetes-4fd9e1a31f35
  *
  */
 @Configuration
@@ -32,7 +35,7 @@ public class ClientConfig implements Serializable {
 	/**
 	 * Mongo database
 	 */
-	private String database; 
+	private String database = "fantasy_db";    // nom de la BBDD
 	
 	/**
 	 * propietats que pengen de database
