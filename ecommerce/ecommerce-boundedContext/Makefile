@@ -142,7 +142,7 @@ creaInfrastructure:
 
 
 creaVaultConsul:	
-	sh ./k8s/infrastructure/vault-consul-kubernetes/create.sh	
+	sh ./k8s/infrastructure/vault-consul/create.sh	
 	
 
 	
