@@ -53,6 +53,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.degloba.ecommerce.enviaments.application.EnviamentService;
+import com.degloba.ecommerce.enviaments.application.IEnviamentService;
+
 
 
 /**
@@ -117,6 +120,7 @@ public class ReactiveAxonConfiguration {
 		return reactorCommandGateway;
 	}
 	
+
 
 	
 //    @Bean

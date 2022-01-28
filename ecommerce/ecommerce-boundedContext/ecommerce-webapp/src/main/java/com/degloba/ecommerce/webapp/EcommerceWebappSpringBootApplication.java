@@ -10,11 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
 
-import com.degloba.ecommerce.enviaments.domain.persistence.nosql.mongo.IEnviamentReactiveRepository;
-import com.degloba.ecommerce.enviaments.infrastructure.persistence.nosql.mongo.EnviamentReactiveRepository;
 
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+//import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 
 
@@ -25,7 +23,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @ComponentScan(basePackages = "com.degloba")
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
-@EnableEurekaClient
+/////@EnableEurekaClient
 public class EcommerceWebappSpringBootApplication {
 
     public static void main(String ... args) {

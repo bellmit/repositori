@@ -18,8 +18,6 @@ import org.axonframework.common.jpa.SimpleEntityManagerProvider;
 import org.axonframework.common.transaction.TransactionManager;
 import org.axonframework.config.Configurer;
 import org.axonframework.config.DefaultConfigurer;
-//import org.axonframework.config.Configurer;
-//import org.axonframework.config.DefaultConfigurer;
 import org.axonframework.eventhandling.EventBus;
 import org.axonframework.eventhandling.SimpleEventBus;
 import org.axonframework.eventsourcing.EventSourcingRepository;
@@ -28,37 +26,26 @@ import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
 import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.axonframework.eventsourcing.eventstore.inmemory.InMemoryEventStorageEngine;
 import org.axonframework.extensions.mongo.DefaultMongoTemplate;
+import org.axonframework.extensions.mongo.MongoTemplate;
 import org.axonframework.extensions.mongo.eventsourcing.eventstore.MongoEventStorageEngine;
-//import org.axonframework.eventsourcing.eventstore.EmbeddedEventStore;
-//import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
-//import org.axonframework.eventsourcing.eventstore.EventStore;
-//import org.axonframework.extensions.mongo.DefaultMongoTemplate;
-//import org.axonframework.extensions.mongo.eventsourcing.eventstore.MongoEventStorageEngine;
-//import org.axonframework.eventsourcing.EventSourcingRepository;
-//import org.axonframework.eventsourcing.eventstore.EmbeddedEventStore;
-//import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
-//import org.axonframework.eventsourcing.eventstore.EventStore;
+import org.axonframework.extensions.mongo.eventsourcing.eventstore.documentperevent.DocumentPerEventStorageStrategy;
 //import org.axonframework.extensions.reactor.queryhandling.gateway.ReactorQueryGateway;
-//import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
 import org.axonframework.messaging.interceptors.CorrelationDataInterceptor;
+import org.axonframework.modelling.command.GenericJpaRepository;
 import org.axonframework.modelling.command.Repository;
+import org.axonframework.modelling.saga.repository.jpa.JpaSagaStore;
 //import org.axonframework.modelling.saga.repository.SagaStore;
 //import org.axonframework.modelling.saga.repository.jpa.JpaSagaStore;
 import org.axonframework.queryhandling.DefaultQueryGateway;
 import org.axonframework.queryhandling.QueryBus;
-//import org.axonframework.modelling.command.Repository;
-//import org.axonframework.modelling.saga.repository.SagaStore;
-//import org.axonframework.modelling.saga.repository.jpa.JpaSagaStore;
-
-//import org.axonframework.eventsourcing.EventSourcingRepository;
 
 
-//import org.axonframework.spring.config.AxonConfiguration;
 //import org.axonframework.spring.config.EnableAxon;
 import org.axonframework.queryhandling.QueryGateway;
 import org.axonframework.queryhandling.SimpleQueryBus;
 import org.axonframework.serialization.Serializer;
-
+import org.axonframework.serialization.json.JacksonSerializer;
+import org.axonframework.serialization.xml.XStreamSerializer;
 import org.axonframework.spring.config.AnnotationDriven;
 import org.axonframework.spring.config.annotation.AnnotationCommandHandlerBeanPostProcessor;
 
@@ -70,6 +57,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.degloba.ecommerce.cqrs.enviaments.commands.aggregates.EnviamentAggregate;
 import com.mongodb.client.MongoClient;
+import com.thoughtworks.xstream.XStream;
 
 
 /**
@@ -82,6 +70,8 @@ import com.mongodb.client.MongoClient;
 @Configuration
 //////////@AnnotationDriven
 public class AxonConfiguration {
+	
+	///private final EventHandlingConfiguration eventHandlingConfiguration;
 		
 	/*
 	 * @Autowired(required = false)
@@ -90,10 +80,6 @@ public class AxonConfiguration {
 	 */
 
 
-//
-//	@Autowired(required = false)
-//	private EventStorageEngine eventStorageEngine;
-
 	/*
 	 * @Autowired(required = false) private SagaStore sagaStore;
 	 */
@@ -101,7 +87,7 @@ public class AxonConfiguration {
 //	@ConditionalOnMissingBean(ignored = {DistributedCommandBus.class, AxonServerCommandBus.class}, value = CommandBus.class)
 //	@Qualifier("localSegment")
 //	@Bean
-//	public SimpleCommandBus commandBus(TransactionManager txManager, AxonConfiguration axonConfiguration) {
+//	public SimpleCommandBus commandBus(TransactionManager txManager, org.axonframework.spring.config.AxonConfiguration axonConfiguration) {
 //	  SimpleCommandBus commandBus =
 //	      SimpleCommandBus.builder()
 //	              .transactionManager(txManager)
@@ -224,13 +210,13 @@ public class AxonConfiguration {
 //	
 	
 	// The Event store `EmbeddedEventStore` delegates actual storage and retrieval of events to an `EventStorageEngine`.
-//	@Bean
-//	public EmbeddedEventStore eventStore(EventStorageEngine storageEngine, AxonConfiguration configuration) {
-//	    return EmbeddedEventStore.builder()
-//	            .storageEngine(storageEngine)
-//	            .messageMonitor(configuration.messageMonitor(EventStore.class, "eventStore"))
-//	            .build();
-//	}
+	@Bean
+	public EmbeddedEventStore eventStore(EventStorageEngine storageEngine, org.axonframework.spring.config.AxonConfiguration configuration) {
+	    return EmbeddedEventStore.builder()
+	            .storageEngine(storageEngine)
+	            //.messageMonitor(configuration.messageMonitor(EventStore.class, "eventStore"))
+	            .build();
+	}
 
 	// The `MongoEventStorageEngine` stores each event in a separate MongoDB document
 //	@Bean
@@ -239,9 +225,9 @@ public class AxonConfiguration {
 //	}
 	
 //	public void contextLoads() {
-//		/*assertThat(repository)
+//		assertThat(repository)
 //				.isNotNull()
-//				.isInstanceOf(GenericJpaRepository.class);*/
+//				.isInstanceOf(GenericJpaRepository.class);
 //		assertThat(commandGateway)
 //				.isNotNull()
 //				.isInstanceOf(DefaultCommandGateway.class);
@@ -257,7 +243,7 @@ public class AxonConfiguration {
 //		assertThat(sagaStore)
 //				.isNotNull()
 //				.isInstanceOf(JpaSagaStore.class);
-		// assert that we do not have any EventStorageEngine
+//		// assert that we do not have any EventStorageEngine
 //		assertThat(eventStorageEngine).isNull();
 //	}
 	
@@ -274,19 +260,49 @@ public class AxonConfiguration {
 		        return repository;
 		    }
 	
+//		  @Bean
+//		  public EventStorageEngine eventStore(MongoTemplate mongoTemplate) {
+//		     return new MongoEventStorageEngine(
+//		             new JacksonSerializer(), null, mongoTemplate, new DocumentPerEventStorageStrategy());
+//		  }
 	
-	@Bean 
-	public EventStorageEngine storageEngine(MongoClient client) {     
-		MongoEventStorageEngine m =  MongoEventStorageEngine.builder().mongoTemplate(DefaultMongoTemplate.builder().mongoDatabase(client).build()).build();
-		
-		return m;
+//	@Bean 
+//	public EventStorageEngine storageEngine(MongoClient client) {  	
+//		MongoEventStorageEngine m =  MongoEventStorageEngine.builder().mongoTemplate(DefaultMongoTemplate.builder().mongoDatabase(client).build()).build();
+//		
+//		return m;
+//	}
+	
+	@Bean
+	public EventStorageEngine eventStore(MongoTemplate mongoTemplate) {
+		return MongoEventStorageEngine.builder().mongoTemplate(mongoTemplate).build();
+	   /////return MongoEventStorageEngine.builder().mongoTemplate(mongoTemplate).eventSerializer(JacksonSerializer.builder().build()).build();
 	}
 	
-	@Bean 
-	public EmbeddedEventStore eventStore(EventStorageEngine storageEngine, org.axonframework.spring.config.AxonConfiguration configuration) {     
-		return EmbeddedEventStore.builder()             
-			.storageEngine(storageEngine)             
-			.messageMonitor(configuration.messageMonitor(EventStore.class, "eventStore")).build(); 
-	}
+	
+	
+	// The XStream should be configured in such a way that a security solution is provided
+//	@Bean
+//	public Serializer serializer(XStream xStream) {
+//	    return XStreamSerializer.builder().xStream(xStream).build();
+//	}
+	
+	
+	// By default, we want the XStreamSerializer
+//	   @Bean
+//	   public Serializer defaultSerializer() {
+//	      // Set the secure types on the xStream instance
+//	      XStream xStream = new XStream();
+//	      return XStreamSerializer.builder()
+//	                              .xStream(xStream)
+//	                              .build();
+//	   }
+//
+	   // But for all our messages we'd prefer the JacksonSerializer due to JSON's smaller format
+	   @Bean
+	   @Qualifier("messageSerializer")
+	   public Serializer messageSerializer() {
+	      return JacksonSerializer.defaultSerializer();
+	   }
 
 }
