@@ -28,7 +28,7 @@ import com.degloba.persistence.rdbms.api.jpa.EntityRepository;
  */
 ////@DomainRepositoryImpl
 ////public class EnviamentRepository extends EntityRepository implements IEnviamentsRepository{
-@Repository
+/////////////@Repository
 public class EnviamentRepository extends SimpleJpaRepository<Enviament, String> implements IEnviamentJPARepository {
 
 	public EnviamentRepository(Class<Enviament> domainClass, EntityManager em) {
