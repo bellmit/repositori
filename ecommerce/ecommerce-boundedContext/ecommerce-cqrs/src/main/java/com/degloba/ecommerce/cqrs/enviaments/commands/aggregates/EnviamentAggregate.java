@@ -7,6 +7,7 @@ import org.axonframework.spring.stereotype.Aggregate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.degloba.ecommerce.cqrs.enviaments.commands.*;
+import com.degloba.ecommerce.enviaments.application.EnviamentService;
 import com.degloba.ecommerce.enviaments.application.IEnviamentService;
 
 import com.degloba.ecommerce.enviaments.domain.entitats.Enviament;
@@ -15,11 +16,9 @@ import com.degloba.ecommerce.facade.impl.assembler.EnviamentConverter;
 
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
-@Aggregate
+@Aggregate(repository = "accountAggregateEventSourcingRepository")
 public class EnviamentAggregate {
-	
-	@Autowired
-	IEnviamentService enviamentService;
+
 
 	@AggregateIdentifier
     private String enviamentId;
@@ -34,13 +33,11 @@ public class EnviamentAggregate {
      * @param creaEnviamentCommand
      */
     @CommandHandler
-    public EnviamentAggregate(CreaEnviamentCommand creaEnviamentCommand) {
+    public EnviamentAggregate(CreaEnviamentCommand creaEnviamentCommand) {   //https://stackoverflow.com/questions/54505687/aggregate-not-found-in-the-event-store
     	
 		Enviament e = new Enviament(creaEnviamentCommand.getEnviamentId(),creaEnviamentCommand.getComandaId(),creaEnviamentCommand.getEstat());
-		
-		enviamentService.Save(e).flatMap(ee -> EnviamentConverter.toDto(ee));
-    	    	
-        apply(new EnviamentCreatEvent(creaEnviamentCommand.getEnviamentId(), creaEnviamentCommand.getComandaId(), creaEnviamentCommand.getEstat()));
+		    	
+        apply(new EnviamentCreatEvent(creaEnviamentCommand.getEnviamentId(), creaEnviamentCommand.getComandaId(), creaEnviamentCommand.getEstat()));      
     }
     
     
