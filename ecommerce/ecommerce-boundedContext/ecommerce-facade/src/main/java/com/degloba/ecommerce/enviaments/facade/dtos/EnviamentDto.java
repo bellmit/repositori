@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,11 +26,17 @@ import lombok.experimental.Accessors;
 @ToString
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
+@AllArgsConstructor
 public class EnviamentDto {
 	
-	@JsonProperty("enviamentId") public String enviamentId;
-	@JsonProperty("comandaId") public String comandaId;
-	@JsonProperty("estat") public String estat;
+
+//	@JsonProperty("enviamentId") public String enviamentId;
+//	@JsonProperty("comandaId") public String comandaId;
+//	@JsonProperty("estat") public String estat;
+	
+	public String enviamentId;
+	public String comandaId;
+	public String estat;
     
 
 }
